@@ -4,9 +4,13 @@
     "stylelint-config-property-sort-order-smacss"
   ],
   "rules": {
-    "at-rule-no-unknown": [true, {
-      "ignoreAtRules": ["function", "return", "include", "mixin", "if", "else", "for", "error", "each"]
-    }],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["function", "return", "include", "mixin", "if", "else", "for", "error", "each"]
+      }
+    ],
+    "indentation": 2,
     "no-invalid-position-at-import-rule": null,
     "no-descending-specificity": null,
     "selector-pseudo-class-no-unknown": null,
@@ -27,5 +31,22 @@
       "custom-properties",
       "declarations"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.scss"],
+      "customSyntax": "postcss-scss"
+    },
+    {
+      "files": ["./src/assets/styles/**/*.scss"],
+      "rules": {
+        "function-no-unknown": [
+          true,
+          {
+            "ignoreFunctions": ["px", "getDevice", "percentage"]
+          }
+        ]
+      }
+    }
+  ]
 }
