@@ -113,7 +113,7 @@ $columnGapQuarter: 7.5;
 }
 
 @mixin makeOffset($size, $columns: $gridColumns) {
-  padding-left: calc(#{percentage($size / $columns)} + #{px($columnGapQuarter)});
+  padding-left: calc(#{percentage(calc($size / $columns))} + #{px($columnGapQuarter)});
 }
 
 @mixin makeColumns($infix) {
@@ -133,8 +133,8 @@ $columnGapQuarter: 7.5;
 }
 
 @mixin makeColumn($size, $columns: $gridColumns) {
-  flex: 0 0 percentage($size / $columns);
-  max-width: percentage($size / $columns);
+  flex: 0 0 percentage(calc($size / $columns));
+  max-width: percentage(calc($size / $columns));
 }
 
 @mixin makeColumnAuto() {

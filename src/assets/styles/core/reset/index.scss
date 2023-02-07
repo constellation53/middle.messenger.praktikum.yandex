@@ -6,7 +6,7 @@
 }
 
 @media #{getMediaFeature(phonePortrait)} {
-  @include useResetting(getDevice(phonePortrait));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -14,7 +14,7 @@
 }
 
 @media #{getMediaFeature(phoneLandscape)} {
-  @include useResetting(getDevice(phoneLandscape));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -22,7 +22,7 @@
 }
 
 @media #{getMediaFeature(phoneLandscapePlus)} {
-  @include useResetting(getDevice(phoneLandscapePlus));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -30,7 +30,7 @@
 }
 
 @media #{getMediaFeature(tabletPortrait)} {
-  @include useResetting(getDevice(tabletPortrait));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -38,7 +38,7 @@
 }
 
 @media #{getMediaFeature(tabletLandscape)} {
-  @include useResetting(getDevice(tabletLandscape));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -46,7 +46,7 @@
 }
 
 @media #{getMediaFeature(desktop)} {
-  @include useResetting(getDevice(desktop));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -54,7 +54,7 @@
 }
 
 @media #{getMediaFeature(desktopWide)} {
-  @include useResetting(getDevice(desktopWide));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -62,7 +62,7 @@
 }
 
 @media #{getMediaFeature(desktopHD)} {
-  @include useResetting(getDevice(desktopHD));
+  @include useResetting();
 }
 
 @function px($px) {
@@ -70,9 +70,9 @@
 }
 
 @media #{getMediaFeature(desktopMega)} {
-  @include useResetting(getDevice(desktopMega));
+  @include useResetting();
 }
 
 @media #{getMediaFeature(touchScreen)} {
-  @include useResetting(getDevice(touchScreen));
+  @include useResetting();
 }

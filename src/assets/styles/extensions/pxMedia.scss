@@ -2,7 +2,7 @@
   $k: 0;
 
   @if $media == getDevice(phonePortrait) {
-    $k: 100 / 320;
+    $k: calc(100 / 320);
 
     @return #{$px}px;
   }
