@@ -1,0 +1,185 @@
+$gridColumns: 12;
+$columnGap: 30;
+$columnGapHalf: 15;
+$columnGapQuarter: 7.5;
+
+@function getGridType($type) {
+  $types: (
+    extraSmall: 'Xs',
+    small: 'Sm',
+    medium: 'Md',
+    large: 'Lg',
+    extraLarge: 'Xl',
+  );
+
+  @return map-get($types, $type);
+}
+
+@function getContainerWidth($type) {
+  $maxWidths: (
+    extraSmall: px(320),
+    small: px(540),
+    medium: px(720),
+    large: px(960),
+    extraLarge: px(1140),
+  );
+
+  @return map-get($maxWidths, $type);
+}
+
+// Default Grid Styles
+
+@mixin applyGridImmutableStyles() {
+  :global {
+    .container {
+      width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+
+      &.isNoGutters {
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      &.isNoGutters > .col,
+      &.isNoGutters > [class*='col'] {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+
+    .col {
+      position: relative;
+      width: 100%;
+    }
+  }
+}
+
+@mixin applyGridMutableStyles() {
+  :global {
+    .container {
+      padding-right: px($columnGapHalf);
+      padding-left: px($columnGapHalf);
+    }
+
+    .row {
+      margin-right: px(-$columnGapHalf);
+      margin-left: px(-$columnGapHalf);
+    }
+
+    .col {
+      padding-right: px($columnGapHalf);
+      padding-left: px($columnGapHalf);
+    }
+  }
+}
+
+// Make Grid
+
+@mixin makeContainer($width) {
+  :global {
+    .container {
+      max-width: $width;
+    }
+  }
+}
+
+@mixin makeFluidContainer($infix) {
+  :global {
+    .container {
+      &.is#{$infix}Fluid {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@mixin makeOffsets($infix) {
+  :global {
+    .row {
+      @for $i from 1 through $gridColumns {
+        &.isOffset#{$infix}#{$i} {
+          @include makeOffset($i, $gridColumns);
+        }
+      }
+    }
+  }
+}
+
+@mixin makeOffset($size, $columns: $gridColumns) {
+  padding-left: calc(#{percentage($size / $columns)} + #{px($columnGapQuarter)});
+}
+
+@mixin makeColumns($infix) {
+  :global {
+    .col {
+      &.is#{$infix}Auto {
+        @include makeColumnAuto();
+      }
+
+      @for $i from 1 through $gridColumns {
+        &.is#{$infix}#{$i} {
+          @include makeColumn($i, $gridColumns);
+        }
+      }
+    }
+  }
+}
+
+@mixin makeColumn($size, $columns: $gridColumns) {
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
+
+@mixin makeColumnAuto() {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+// Use Grid
+
+@mixin useGrid($type) {
+  @include applyGridMutableStyles();
+
+  @if $type == getGridType(extraSmall) {
+    @include makeContainer(getContainerWidth(extraSmall));
+    @include makeFluidContainer(getGridType(extraSmall));
+    @include makeColumns(getGridType(extraSmall));
+    @include makeOffsets(getGridType(extraSmall));
+  }
+
+  @else if $type == getGridType(small) {
+    @include makeContainer(getContainerWidth(small));
+    @include makeFluidContainer(getGridType(small));
+    @include makeColumns(getGridType(small));
+    @include makeOffsets(getGridType(small));
+  }
+
+  @else if $type == getGridType(medium) {
+    @include makeContainer(getContainerWidth(medium));
+    @include makeFluidContainer(getGridType(medium));
+    @include makeColumns(getGridType(medium));
+    @include makeOffsets(getGridType(medium));
+  }
+
+  @else if $type == getGridType(large) {
+    @include makeContainer(getContainerWidth(large));
+    @include makeFluidContainer(getGridType(large));
+    @include makeColumns(getGridType(large));
+    @include makeOffsets(getGridType(large));
+  }
+
+  @else if $type == getGridType(extraLarge) {
+    @include makeContainer(getContainerWidth(extraLarge));
+    @include makeFluidContainer(getGridType(extraLarge));
+    @include makeColumns(getGridType(extraLarge));
+    @include makeOffsets(getGridType(extraLarge));
+  }
+}
