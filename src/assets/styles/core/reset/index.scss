@@ -1,184 +1,78 @@
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
+@import './../../extensions';
+@import './mixins';
+
+@function px($px) {
+  @return pxMedia($px, phonePortrait);
 }
 
-body {
-  margin: 0;
+@media #{getMediaFeature(phonePortrait)} {
+  @include useResetting(getDevice(phonePortrait));
 }
 
-main {
-  display: block;
+@function px($px) {
+  @return pxMedia($px, phoneLandscape);
 }
 
-h1 {
-  margin: 0.67em 0;
-  font-size: 2em;
+@media #{getMediaFeature(phoneLandscape)} {
+  @include useResetting(getDevice(phoneLandscape));
 }
 
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
+@function px($px) {
+  @return pxMedia($px, phoneLandscapePlus);
 }
 
-pre {
-  font-size: 1em;
+@media #{getMediaFeature(phoneLandscapePlus)} {
+  @include useResetting(getDevice(phoneLandscapePlus));
 }
 
-a {
-  background-color: transparent;
+@function px($px) {
+  @return pxMedia($px, tabletPortrait);
 }
 
-abbr[title] {
-  border-bottom: none;
-  text-decoration: underline;
-  text-decoration: underline dotted;
+@media #{getMediaFeature(tabletPortrait)} {
+  @include useResetting(getDevice(tabletPortrait));
 }
 
-b,
-strong {
-  font-weight: bolder;
+@function px($px) {
+  @return pxMedia($px, tabletLandscape);
 }
 
-pre,
-code,
-kbd,
-samp {
-  font-family: monospace;
+@media #{getMediaFeature(tabletLandscape)} {
+  @include useResetting(getDevice(tabletLandscape));
 }
 
-code,
-kbd,
-samp {
-  font-size: 1em;
+@function px($px) {
+  @return pxMedia($px, desktop);
 }
 
-small {
-  font-size: 80%;
+@media #{getMediaFeature(desktop)} {
+  @include useResetting(getDevice(desktop));
 }
 
-sub,
-sup {
-  position: relative;
-  font-size: 75%;
-  line-height: 0;
-  vertical-align: baseline;
+@function px($px) {
+  @return pxMedia($px, desktopWide);
 }
 
-sub {
-  bottom: -0.25em;
+@media #{getMediaFeature(desktopWide)} {
+  @include useResetting(getDevice(desktopWide));
 }
 
-sup {
-  top: -0.5em;
+@function px($px) {
+  @return pxMedia($px, desktopHD);
 }
 
-img {
-  border-style: none;
+@media #{getMediaFeature(desktopHD)} {
+  @include useResetting(getDevice(desktopHD));
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
+@function px($px) {
+  @return pxMedia($px, desktopMega);
 }
 
-button,
-input {
-  overflow: visible;
+@media #{getMediaFeature(desktopMega)} {
+  @include useResetting(getDevice(desktopMega));
 }
 
-button,
-select {
-  text-transform: none;
-}
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
-
-button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-  padding: 0;
-  border-style: none;
-}
-
-button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-
-fieldset {
-  padding: 0.35em 0.75em 0.625em;
-}
-
-legend {
-  display: table;
-  box-sizing: border-box;
-  max-width: 100%;
-  padding: 0;
-  color: inherit;
-  white-space: normal;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
-textarea {
-  overflow: auto;
-}
-
-[type='checkbox'],
-[type='radio'] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
-  height: auto;
-}
-
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-
-[type='search']::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-
-details {
-  display: block;
-}
-
-summary {
-  display: list-item;
-}
-
-template {
-  display: none;
-}
-
-[hidden] {
-  display: none;
+@media #{getMediaFeature(touchScreen)} {
+  @include useResetting(getDevice(touchScreen));
 }
