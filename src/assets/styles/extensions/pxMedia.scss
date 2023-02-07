@@ -1,0 +1,57 @@
+@function pxMedia($px, $media) {
+  $k: 0;
+
+  @if $media == getDevice(phonePortrait) {
+    $k: 100 / 320;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(phoneLandscape) {
+    $k: 0.09;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(phoneLandscapePlus) {
+    $k: 0.12;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(tabletPortrait) {
+    $k: 0.1;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(tabletLandscape) {
+    $k: 0.09882826;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(desktop) {
+    $k: 0.07322001;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(desktopWide) {
+    $k: 0.07322001;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(desktopHD) {
+    $k: 0.05400948;
+
+    @return #{$px}px;
+  }
+
+  @else if $media == getDevice(desktopMega) {
+    $k: 0.0541797;
+
+    @return $px * $k * 1vw;
+  }
+}

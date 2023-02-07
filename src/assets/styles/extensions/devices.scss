@@ -1,0 +1,16 @@
+$devices: (
+  phonePortrait: 'phonePortrait',
+  phoneLandscape: 'phoneLandscape',
+  phoneLandscapePlus: 'phoneLandscapePlus',
+  tabletPortrait: 'tabletPortrait',
+  tabletLandscape: 'tabletLandscape',
+  desktop: 'desktop',
+  desktopWide: 'desktopWide',
+  desktopHD: 'desktopHD',
+  desktopMega: 'desktopMega',
+  touchScreen: 'touchScreen',
+);
+
+@function getDevice($type) {
+  @return map-get($devices, $type);
+}
