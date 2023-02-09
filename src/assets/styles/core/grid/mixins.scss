@@ -30,83 +30,73 @@ $columnGapQuarter: 7.5;
 // Default Grid Styles
 
 @mixin applyGridImmutableStyles() {
-  :global {
-    .container {
-      width: 100%;
-      margin-right: auto;
-      margin-left: auto;
+  .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+
+    &.isNoGutters {
+      margin-right: 0;
+      margin-left: 0;
     }
 
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-
-      &.isNoGutters {
-        margin-right: 0;
-        margin-left: 0;
-      }
-
-      &.isNoGutters > .col,
-      &.isNoGutters > [class*='col'] {
-        padding-right: 0;
-        padding-left: 0;
-      }
+    &.isNoGutters > .col,
+    &.isNoGutters > [class*='col'] {
+      padding-right: 0;
+      padding-left: 0;
     }
+  }
 
-    .col {
-      position: relative;
-      width: 100%;
-    }
+  .col {
+    position: relative;
+    width: 100%;
   }
 }
 
 @mixin applyGridMutableStyles() {
-  :global {
-    .container {
-      padding-right: px($columnGapHalf);
-      padding-left: px($columnGapHalf);
-    }
+  .container {
+    padding-right: px($columnGapHalf);
+    padding-left: px($columnGapHalf);
+  }
 
-    .row {
-      margin-right: px(-$columnGapHalf);
-      margin-left: px(-$columnGapHalf);
-    }
+  .row {
+    margin-right: px(-$columnGapHalf);
+    margin-left: px(-$columnGapHalf);
+  }
 
-    .col {
-      padding-right: px($columnGapHalf);
-      padding-left: px($columnGapHalf);
-    }
+  .col {
+    padding-right: px($columnGapHalf);
+    padding-left: px($columnGapHalf);
   }
 }
 
 // Make Grid
 
 @mixin makeContainer($width) {
-  :global {
-    .container {
-      max-width: $width;
-    }
+  .container {
+    max-width: $width;
   }
 }
 
 @mixin makeFluidContainer($infix) {
-  :global {
-    .container {
-      &.is#{$infix}Fluid {
-        width: 100%;
-        max-width: 100%;
-      }
+  .container {
+    &.is#{$infix}Fluid {
+      width: 100%;
+      max-width: 100%;
     }
   }
 }
 
 @mixin makeOffsets($infix) {
-  :global {
-    .row {
-      @for $i from 1 through $gridColumns {
-        &.isOffset#{$infix}#{$i} {
-          @include makeOffset($i, $gridColumns);
-        }
+  .row {
+    @for $i from 1 through $gridColumns {
+      &.isOffset#{$infix}#{$i} {
+        @include makeOffset($i, $gridColumns);
       }
     }
   }
@@ -117,16 +107,14 @@ $columnGapQuarter: 7.5;
 }
 
 @mixin makeColumns($infix) {
-  :global {
-    .col {
-      &.is#{$infix}Auto {
-        @include makeColumnAuto();
-      }
+  .col {
+    &.is#{$infix}Auto {
+      @include makeColumnAuto();
+    }
 
-      @for $i from 1 through $gridColumns {
-        &.is#{$infix}#{$i} {
-          @include makeColumn($i, $gridColumns);
-        }
+    @for $i from 1 through $gridColumns {
+      &.is#{$infix}#{$i} {
+        @include makeColumn($i, $gridColumns);
       }
     }
   }
