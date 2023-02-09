@@ -1,7 +1,11 @@
 {{#> app/app title="test" }}
   {{#*inline "content"}}
-    <div>
-      Sing up
+    <div class="container">
+      <div class="row">
+        <div class="col center lg-4">
+          {{> auth/authForm }}
+        </div>
+      </div>
     </div>
   {{/inline}}
 {{/app/app }}
