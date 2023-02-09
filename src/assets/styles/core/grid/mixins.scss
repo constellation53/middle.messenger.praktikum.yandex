@@ -5,11 +5,11 @@ $columnGapQuarter: 7.5;
 
 @function getGridType($type) {
   $types: (
-    extraSmall: 'Xs',
-    small: 'Sm',
-    medium: 'Md',
-    large: 'Lg',
-    extraLarge: 'Xl',
+    extraSmall: 'xs',
+    small: 'sm',
+    medium: 'md',
+    large: 'lg',
+    extraLarge: 'xl',
   );
 
   @return map-get($types, $type);
@@ -17,11 +17,11 @@ $columnGapQuarter: 7.5;
 
 @function getContainerWidth($type) {
   $maxWidths: (
-    extraSmall: px(320),
-    small: px(540),
-    medium: px(720),
-    large: px(960),
-    extraLarge: px(1140),
+    extraSmall: none,
+    small: none,
+    medium: none,
+    large: none,
+    extraLarge: none,
   );
 
   @return map-get($maxWidths, $type);
@@ -37,41 +37,12 @@ $columnGapQuarter: 7.5;
   }
 
   .row {
-    display: flex;
-    flex-wrap: wrap;
-
-    &.isNoGutters {
-      margin-right: 0;
-      margin-left: 0;
-    }
-
-    &.isNoGutters > .col,
-    &.isNoGutters > [class*='col'] {
-      padding-right: 0;
-      padding-left: 0;
-    }
+    display: grid;
   }
 
   .col {
     position: relative;
     width: 100%;
-  }
-}
-
-@mixin applyGridMutableStyles() {
-  .container {
-    padding-right: px($columnGapHalf);
-    padding-left: px($columnGapHalf);
-  }
-
-  .row {
-    margin-right: px(-$columnGapHalf);
-    margin-left: px(-$columnGapHalf);
-  }
-
-  .col {
-    padding-right: px($columnGapHalf);
-    padding-left: px($columnGapHalf);
   }
 }
 
@@ -85,7 +56,7 @@ $columnGapQuarter: 7.5;
 
 @mixin makeFluidContainer($infix) {
   .container {
-    &.is#{$infix}Fluid {
+    &.#{$infix}-fluid {
       width: 100%;
       max-width: 100%;
     }
@@ -95,7 +66,7 @@ $columnGapQuarter: 7.5;
 @mixin makeOffsets($infix) {
   .row {
     @for $i from 1 through $gridColumns {
-      &.isOffset#{$infix}#{$i} {
+      &.offset-#{$infix}-#{$i} {
         @include makeOffset($i, $gridColumns);
       }
     }
@@ -108,12 +79,12 @@ $columnGapQuarter: 7.5;
 
 @mixin makeColumns($infix) {
   .col {
-    &.is#{$infix}Auto {
+    &.#{$infix}-auto {
       @include makeColumnAuto();
     }
 
     @for $i from 1 through $gridColumns {
-      &.is#{$infix}#{$i} {
+      &.#{$infix}-#{$i} {
         @include makeColumn($i, $gridColumns);
       }
     }
@@ -134,8 +105,6 @@ $columnGapQuarter: 7.5;
 // Use Grid
 
 @mixin useGrid($type) {
-  @include applyGridMutableStyles();
-
   @if $type == getGridType(extraSmall) {
     @include makeContainer(getContainerWidth(extraSmall));
     @include makeFluidContainer(getGridType(extraSmall));
