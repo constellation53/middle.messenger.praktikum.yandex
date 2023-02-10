@@ -1,0 +1,12 @@
+& {
+  &__field {
+    padding-bottom: px(6);
+    border-bottom: px(1) solid $borderColor;
+    font-size: px(13);
+    line-height: px(12);
+  }
+
+  &__label {
+    margin-bottom: px(5);
+  }
+}
