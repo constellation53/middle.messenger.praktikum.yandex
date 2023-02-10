@@ -35,7 +35,15 @@
   "overrides": [
     {
       "files": ["**/*.scss"],
-      "customSyntax": "postcss-scss"
+      "customSyntax": "postcss-scss",
+      "rules": {
+        "function-no-unknown": [
+          true,
+          {
+            "ignoreFunctions": ["px"]
+          }
+        ]
+      }
     },
     {
       "files": ["./src/assets/styles/**/*.scss"],
