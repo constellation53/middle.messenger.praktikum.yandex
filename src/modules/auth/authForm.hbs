@@ -10,6 +10,9 @@
         {{> elements/input/input name="password" id="password" type="password" value="123456789123" label="Пароль"}}
       </div>
     </div>
-    {{> elements/button/button text="Войти" fluid=true }}
+    <div  class="auth-form__button-wrapper">
+      {{> elements/button/button text="Войти" fluid=true }}
+    </div>
+    {{> elements/button/button text="Нет аккаунта?" type="secondary" fluid=true }}
   </fieldset>
 </form>

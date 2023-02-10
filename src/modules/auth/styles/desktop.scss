@@ -1,8 +1,6 @@
 & {
   width: px(340);
-  height: px(450);
-  max-width: px(340);
-  padding: px(50) px(30) px(30);
+  padding: px(50) px(30) px(16);
   border-radius: px(12);
   box-shadow: 0 0 px(6) $formBoxShadow;
 
@@ -17,5 +15,9 @@
 
   &__fields-wrapper {
     margin-bottom: px(158);
+  }
+
+  &__button-wrapper {
+    margin-bottom: px(4)
   }
 }
