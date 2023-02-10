@@ -1,9 +1,12 @@
+<link rel="stylesheet" href={{ absolute "/src/pages/styles/index.scss"}} />
 {{#> app/app title="test" }}
   {{#*inline "content"}}
     <div class="container">
       <div class="row">
-        <div class="col center lg-4">
-          {{> auth/authForm }}
+        <div class="col center xl-4 lg-4">
+          <div class="sing-in">
+            {{> auth/authForm }}
+          </div>
         </div>
       </div>
     </div>
