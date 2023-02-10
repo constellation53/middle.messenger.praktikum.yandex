@@ -1,6 +1,8 @@
 & {
+  height: px(50);
+
   &__field {
-    padding-bottom: px(6);
+    padding: px(15) 0 px(5);
     border-bottom: px(1) solid $borderColor;
     font-size: px(13);
     line-height: px(12);
