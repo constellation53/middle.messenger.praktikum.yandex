@@ -1,0 +1,74 @@
+@import './../../extensions';
+@import './mixins';
+
+@function px($px) {
+  @return pxMedia($px, phonePortrait);
+}
+
+@media #{getMediaFeature(phonePortrait)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, phoneLandscape);
+}
+
+@media #{getMediaFeature(phoneLandscape)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, phoneLandscapePlus);
+}
+
+@media #{getMediaFeature(phoneLandscapePlus)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, tabletPortrait);
+}
+
+@media #{getMediaFeature(tabletPortrait)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, tabletLandscape);
+}
+
+@media #{getMediaFeature(tabletLandscape)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktop);
+}
+
+@media #{getMediaFeature(desktop)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopWide);
+}
+
+@media #{getMediaFeature(desktopWide)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopHD);
+}
+
+@media #{getMediaFeature(desktopHD)} {
+  @include useTypography();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopMega);
+}
+
+@media #{getMediaFeature(desktopMega)} {
+  @include useTypography();
+}

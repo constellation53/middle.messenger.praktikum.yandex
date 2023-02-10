@@ -1,0 +1,49 @@
+$fontWeights: 400, 500, 600;
+$sizesNumber: 1;
+
+
+@function getFontSize($type) {
+  $types: (
+    1: px(20),
+  );
+
+  @return map-get($types, $type);
+}
+
+@function getLineHeight($type) {
+  $types: (
+    1: px(20),
+  );
+
+  @return map-get($types, $type);
+}
+
+
+@mixin makeFontWeight($fontWeight) {
+  .text {
+    &.font-weight-#{$fontWeight} {
+      font-weight: $fontWeight;
+    }
+  }
+}
+
+
+@mixin makeSize($infix, $size, $lineHeight) {
+  .text {
+    &.size-#{$infix} {
+      font-size: $size;
+      line-height: $lineHeight;
+    }
+  }
+}
+
+
+@mixin useTypography() {
+  @each $fontWeight in $fontWeights {
+    @include makeFontWeight($fontWeight)
+  }
+
+  @for $i from 1 through $sizesNumber {
+    @include makeSize($i, getFontSize($i), getLineHeight($i));
+  }
+}
