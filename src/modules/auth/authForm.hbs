@@ -3,8 +3,12 @@
   <fieldset class="auth-form__fieldset">
     <legend class="auth-form__legend text font-weight-500 size-1">Вход</legend>
     <div class="auth-form__fields-wrapper">
-      {{> elements/input/input }}
-      <input type="text" name="password"/>
+      <div class="auth-form__field-wrapper">
+        {{> elements/input/input name="login" id="login" type="text" value="ivanivanov" label="Логин"}}
+      </div>
+      <div class="auth-form__field-wrapper">
+        {{> elements/input/input name="password" id="password" type="password" value="123456789123" label="Пароль"}}
+      </div>
     </div>
     <button>Войти</button>
   </fieldset>

@@ -1,7 +1,21 @@
 & {
-  width: 100%;
+  width: px(340);
+  height: px(450);
   max-width: px(340);
   padding: px(50) px(30) px(30);
   border-radius: px(12);
   box-shadow: 0 0 px(6) $formBoxShadow;
+
+  &__legend {
+    margin-bottom: px(40);
+  }
+
+  &__field-wrapper:not(:last-of-type) {
+    margin-bottom: px(16);
+  }
+
+
+  &__fields-wrapper {
+    margin-bottom: px(160);
+  }
 }
