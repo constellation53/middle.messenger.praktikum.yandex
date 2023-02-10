@@ -1,9 +1,11 @@
-<link rel="stylesheet" href={{ absolute '/src/modules/auth/authForm.scss' }} />
-<form class="auth-form">
-  <fieldset>
-    <legend>Вход</legend>
-    <input type="text" name="login"/>
-    <input type="text" name="password"/>
+<link rel="stylesheet" href={{ absolute '/src/modules/auth/styles/index.scss' }} />
+<form class="auth-form center">
+  <fieldset class="auth-form__fieldset">
+    <legend class="auth-form__legend text font-weight-500 size-1">Вход</legend>
+    <div class="auth-form__fields-wrapper">
+      {{> elements/input/input }}
+      <input type="text" name="password"/>
+    </div>
     <button>Войти</button>
   </fieldset>
 </form>
