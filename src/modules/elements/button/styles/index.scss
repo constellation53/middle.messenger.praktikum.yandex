@@ -11,6 +11,11 @@
     width: 100%;
   }
 
+  &.--secondary {
+    background: $secondaryButtonBackground;
+    color: $secondaryButtonColor;
+  }
+
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }
