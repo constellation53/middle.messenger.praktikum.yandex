@@ -1,10 +1,10 @@
 <link rel="stylesheet" href={{ absolute '/src/modules/elements/button/styles/index.scss' }} type="text/css" />
 {{#if href}}
-  <a class="button {{#if type }} --{{type}} {{else}} --primary {{/if }} {{#if fluid }} --fluid {{/if }}" href={{ href }} >
+  <a class="button {{~#if type }} --{{type}} {{else}} --primary {{~/if }} {{~#if fluid }} --fluid {{~/if }}" href={{ href }} >
     {{ text }}
   </a>
 {{ else }}
-  <button class="button {{#if type }} --{{type}} {{else}} --primary {{/if }} {{#if fluid }} --fluid {{/if }}" >
+  <button class="button {{~#if type }} --{{type}} {{else}} --primary {{~/if }} {{~#if fluid }} --fluid {{~/if }}" >
     {{ text }}
   </button>
 {{/if}}
