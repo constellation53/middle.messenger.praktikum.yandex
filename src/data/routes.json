@@ -2,5 +2,6 @@
   "singIn": "/src/pages/signIn/singIn.hbs",
   "singUp": "/src/pages/signUp/signUp.hbs",
   "chat": "/src/pages/chat/chat.hbs",
-  "notFound": "/src/pages/404/404.hbs"
+  "notFound": "/src/pages/404/404.hbs",
+  "internalError": "/src/pages/500/500.hbs"
 }

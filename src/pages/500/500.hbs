@@ -1,0 +1,14 @@
+<link rel="stylesheet" href={{ absolute "/src/pages/500/styles/index.scss"}} />
+{{#> app/app title="500" }}
+  {{#*inline "content"}}
+    <div class="container">
+      <div class="row">
+        <div class="col center xl-12 lg-12">
+          <section class="internal-error">
+            {{> elements/errorBox/errorBox code="500" text="Мы уже фиксим" buttonText="Назад к чатам" href=routes.chat }}
+          </section>
+        </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}
