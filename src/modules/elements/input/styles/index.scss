@@ -11,6 +11,10 @@
 
   &__field {
     border: 0;
+
+    &.--error {
+      color: $errorColor;
+    }
   }
 
   &__label {
@@ -18,6 +22,10 @@
     top: 0;
     left: 0;
     color: $labelColor;
+  }
+
+  &__error-message {
+    color: $errorColor;
   }
 
   @function px($px) {

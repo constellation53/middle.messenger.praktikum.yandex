@@ -1,7 +1,12 @@
 <link rel="stylesheet" href={{ absolute '/src/modules/elements/input/styles/index.scss' }} type="text/css" />
 <div class="input" >
-  <label htmlFor="{{ id }}" class="input__label text size-6 font-weight-500">
+  <label htmlFor="{{ id }}" class="input__label text size-14 font-weight-500">
     {{ label }}
   </label>
-  <input class="input__field {{ class }}" type="{{ type }}" name="{{ login }}" id="{{ id }}" value="{{ value }}"/>
+  <input class="input__field {{ class }} {{#if isError }} --error {{/if }}" type="{{ type }}" name="{{ login }}" id="{{ id }}" value="{{ value }}"/>
+  {{#if errorMessage }}
+    <p class="input__error-message text size-15">
+      {{ errorMessage }}
+    </p>
+  {{/if }}
 </div>
