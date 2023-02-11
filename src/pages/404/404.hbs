@@ -1,0 +1,14 @@
+<link rel="stylesheet" href={{ absolute "/src/pages/404/styles/index.scss"}} />
+{{#> app/app title="Вход" }}
+  {{#*inline "content"}}
+    <div class="container">
+      <div class="row">
+        <div class="col center xl-12 lg-12">
+          <section class="not-found">
+            {{> elements/errorBox/errorBox code="404" text="Не туда попали" buttonText="Назад к чатам"}}
+          </section>
+        </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}

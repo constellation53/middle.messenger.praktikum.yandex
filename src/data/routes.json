@@ -1,5 +1,6 @@
 {
   "singIn": "/src/pages/signIn/singIn.hbs",
   "singUp": "/src/pages/signUp/signUp.hbs",
-  "chat": "/src/pages/chat/chat.hbs"
+  "chat": "/src/pages/chat/chat.hbs",
+  "notFound": "/src/pages/404/404.hbs"
 }
