@@ -2,6 +2,14 @@
   @import '../../../../assets/styles/extensions';
   @import './palette';
 
+  display: block;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
   &.--primary {
     background: $primaryButtonBackground;
     color: $primaryTextColor;
