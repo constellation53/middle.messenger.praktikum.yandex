@@ -1,0 +1,14 @@
+<link rel="stylesheet" href={{ absolute "/src/pages/signUp/styles/index.scss"}} />
+{{#> app/app title="Вход" }}
+  {{#*inline "content"}}
+    <div class="container">
+      <div class="row">
+        <div class="col center xl-4 lg-4">
+          <div class="sign-up">
+            {{> auth/registrationForm/registrationForm }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}
