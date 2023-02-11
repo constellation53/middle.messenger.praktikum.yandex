@@ -1,0 +1,4 @@
+{
+  "singIn": "/src/pages/signIn/singIn.hbs",
+  "singUp": "/src/pages/signUp/signUp.hbs"
+}
