@@ -1,0 +1,18 @@
+<link rel="stylesheet" href={{ absolute '/src/modules/auth/registrationForm/styles/index.scss' }} />
+<form class="registration-form center">
+  <fieldset class="registration-form__fieldset">
+    <legend class="registration-form__legend text font-weight-500 size-1">Вход</legend>
+    <div class="registration-form__fields-wrapper">
+      <div class="registration-form__field-wrapper">
+        {{> elements/input/input name="login" id="login" type="text" value="ivanivanov" label="Логин"}}
+      </div>
+      <div class="registration-form__field-wrapper">
+        {{> elements/input/input name="password" id="password" type="password" value="123456789123" label="Пароль"}}
+      </div>
+    </div>
+    <div  class="registration-form__button-wrapper">
+      {{> elements/button/button text="Войти" fluid=true }}
+    </div>
+    {{> elements/button/button text="Нет аккаунта?" type="secondary" fluid=true }}
+  </fieldset>
+</form>

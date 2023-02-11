@@ -1,0 +1,23 @@
+& {
+  width: px(340);
+  padding: px(50) px(30) px(16);
+  border-radius: px(12);
+  box-shadow: 0 0 px(6) $formBoxShadow;
+
+  &__legend {
+    margin-bottom: px(40);
+  }
+
+  &__field-wrapper:not(:last-of-type) {
+    margin-bottom: px(2);
+  }
+
+
+  &__fields-wrapper {
+    margin-bottom: px(145);
+  }
+
+  &__button-wrapper {
+    margin-bottom: px(4)
+  }
+}
