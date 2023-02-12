@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="/src/modules/elements/editableQuestionnaire/styles/index.scss"/>
+<ul class="editable-questionnaire">
+  {{#each list }}
+    {{#>elements/listItem/listItem last=@last noPadding=true }}
+      {{#*inline "content"}}
+        <div class="editable-questionnaire__item">
+          {{> elements/input/input name=name id=id type=type value=value label=label layout="horizontal" labelClass="size-7"}}
+        </div>
+      {{/inline}}
+    {{/elements/listItem/listItem}}
+  {{/each}}
+</ul>
