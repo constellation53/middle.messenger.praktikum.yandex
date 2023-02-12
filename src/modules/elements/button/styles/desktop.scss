@@ -5,7 +5,12 @@
     padding: px(12) 0;
   }
 
-  &.--secondary {
+  &.--secondary,
+  &.--tertiary {
     padding: px(10) 0;
+  }
+
+  &.--align-left {
+    text-align: left;
   }
 }

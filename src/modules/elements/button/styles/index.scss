@@ -11,18 +11,24 @@
   }
 
   &.--primary {
-    background: $primaryButtonBackground;
-    color: $primaryTextColor;
+    background: $primaryBackground;
+    color: $primaryColor;
+  }
+
+  &.--secondary {
+    background:  $secondaryBackground;
+    color: $secondaryColor;
+  }
+
+  &.--tertiary {
+    background: $tertiaryBackground;
+    color: $tertiaryColor;
   }
 
   &.--fluid {
     width: 100%;
   }
 
-  &.--secondary {
-    background: $secondaryButtonBackground;
-    color: $secondaryButtonColor;
-  }
 
   @function px($px) {
     @return pxMedia($px, phonePortrait);
