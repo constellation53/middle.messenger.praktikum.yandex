@@ -2,14 +2,6 @@
   @import '../../../../assets/styles/extensions';
   @import './palette';
 
-  &__term {
-    color: $termColor;
-  }
-
-  &__details {
-    color: $detailsColor;
-  }
-
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }
