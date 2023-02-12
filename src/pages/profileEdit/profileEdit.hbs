@@ -10,11 +10,10 @@
           </div>
           <div class="col">
             <section class="profile-edit__info center">
-              <div class="profile-edit__avatar">
-                {{> elements/avatar/avatar size="medium" edit=true }}
-              </div>
-              <div class="profile-edit__name">
-                <p class="text size-3 font-weight-600">Иван</p>
+              <div class="profile-edit__avatar-and-name">
+                <div class="profile-edit__avatar">
+                  {{> elements/avatar/avatar size="medium" edit=true }}
+                </div>
               </div>
               <div class="profile-edit__questionnaire">
                 {{> elements/questionnaire/questionnaire list=profileInfoQuestionnaire }}
@@ -22,7 +21,7 @@
             </section>
 
             <section class="profile-edit__actions center">
-              <div  class="profile-edit__save-button">
+              <div  class="profile-edit__save-button center">
                 {{> elements/button/button text="Сохранить" fluid=true}}
               </div>
             </section>

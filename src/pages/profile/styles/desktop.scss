@@ -8,13 +8,15 @@
     max-width: px(510)
   }
 
+  &__avatar-and-name {
+    height: px(167);
+    margin-bottom: px(50);
+  }
+
   &__avatar {
     margin: px(60) 0 px(21);
   }
 
-  &__name {
-    margin-bottom: px(50);
-  }
 
   &__back {
     width: px(28);
@@ -22,6 +24,7 @@
   }
 
   &__questionnaire {
+    height: px(203);
     margin-bottom: px(40);
   }
 }
