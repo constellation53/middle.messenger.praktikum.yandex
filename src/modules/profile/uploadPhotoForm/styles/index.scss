@@ -16,10 +16,6 @@
     cursor: pointer;
   }
 
-  div.upload-photo-form__input {
-    @include visuallyHidden();
-  }
-
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }
