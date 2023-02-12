@@ -11,6 +11,7 @@
 
 - **npm run dev** - запуск в режиме разработки
 - **npm run build** - запуск сборки
+- **npm run start** - борка проекта и запуск сервера на порту 3000
 - **npm run lint** - запуск линтера (js, css)
 - **npm run lint:js** - запуск линтера (js)
 - **npm run lint:css** - запуск линтера (css)
