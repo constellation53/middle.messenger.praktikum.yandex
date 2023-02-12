@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/src/modules/elements/questionnaire/styles/index.scss"/>
+<dl class="questionnaire">
+  {{#each questionnaire }}
+    {{#>elements/listItem/listItem last=@last }}
+      {{#*inline "content"}}
+        <div class="questionnaire__item">
+          <dt class="questionnaire__term text size-7 font-weight-500">{{ term }}</dt>
+          <dd class="questionnaire__details text size-7 font-weight-500">{{ details }}</dd>
+        </div>
+      {{/inline}}
+    {{/elements/listItem/listItem}}
+  {{/each}}
+</dl>
