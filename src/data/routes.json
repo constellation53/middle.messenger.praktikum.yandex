@@ -6,5 +6,6 @@
   "internalError": "/src/pages/500/500.hbs",
   "profile": "/src/pages/profile/profile.hbs",
   "profileEdit": "/src/pages/profileEdit/profileEdit.hbs",
-  "profileEditPassword": "/src/pages/profileEditPassword/profileEditPassword.hbs"
+  "profileEditPassword": "/src/pages/profileEditPassword/profileEditPassword.hbs",
+  "profileUploadAvatar": "/src/pages/profileUploadAvatar/profileUploadAvatar.hbs"
 }
