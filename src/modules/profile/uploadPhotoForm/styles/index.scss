@@ -16,8 +16,8 @@
     cursor: pointer;
   }
 
-  &__input {
-    @include visuallyHidden;
+  div.upload-photo-form__input {
+    @include visuallyHidden();
   }
 
   @function px($px) {
