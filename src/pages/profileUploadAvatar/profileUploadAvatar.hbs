@@ -10,17 +10,24 @@
           </div>
           <div class="col">
             <section class="profile-upload-avatar__info center">
-             <div class="profile-upload-avatar__avatar-and-name">
-               <div class="profile-upload-avatar__avatar">
-                 {{> elements/avatar/avatar size="medium" edit=true  alt="Загрузить фото" }}
+             <form>
+               <div class="profile-upload-avatar__avatar-and-name">
+                 <div class="profile-upload-avatar__avatar">
+                   {{> elements/avatar/avatar size="medium" edit=true  alt="Загрузить фото" }}
+                 </div>
+                 <div class="profile-upload-avatar__name">
+                   <p class="text size-3 font-weight-600">Иван</p>
+                 </div>
                </div>
-               <div class="profile-upload-avatar__name">
-                 <p class="text size-3 font-weight-600">Иван</p>
+               <div class="profile-upload-avatar__questionnaire">
+                 {{> elements/editableQuestionnaire/editableQuestionnaire list=editableProfilePasswordQuestionnaire }}
                </div>
-             </div>
-              <div class="profile-upload-avatar__questionnaire">
-                {{> elements/editableQuestionnaire/editableQuestionnaire list=editableProfilePasswordQuestionnaire }}
-              </div>
+               {{#> elements/modal/modal title="Загрузите файл" }}
+                 {{#*inline "content" }}
+                   {{> profile/uploadPhotoForm/uploadPhotoForm }}
+                 {{/inline }}
+               {{/elements/modal/modal}}
+             </form>
             </section>
 
               <section class="profile-upload-avatar__actions center">
@@ -44,11 +51,6 @@
               </section>
             </div>
           </div>
-          {{#> elements/modal/modal title="Загрузите файл" }}
-            {{#*inline "content" }}
-              {{> profile/uploadPhotoForm/uploadPhotoForm }}
-            {{/inline }}
-          {{/elements/modal/modal}}
       </div>
     </div>
   {{/inline}}

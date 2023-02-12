@@ -10,14 +10,16 @@
           </div>
           <div class="col">
             <section class="profile-edit__info center">
-              <div class="profile-edit__avatar-and-name">
-                <div class="profile-edit__avatar">
-                  {{> elements/avatar/avatar size="medium" edit=true  alt="Загрузить фото" }}
+              <form>
+                <div class="profile-edit__avatar-and-name">
+                  <div class="profile-edit__avatar">
+                    {{> elements/avatar/avatar size="medium" edit=true  alt="Загрузить фото" }}
+                  </div>
                 </div>
-              </div>
-              <div class="profile-edit__questionnaire">
-                {{> elements/editableQuestionnaire/editableQuestionnaire  list=editableProfileQuestionnaire }}
-              </div>
+                <div class="profile-edit__questionnaire">
+                  {{> elements/editableQuestionnaire/editableQuestionnaire  list=editableProfileQuestionnaire }}
+                </div>
+              </form>
             </section>
 
             <section class="profile-edit__actions center">

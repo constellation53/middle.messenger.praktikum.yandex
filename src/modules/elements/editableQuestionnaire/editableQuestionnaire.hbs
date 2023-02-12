@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/src/modules/elements/editableQuestionnaire/styles/index.scss"/>
-<ul class="editable-questionnaire">
+<div class="editable-questionnaire">
   {{#each list }}
     {{#>elements/listItem/listItem last=@last noPadding=true }}
       {{#*inline "content"}}
@@ -9,4 +9,4 @@
       {{/inline}}
     {{/elements/listItem/listItem}}
   {{/each}}
-</ul>
+</div>
