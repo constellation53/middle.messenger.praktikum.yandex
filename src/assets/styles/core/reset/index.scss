@@ -1,5 +1,6 @@
 @import './../../extensions';
 @import './mixins';
+@include applyResetImmutableStyles();
 
 @function px($px) {
   @return pxMedia($px, phonePortrait);
