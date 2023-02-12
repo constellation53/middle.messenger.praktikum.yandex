@@ -1,9 +1,48 @@
-<a href={{ routes.singIn }}>Sing in</a >
-<a href={{ routes.singUp }}>Sing up</a>
-<a href={{ routes.chat }}>Chat</a>
-<a href={{ routes.notFound }}>404</a>
-<a href={{ routes.internalError }}>500</a>
-<a href={{ routes.profile }}>Profile</a>
-<a href={{ routes.profileEdit }}>Edit profile</a>
-<a href={{ routes.profileEditPassword }}>Edit profile password</a>
-<a href={{ routes.profileUploadAvatar }}>Upload profile avatar</a>
+<link rel="stylesheet" href={{ absolute "/src/styles/index.scss"}} />
+{{#> app/app title="Вход" }}
+  {{#*inline "content"}}
+    <div class="container">
+      <div class="row">
+        <div class="col center xl-12 lg-12">
+          <section class="main">
+            <div class="main__wrapper">
+              <h1 class="main__title">Список страниц</h1>
+              <ul class="main__nav">
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.singIn }}>Авторизация</a >
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.singUp }}>Регистрация</a>
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.chat }}>Чат</a>
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.notFound }}>404</a>
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.internalError }}>500</a>
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.profile }}>Профиль</a>
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.profileEdit }}>Редактирование профиля</a>
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.profileEditPassword }}>Изменения пароля</a>
+                </li>
+                <li class="main__nav-item">
+                  <a class="main__nav-link" href={{ routes.profileUploadAvatar }}>Загрузка фото</a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}
+
+
+
