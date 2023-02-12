@@ -17,11 +17,29 @@
     }
   }
 
-  &__label {
+  &.--vertical .input__label {
     position: absolute;
     top: 0;
     left: 0;
-    color: $labelColor;
+    color: $labelVerticalColor;
+  }
+
+  &.--horizontal {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &.--horizontal .input__field {
+    display: block;
+    border: 0;
+    color: $inputHorizontalColor;
+  }
+
+  &.--horizontal .input__label {
+    color: $labelHorizontalColor;
   }
 
   &__error-message {

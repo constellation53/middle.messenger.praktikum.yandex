@@ -1,9 +1,11 @@
 <link rel="stylesheet" href='/src/modules/elements/input/styles/index.scss' />
-<div class="input" >
-  <label htmlFor="{{ id }}" class="input__label text size-14 font-weight-500">
+<div class="input {{~#if layout }} --{{layout}} {{else}} --vertical {{~/if }}" >
+  <label htmlFor="{{ id }}"  class="input__label text {{~#is layout "horizontal" }} size-7 {{ else }} size-14 {{~/is}} font-weight-500 ">
     {{ label }}
   </label>
-  <input class="input__field {{ class }} {{#if isError }} --error {{/if }}" type="{{ type }}" name="{{ login }}" id="{{ id }}" value="{{ value }}"/>
+  <input
+      class="input__field text size-7 {{ inputClass }} {{#if isError }} --error {{/if }}" type="{{ type }}" name="{{ login }}" id="{{ id }}" value="{{ value }} "
+  />
   {{#if errorMessage }}
     <p class="input__error-message text size-15">
       {{ errorMessage }}
