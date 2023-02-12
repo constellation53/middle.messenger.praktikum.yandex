@@ -1,10 +1,10 @@
 <link rel="stylesheet" href='/src/modules/elements/input/styles/index.scss' />
-<div class="input {{~#if layout }} --{{layout}} {{else}} --vertical {{~/if }}" >
+<div class="input {{~#if layout }} --{{layout}} {{else}} --vertical {{~/if }} {{ class }}" >
   <label htmlFor="{{ id }}"  class="input__label text {{~#is layout "horizontal" }} size-7 {{ else }} size-14 {{~/is}} font-weight-500 ">
     {{ label }}
   </label>
   <input
-      class="input__field text size-7 {{ inputClass }} {{#if isError }} --error {{/if }}" type="{{ type }}" name="{{ login }}" id="{{ id }}" value="{{ value }} "
+      class="input__field text size-7 {{#if isError }} --error {{/if }}" type="{{ type }}" name="{{ login }}" id="{{ id }}" value="{{ value }} "
   />
   {{#if errorMessage }}
     <p class="input__error-message text size-15">

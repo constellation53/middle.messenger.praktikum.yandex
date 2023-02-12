@@ -16,6 +16,10 @@
     cursor: pointer;
   }
 
+  &__input {
+    @include visuallyHidden;
+  }
+
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }
