@@ -4,5 +4,6 @@
   "chat": "/src/pages/chat/chat.hbs",
   "notFound": "/src/pages/404/404.hbs",
   "internalError": "/src/pages/500/500.hbs",
-  "profile": "/src/pages/profile/profile.hbs"
+  "profile": "/src/pages/profile/profile.hbs",
+  "profileEdit": "/src/pages/profileEdit/profileEdit.hbs"
 }

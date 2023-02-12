@@ -1,0 +1,33 @@
+<link rel="stylesheet" href={{ absolute "/src/pages/profileEdit/styles/index.scss"}} />
+{{#> app/app title="Edit profile" }}
+  {{#*inline "content"}}
+    <div class="profile-edit container">
+      <div class="row">
+          <div class="col xl-auto lg-auto">
+            <aside class="profile-edit__nav">
+              <button class="profile-edit__back"/>
+            </aside>
+          </div>
+          <div class="col">
+            <section class="profile-edit__info center">
+              <div class="profile-edit__avatar">
+                {{> elements/avatar/avatar size="medium" edit=true }}
+              </div>
+              <div class="profile-edit__name">
+                <p class="text size-3 font-weight-600">Иван</p>
+              </div>
+              <div class="profile-edit__questionnaire">
+                {{> elements/questionnaire/questionnaire }}
+              </div>
+            </section>
+
+            <section class="profile-edit__actions center">
+              <div  class="profile-edit__save-button">
+                {{> elements/button/button text="Сохранить" fluid=true}}
+              </div>
+            </section>
+          </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}
