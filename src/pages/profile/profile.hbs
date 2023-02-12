@@ -1,0 +1,47 @@
+<link rel="stylesheet" href={{ absolute "/src/pages/profile/styles/index.scss"}} />
+{{#> app/app title="Profile" }}
+  {{#*inline "content"}}
+    <div class="profile container">
+      <div class="row">
+          <div class="col xl-auto lg-auto">
+            <aside class="profile__nav">
+              <button class="profile__back"/>
+            </aside>
+          </div>
+          <div class="col">
+            <section class="profile__info center">
+              <div class="profile__avatar">
+                {{> elements/avatar/avatar size="medium" edit=true }}
+              </div>
+              <div class="profile__name">
+                <p class="text size-3 font-weight-600">Иван</p>
+              </div>
+              <div class="profile__questionnaire">
+                {{> elements/questionnaire/questionnaire }}
+              </div>
+            </section>
+
+            <section class="profile__actions center">
+              <ul>
+                {{#>elements/listItem/listItem noPadding=true}}
+                  {{#*inline "content"}}
+                    {{> elements/button/button text="Изменить данные" type="secondary" textAlign="left"  fluid=true}}
+                  {{/inline}}
+                {{/elements/listItem/listItem}}
+                {{#>elements/listItem/listItem noPadding=true}}
+                  {{#*inline "content"}}
+                    {{> elements/button/button text="Изменить пароль" type="secondary" textAlign="left"  fluid=true}}
+                  {{/inline}}
+                {{/elements/listItem/listItem}}
+                {{#>elements/listItem/listItem noPadding=true last=true }}
+                  {{#*inline "content"}}
+                    {{> elements/button/button text="Выйти" type="tertiary" textAlign="left" fluid=true}}
+                  {{/inline}}
+                {{/elements/listItem/listItem}}
+              </ul>
+            </section>
+          </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}

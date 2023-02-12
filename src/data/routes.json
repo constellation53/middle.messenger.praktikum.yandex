@@ -3,5 +3,6 @@
   "singUp": "/src/pages/signUp/signUp.hbs",
   "chat": "/src/pages/chat/chat.hbs",
   "notFound": "/src/pages/404/404.hbs",
-  "internalError": "/src/pages/500/500.hbs"
+  "internalError": "/src/pages/500/500.hbs",
+  "profile": "/src/pages/profile/profile.hbs"
 }
