@@ -138,6 +138,18 @@
   input::-moz-focus-outer {
     border: none;
   }
+
+  button {
+    @include resetButton();
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
 }
 
 @mixin useResetting() {
