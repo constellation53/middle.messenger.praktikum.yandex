@@ -1,7 +1,7 @@
 # Messenger
 
 Данный репозиторий является учебным проектом первого модуля курса "Middle frontend разработчик" от Яндекс практикума.
-Проект можно посмотреть по [ссылке](https://app.netlify.com/sites/splendid-peony-026265/overview).
+Проект можно посмотреть по [ссылке](https://splendid-peony-026265.netlify.app/).
 
 ## Дизайн
 
