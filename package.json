@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "The design og the prototype https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1",
   "scripts": {
-    "dev": "parcel src/index.hbs -p 3000 --no-cache --dist-dir build",
-    "build": "parcel build src/index.hbs --no-cache --dist-dir build",
+    "dev": "parcel src/index.hbs -p 3001 --no-cache",
+    "build": "parcel build src/index.hbs --no-cache",
     "lint": "run-p lint:js lint:css",
     "lint:js": "eslint './**/*.js'",
     "lint:css": "stylelint './**/*.scss'",
