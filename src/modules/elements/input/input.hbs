@@ -1,5 +1,5 @@
 <link rel="stylesheet" href='/src/modules/elements/input/styles/index.scss' />
-<div class="input {{~#if layout }} --{{layout}} {{else}} --vertical {{~/if }} {{ class }}" >
+<div class="input {{~#if layout }} --{{layout}} {{else}} --vertical {{~/if }} {{~#if hidden }} --hidden {{~/if }}" >
   <label htmlFor="{{ id }}"  class="input__label text {{~#is layout "horizontal" }} size-7 {{ else }} size-14 {{~/is}} font-weight-500 ">
     {{ label }}
   </label>

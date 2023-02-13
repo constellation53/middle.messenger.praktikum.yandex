@@ -21,13 +21,6 @@
     "value": "Иван"
   },
   {
-    "label": "Имя",
-    "name": "first_name",
-    "id": "first_name",
-    "type": "text",
-    "value": "Иван"
-  },
-  {
     "label": "Фамилия",
     "name": "second_name",
     "id": "second_name",
