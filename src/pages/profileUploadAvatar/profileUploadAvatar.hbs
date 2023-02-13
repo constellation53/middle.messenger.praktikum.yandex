@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="/src/pages/profileUploadAvatar/styles/index.scss" />
+{{#> app/app title="profile upload avatar" }}
+  {{#*inline "content"}}
+    <div class="profile-upload-avatar container">
+      <div class="row">
+          <div class="col xl-auto lg-auto">
+            <aside class="profile-upload-avatar__nav">
+              <button class="profile-upload-avatar__back"/>
+            </aside>
+          </div>
+          <div class="col">
+            <section class="profile-upload-avatar__info center">
+             <form>
+               <div class="profile-upload-avatar__avatar-and-name">
+                 <div class="profile-upload-avatar__avatar">
+                   {{> elements/avatar/avatar size="medium" edit=true  alt="Загрузить фото" }}
+                 </div>
+                 <div class="profile-upload-avatar__name">
+                   <p class="text size-3 font-weight-600">Иван</p>
+                 </div>
+               </div>
+               <div class="profile-upload-avatar__questionnaire">
+                 {{> elements/editableQuestionnaire/editableQuestionnaire list=editableProfileQuestionnaire }}
+               </div>
+               {{#> elements/modal/modal title="Загрузите файл" }}
+                 {{#*inline "content" }}
+                   {{> profile/uploadPhotoForm/uploadPhotoForm }}
+                 {{/inline }}
+               {{/elements/modal/modal}}
+             </form>
+            </section>
+
+              <section class="profile-upload-avatar__actions center">
+                <ul>
+                  {{#>elements/listItem/listItem noPadding=true}}
+                    {{#*inline "content"}}
+                      {{> elements/button/button text="Изменить данные" type="secondary" textAlign="left"  fluid=true}}
+                    {{/inline}}
+                  {{/elements/listItem/listItem}}
+                  {{#>elements/listItem/listItem noPadding=true}}
+                    {{#*inline "content"}}
+                      {{> elements/button/button text="Изменить пароль" type="secondary" textAlign="left"  fluid=true}}
+                    {{/inline}}
+                  {{/elements/listItem/listItem}}
+                  {{#>elements/listItem/listItem noPadding=true last=true }}
+                    {{#*inline "content"}}
+                      {{> elements/button/button text="Выйти" type="tertiary" textAlign="left" fluid=true}}
+                    {{/inline}}
+                  {{/elements/listItem/listItem}}
+                </ul>
+              </section>
+            </div>
+          </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}

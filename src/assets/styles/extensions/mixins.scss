@@ -1,0 +1,73 @@
+@import './palette';
+
+@mixin focusOutline($color, $size, $offset: 0) {
+  outline-color: $color;
+  outline-offset: $offset;
+  outline-style: auto;
+  outline-width: $size;
+
+  @-moz-document url-prefix() {
+    outline-style: solid;
+  }
+}
+
+@mixin visuallyHidden () {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+}
+
+@mixin hideTextWithEllipsis($lineCount) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lineCount;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin resetButton() {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+@mixin link($type: 'default') {
+  a {
+    color: $linkDefault;
+
+    @if ($type == 'default') {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @if ($type == 'inversion') {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &:hover {
+      color: $linkHover;
+    }
+
+    &:active {
+      color: $linkActive;
+    }
+
+    &:visited {
+      color: $linkVisited;
+    }
+  }
+}

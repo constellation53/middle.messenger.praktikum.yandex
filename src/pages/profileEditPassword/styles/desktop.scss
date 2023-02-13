@@ -1,0 +1,35 @@
+& {
+  &__nav {
+    width: px(64);
+  }
+
+  &__info,
+  &__actions {
+    max-width: px(510)
+  }
+
+  &__avatar-and-name {
+    height: px(167);
+    margin-bottom: px(50);
+  }
+
+  &__avatar {
+    margin: px(60) 0 px(21);
+  }
+
+
+  &__back {
+    width: px(28);
+    height: px(28);
+  }
+
+  &__questionnaire {
+    height: px(203);
+    margin-bottom: px(40);
+  }
+
+  &__save-button {
+    max-width: px(280);
+    padding-top: px(10);
+  }
+}

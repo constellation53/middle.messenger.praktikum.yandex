@@ -1,0 +1,147 @@
+$gridColumns: 12;
+$columnGap: 30;
+$columnGapHalf: 15;
+$columnGapQuarter: 7.5;
+
+@function getGridType($type) {
+  $types: (
+    extraSmall: 'xs',
+    small: 'sm',
+    medium: 'md',
+    large: 'lg',
+    extraLarge: 'xl',
+  );
+
+  @return map-get($types, $type);
+}
+
+@function getContainerWidth($type) {
+  $maxWidths: (
+    extraSmall: none,
+    small: none,
+    medium: none,
+    large: none,
+    extraLarge: none,
+  );
+
+  @return map-get($maxWidths, $type);
+}
+
+// Default Grid Styles
+
+@mixin applyGridImmutableStyles() {
+  .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .col {
+    position: relative;
+    width: 100%;
+  }
+}
+
+// Make Grid
+
+@mixin makeContainer($width) {
+  .container {
+    max-width: $width;
+  }
+}
+
+@mixin makeFluidContainer($infix) {
+  .container {
+    &.#{$infix}-fluid {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+@mixin makeOffsets($infix) {
+  .row {
+    @for $i from 1 through $gridColumns {
+      &.offset-#{$infix}-#{$i} {
+        @include makeOffset($i, $gridColumns);
+      }
+    }
+  }
+}
+
+@mixin makeOffset($size, $columns: $gridColumns) {
+  padding-left: calc(#{percentage(calc($size / $columns))} + #{px($columnGapQuarter)});
+}
+
+@mixin makeColumns($infix) {
+  .col {
+    &.#{$infix}-auto {
+      @include makeColumnAuto();
+    }
+
+    @for $i from 1 through $gridColumns {
+      &.#{$infix}-#{$i} {
+        @include makeColumn($i, $gridColumns);
+      }
+    }
+  }
+}
+
+@mixin makeColumn($size, $columns: $gridColumns) {
+  flex: 0 0 percentage(calc($size / $columns));
+  max-width: percentage(calc($size / $columns));
+}
+
+@mixin makeColumnAuto() {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+// Use Grid
+
+@mixin useGrid($type) {
+  @if $type == getGridType(extraSmall) {
+    @include makeContainer(getContainerWidth(extraSmall));
+    @include makeFluidContainer(getGridType(extraSmall));
+    @include makeColumns(getGridType(extraSmall));
+    @include makeOffsets(getGridType(extraSmall));
+  }
+
+  @else if $type == getGridType(small) {
+    @include makeContainer(getContainerWidth(small));
+    @include makeFluidContainer(getGridType(small));
+    @include makeColumns(getGridType(small));
+    @include makeOffsets(getGridType(small));
+  }
+
+  @else if $type == getGridType(medium) {
+    @include makeContainer(getContainerWidth(medium));
+    @include makeFluidContainer(getGridType(medium));
+    @include makeColumns(getGridType(medium));
+    @include makeOffsets(getGridType(medium));
+  }
+
+  @else if $type == getGridType(large) {
+    @include makeContainer(getContainerWidth(large));
+    @include makeFluidContainer(getGridType(large));
+    @include makeColumns(getGridType(large));
+    @include makeOffsets(getGridType(large));
+  }
+
+  @else if $type == getGridType(extraLarge) {
+    @include makeContainer(getContainerWidth(extraLarge));
+    @include makeFluidContainer(getGridType(extraLarge));
+    @include makeColumns(getGridType(extraLarge));
+    @include makeOffsets(getGridType(extraLarge));
+  }
+}

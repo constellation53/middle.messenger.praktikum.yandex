@@ -1,0 +1,75 @@
+@import './../../extensions';
+@import './mixins';
+@include applyGridImmutableStyles();
+
+@function px($px) {
+  @return pxMedia($px, phonePortrait);
+}
+
+@media #{getMediaFeature(phonePortrait)} {
+  @include useGrid(getGridType(extraSmall));
+}
+
+@function px($px) {
+  @return pxMedia($px, phoneLandscape);
+}
+
+@media #{getMediaFeature(phoneLandscape)} {
+  @include useGrid(getGridType(extraSmall));
+}
+
+@function px($px) {
+  @return pxMedia($px, phoneLandscapePlus);
+}
+
+@media #{getMediaFeature(phoneLandscapePlus)} {
+  @include useGrid(getGridType(medium));
+}
+
+@function px($px) {
+  @return pxMedia($px, tabletPortrait);
+}
+
+@media #{getMediaFeature(tabletPortrait)} {
+  @include useGrid(getGridType(medium));
+}
+
+@function px($px) {
+  @return pxMedia($px, tabletLandscape);
+}
+
+@media #{getMediaFeature(tabletLandscape)} {
+  @include useGrid(getGridType(medium));
+}
+
+@function px($px) {
+  @return pxMedia($px, desktop);
+}
+
+@media #{getMediaFeature(desktop)} {
+  @include useGrid(getGridType(large));
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopWide);
+}
+
+@media #{getMediaFeature(desktopWide)} {
+  @include useGrid(getGridType(extraLarge));
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopHD);
+}
+
+@media #{getMediaFeature(desktopHD)} {
+  @include useGrid(getGridType(extraLarge));
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopMega);
+}
+
+@media #{getMediaFeature(desktopMega)} {
+  @include useGrid(getGridType(extraLarge));
+}

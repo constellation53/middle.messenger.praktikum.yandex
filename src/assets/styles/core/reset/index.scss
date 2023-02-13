@@ -1,0 +1,79 @@
+@import './../../extensions';
+@import './mixins';
+@include applyResetImmutableStyles();
+
+@function px($px) {
+  @return pxMedia($px, phonePortrait);
+}
+
+@media #{getMediaFeature(phonePortrait)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, phoneLandscape);
+}
+
+@media #{getMediaFeature(phoneLandscape)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, phoneLandscapePlus);
+}
+
+@media #{getMediaFeature(phoneLandscapePlus)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, tabletPortrait);
+}
+
+@media #{getMediaFeature(tabletPortrait)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, tabletLandscape);
+}
+
+@media #{getMediaFeature(tabletLandscape)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktop);
+}
+
+@media #{getMediaFeature(desktop)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopWide);
+}
+
+@media #{getMediaFeature(desktopWide)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopHD);
+}
+
+@media #{getMediaFeature(desktopHD)} {
+  @include useResetting();
+}
+
+@function px($px) {
+  @return pxMedia($px, desktopMega);
+}
+
+@media #{getMediaFeature(desktopMega)} {
+  @include useResetting();
+}
+
+@media #{getMediaFeature(touchScreen)} {
+  @include useResetting();
+}

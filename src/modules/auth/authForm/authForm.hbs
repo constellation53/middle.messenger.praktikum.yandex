@@ -1,0 +1,18 @@
+<link rel="stylesheet" href='/src/modules/auth/authForm/styles/index.scss' />
+<form class="auth-form center">
+  <fieldset class="auth-form__fieldset">
+    <legend class="auth-form__legend text font-weight-500 size-2">Вход</legend>
+    <div class="auth-form__fields-wrapper">
+      <div class="auth-form__field-wrapper">
+        {{> elements/input/input name="login" id="login" type="text" value="ivanivanov" label="Логин"}}
+      </div>
+      <div class="auth-form__field-wrapper">
+        {{> elements/input/input name="password" id="password" type="password" value="123456789123" label="Пароль"}}
+      </div>
+    </div>
+    <div  class="auth-form__button-wrapper">
+      {{> elements/button/button text="Войти" fluid=true }}
+    </div>
+    {{> elements/button/button text="Нет аккаунта?" type="secondary" fluid=true href=routes.singUp textClass="size-12" }}
+  </fieldset>
+</form>

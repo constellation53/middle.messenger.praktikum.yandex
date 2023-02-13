@@ -1,0 +1,75 @@
+$fontWeights: 400, 500, 600;
+
+@function getFontSize($type) {
+  $types: (
+    1: px(40),
+    2: px(20),
+    3: px(16),
+    4: px(15),
+    5: px(14),
+    6: px(13),
+    7: px(13),
+    8: px(12),
+    9: px(12),
+    10: px(12),
+    11: px(11),
+    12: px(11),
+    13: px(9),
+    14: px(9),
+    15: px(8),
+  );
+
+  @return map-get($types, $type);
+}
+
+@function getLineHeight($type) {
+  $types: (
+    1: px(40),
+    2: px(20),
+    3: px(16),
+    4: px(20),
+    5: px(16),
+    6: px(14),
+    7: px(13),
+    8: px(16),
+    9: px(15),
+    10: px(12),
+    11: px(12),
+    12: px(11),
+    13: px(13),
+    14: px(9),
+    15: px(8)
+  );
+
+  @return map-get($types, $type);
+}
+
+
+@mixin makeFontWeight($fontWeight) {
+  .text {
+    &.font-weight-#{$fontWeight} {
+      font-weight: $fontWeight;
+    }
+  }
+}
+
+
+@mixin makeSize($infix, $size, $lineHeight) {
+  .text {
+    &.size-#{$infix} {
+      font-size: $size;
+      line-height: $lineHeight;
+    }
+  }
+}
+
+
+@mixin useTypography() {
+  @each $fontWeight in $fontWeights {
+    @include makeFontWeight($fontWeight)
+  }
+
+  @for $i from 1 through 15 {
+    @include makeSize($i, getFontSize($i), getLineHeight($i));
+  }
+}

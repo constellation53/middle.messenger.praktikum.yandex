@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/src/pages/signUp/styles/index.scss" />
+{{#> app/app title="Регистрация" }}
+  {{#*inline "content"}}
+    <div class="container">
+      <div class="row">
+        <div class="col center xl-4 lg-4">
+          <section class="sign-up">
+            {{> auth/registrationForm/registrationForm }}
+          </section>
+        </div>
+      </div>
+    </div>
+  {{/inline}}
+{{/app/app }}

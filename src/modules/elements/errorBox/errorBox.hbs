@@ -1,0 +1,10 @@
+<link rel="stylesheet" href='/src/modules/elements/errorBox/styles/index.scss'/>
+<div class="error-box">
+  <h1 class="error-box__title text size-1 font-weight-500 center">
+    {{ code }}
+  </h1>
+  <p class="error-box__text text size-2 font-weight-500 center">
+    {{ text }}
+  </p>
+  {{> elements/button/button text=buttonText type="secondary" href=href textClass="size-12"}}
+</div>
