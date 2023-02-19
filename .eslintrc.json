@@ -1,4 +1,5 @@
 {
+  "parser":  "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "es2021": true
@@ -6,7 +7,8 @@
   "extends": [
     "airbnb-base",
     "eslint:recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "overrides": [],
   "parserOptions": {
@@ -15,6 +17,7 @@
   },
   "rules": {
     "prettier/prettier": ["warn",  {"endOfLine": "auto"}],
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "@typescript-eslint/no-shadow": 1
   }
 }
