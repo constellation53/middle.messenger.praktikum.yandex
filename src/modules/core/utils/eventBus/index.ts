@@ -1,31 +1,50 @@
-import { EventBusI, ListenersType } from './types';
+import {
+  EventBusI,
+  EventsType,
+  ListenersStateType,
+  ListenersType,
+  ArgumentTypes
+} from './types';
 
-// TODO: typing
 export class EventBus implements EventBusI {
-  listeners: ListenersType = {};
+  listeners: ListenersStateType;
 
-  on = (event: string, callback: any) => {
+  constructor() {
+    this.listeners = {};
+  }
+
+  on = <T extends EventsType>(event: T, callback: ListenersType[T]): void => {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    if (this.listeners[event]) {
+      this.listeners[event]!.push(callback);
+    }
   };
 
-  off = (event: string, callback: any) => {
+  off = <T extends EventsType>(event: T, callback: ListenersType[T]): void => {
     if (!this.listeners[event]) {
       throw new Event(`Нет события: ${event}`);
     }
 
-    this.listeners[event] = this.listeners[event]
-      .filter((listener) => listener !== callback);
-  }
+    this.listeners[event] = this.listeners[event]!.filter(
+      (listener) => listener !== callback
+    ) as ListenersStateType[T];
+  };
 
-  emit = (event: string, ...args: unknown[]) => {
+  emit = <T extends EventsType>(
+    event: T,
+    ...args: ArgumentTypes<ListenersType[T]>
+  ): void => {
     if (!this.listeners[event]) {
       throw new Event(`Нет события: ${event}`);
     }
 
-    this.listeners[event].forEach((callback) => callback(...args));
+    this.listeners[event]!.forEach((callback) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      callback(...(args as const));
+    });
   };
 }

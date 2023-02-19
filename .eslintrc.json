@@ -19,7 +19,8 @@
     "prettier/prettier": ["warn",  {"endOfLine": "auto"}],
     "import/prefer-default-export": 0,
     "import/extensions": 0,
-    "@typescript-eslint/no-shadow": 2
+    "@typescript-eslint/no-shadow": 2,
+    "@typescript-eslint/explicit-function-return-type": 2
   },
   "settings":  {
     "import/resolver": {
