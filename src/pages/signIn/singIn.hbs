@@ -9,6 +9,23 @@
           </section>
         </div>
       </div>
+      <script type="module">
+        import { EventBus } from "../../modules/core/utils/eventBus";
+
+        const eventBus = new EventBus()
+
+
+        const callback = (...args) => {
+          console.log('Event emitted', args);
+        }
+
+        eventBus.on('myEvent', callback);
+        eventBus.emit('myEvent');
+        // Теперь передаём правильную ссылку, обработчик будет отписан
+        eventBus.off('myEvent', callback);
+
+        console.log(eventBus.listeners);
+      </script>
     </div>
   {{/inline}}
 {{/app/app }}
