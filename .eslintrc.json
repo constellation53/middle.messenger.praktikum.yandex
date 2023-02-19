@@ -18,6 +18,14 @@
   "rules": {
     "prettier/prettier": ["warn",  {"endOfLine": "auto"}],
     "import/prefer-default-export": 0,
-    "@typescript-eslint/no-shadow": 1
+    "import/extensions": 0,
+    "@typescript-eslint/no-shadow": 2
+  },
+  "settings":  {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
