@@ -1,19 +1,14 @@
-import {
-  EventBusI,
-  EventsType,
-  ListenersStateType,
-  ListenersType,
-  ArgumentTypes
-} from './types';
+import { isString } from '../guards/isString';
+import { BaseGenericType, ListenersStateType } from './types';
 
-export class EventBus implements EventBusI {
-  listeners: ListenersStateType;
+export class EventBus<T = BaseGenericType> {
+  listeners: ListenersStateType<T>;
 
   constructor() {
     this.listeners = {};
   }
 
-  on = <T extends EventsType>(event: T, callback: ListenersType[T]): void => {
+  on = <Event extends keyof T>(event: Event, callback: T[Event]): void => {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -23,22 +18,22 @@ export class EventBus implements EventBusI {
     }
   };
 
-  off = <T extends EventsType>(event: T, callback: ListenersType[T]): void => {
-    if (!this.listeners[event]) {
-      throw new Event(`Нет события: ${event}`);
+  off = <Event extends keyof T>(event: Event, callback: T[Event]): void => {
+    if (isString(event) && !this.listeners[event]) {
+      throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event] = this.listeners[event]!.filter(
       (listener) => listener !== callback
-    ) as ListenersStateType[T];
+    );
   };
 
-  emit = <T extends EventsType>(
-    event: T,
-    ...args: ArgumentTypes<ListenersType[T]>
+  emit = <Event extends keyof T>(
+    event: Event,
+    ...args: T[Event] extends (...args: infer A) => any ? A : never[]
   ): void => {
-    if (!this.listeners[event]) {
-      throw new Event(`Нет события: ${event}`);
+    if (isString(event) && !this.listeners[event]) {
+      throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event]!.forEach((callback) => {
