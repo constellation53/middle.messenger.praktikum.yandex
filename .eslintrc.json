@@ -19,6 +19,9 @@
     "prettier/prettier": ["warn",  {"endOfLine": "auto"}],
     "import/prefer-default-export": 0,
     "import/extensions": 0,
+    "no-underscore-dangle": 0,
+    "class-methods-use-this": 0,
+    "no-shadow": 0,
     "@typescript-eslint/no-shadow": 2,
     "@typescript-eslint/explicit-function-return-type": 2
   },
