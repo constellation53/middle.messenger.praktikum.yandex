@@ -22,15 +22,15 @@ export class Block<P extends Record<string, any> = any> {
       props,
     };
 
-    this.props = this.makePropsProxy(props);
+    this.props = this._makePropsProxy(props);
 
     this.eventBus = (): EventBus<ListenersType> => eventBus;
 
-    this.registerEvents(eventBus);
+    this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private registerEvents(eventBus: EventBus<ListenersType>): void {
+  private _registerEvents(eventBus: EventBus<ListenersType>): void {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -104,8 +104,7 @@ export class Block<P extends Record<string, any> = any> {
     return this.element;
   }
 
-  // eslint-disable-next-line no-underscore-dangle,class-methods-use-this
-  private makePropsProxy(props: any): any {
+  private _makePropsProxy(props: P): P {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     // const self = this;
 
