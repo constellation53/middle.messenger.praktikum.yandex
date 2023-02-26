@@ -71,6 +71,17 @@ export abstract class Block<P extends Record<string, any> = any> {
     return true;
   }
 
+  private _addEvents() {
+    const { events = {} } = this.props;
+
+    const tuple = Object.entries<(this: HTMLElement, ev: HTMLElementEventMap[keyof HTMLElementEventMap]) => any>(events);
+
+
+    tuple.forEach(([name, listener]) => {
+      this._element?.addEventListener(<keyof HTMLElementEventMap>name, listener)
+    })
+  }
+
   public setProps = (nextProps: P): void => {
     if (!nextProps) {
       return;
@@ -94,6 +105,8 @@ export abstract class Block<P extends Record<string, any> = any> {
       console.log('Trying to render');
       this._element.innerHTML = block;
     }
+
+    this._addEvents()
   }
 
   // Переопределяется пользователем. Необходимо вернуть разметку
