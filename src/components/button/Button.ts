@@ -1,9 +1,10 @@
 import Block from '../../modules/core/utils/block';
 import template from './template.hbs';
+import { CoreBlockType } from '../../modules/core/utils/block/types';
 
-type PropsType = {
+type PropsType = CoreBlockType<{
   child: string;
-}
+}>;
 
 export default class Button extends Block<PropsType> {
   constructor(props: PropsType) {
@@ -14,6 +15,6 @@ export default class Button extends Block<PropsType> {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type,class-methods-use-this
   render() {
     // В данном случае render возвращает строкой разметку из шаблонизатора
-    return template(this.props)
+    return template(this.props);
   }
 }

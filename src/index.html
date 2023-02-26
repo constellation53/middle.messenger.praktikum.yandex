@@ -8,6 +8,9 @@
     child: 'Click me',
     events: {
       click: () => console.log('Click me')
+    },
+    settings: {
+      withInternalID: true
     }
   });
 
@@ -17,7 +20,6 @@
   // Через секунду контент изменится сам, достаточно обновить пропсы
   // setTimeout(() => {
   //   button.setProps({
-  //     className: 'otherClass',
   //     child: 'Click me, please',
   //   });
   // }, 2000);

@@ -16,3 +16,10 @@ export type MetaType<T> = {
   tagName: string;
   props: T;
 }
+
+export type CoreBlockType<T> = T & {
+  __id: string;
+  settings?: {
+    withInternalID?: boolean;
+  }
+}

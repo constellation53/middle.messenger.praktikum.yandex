@@ -1,14 +1,16 @@
+import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
 import { EventEnum, ListenersType, MetaType } from './types';
-import { isHTMLElement } from '../guards/isHTMLElement';
 
 // Нельзя создавать экземпляр данного класса
 export abstract class Block<P extends Record<string, any> = any> {
   static EVENTS = EventEnum;
 
-  private _element: HTMLElement | null = null;
+  private _element: HTMLElement;
 
-  private readonly _meta: MetaType<P> | null = null;
+  private readonly _meta: MetaType<P>;
+
+  private readonly _id: string;
 
   protected props: P;
 
@@ -22,7 +24,9 @@ export abstract class Block<P extends Record<string, any> = any> {
       props,
     };
 
-    this.props = this._makePropsProxy(props);
+    this._id = nanoid(6);
+
+    this.props = this._makePropsProxy({  ...props, __id: this._id });
 
     this.eventBus = (): EventBus<ListenersType> => eventBus;
 
@@ -38,11 +42,9 @@ export abstract class Block<P extends Record<string, any> = any> {
   }
 
   private _createResources(): void {
-    if (this._meta) {
-      const { tagName } = this._meta;
+    const { tagName } = this._meta;
 
-      this._element = this._createDocumentElement(tagName);
-    }
+    this._element = this._createDocumentElement(tagName);
   }
 
   private _init(): void {
@@ -74,23 +76,39 @@ export abstract class Block<P extends Record<string, any> = any> {
   private _addEvents(): void {
     const { events = {} } = this.props;
 
-    const tuple = Object.entries<(this: HTMLElement, ev: HTMLElementEventMap[keyof HTMLElementEventMap]) => any>(events);
-
+    const tuple =
+      Object.entries<
+        (
+          this: HTMLElement,
+          ev: HTMLElementEventMap[keyof HTMLElementEventMap]
+        ) => any
+      >(events);
 
     tuple.forEach(([name, listener]) => {
-      this._element?.addEventListener(<keyof HTMLElementEventMap>name, listener)
-    })
+      this._element?.addEventListener(
+        <keyof HTMLElementEventMap>name,
+        listener
+      );
+    });
   }
 
   private _removeEvents(): void {
     const { events = {} } = this.props;
 
-    const tuple = Object.entries<(this: HTMLElement, ev: HTMLElementEventMap[keyof HTMLElementEventMap]) => any>(events);
-
+    const tuple =
+      Object.entries<
+        (
+          this: HTMLElement,
+          ev: HTMLElementEventMap[keyof HTMLElementEventMap]
+        ) => any
+      >(events);
 
     tuple.forEach(([name, listener]) => {
-      this._element?.removeEventListener(<keyof HTMLElementEventMap>name, listener)
-    })
+      this._element?.removeEventListener(
+        <keyof HTMLElementEventMap>name,
+        listener
+      );
+    });
   }
 
   public setProps = (nextProps: P): void => {
@@ -113,15 +131,12 @@ export abstract class Block<P extends Record<string, any> = any> {
     // либо сразу превращать в DOM-элементы и возвращать из compile DOM-ноду
 
     if (this.props?.events) {
-      this._removeEvents()
+      this._removeEvents();
     }
 
-    if (isHTMLElement(this._element)) {
-      console.log('Trying to render');
-      this._element.innerHTML = block;
-    }
+    this._element.innerHTML = block;
 
-    this._addEvents()
+    this._addEvents();
   }
 
   // Переопределяется пользователем. Необходимо вернуть разметку
@@ -158,7 +173,13 @@ export abstract class Block<P extends Record<string, any> = any> {
 
   protected _createDocumentElement(tagName: string): HTMLElement {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
+    const element = document.createElement(tagName);
+
+    if (this.props?.settings?.withInternalID) {
+      element.setAttribute('data-id', this._id);
+    }
+
+    return element;
   }
 
   public show(): void {
