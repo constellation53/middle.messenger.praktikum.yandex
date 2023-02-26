@@ -3,14 +3,14 @@ import { EventEnum, ListenersType, MetaType } from './types';
 import { isHTMLElement } from '../guards/isHTMLElement';
 
 // Нельзя создавать экземпляр данного класса
-export class Block<P extends Record<string, any> = any> {
+export abstract class Block<P extends Record<string, any> = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement | null = null;
 
   private readonly _meta: MetaType<P> | null = null;
 
-  protected  props: P;
+  protected props: P;
 
   protected eventBus: () => EventBus<ListenersType>;
 
@@ -33,6 +33,7 @@ export class Block<P extends Record<string, any> = any> {
   private _registerEvents(eventBus: EventBus<ListenersType>): void {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._render.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -82,7 +83,7 @@ export class Block<P extends Record<string, any> = any> {
     return this._element;
   }
 
-  _render(): void {
+  private _render(): void {
     const block = this.render();
     // Это небезопасный метод для упрощения логики
     // Используйте шаблонизатор из npm или напишите свой безопасный
@@ -90,6 +91,7 @@ export class Block<P extends Record<string, any> = any> {
     // либо сразу превращать в DOM-элементы и возвращать из compile DOM-ноду
 
     if (isHTMLElement(this._element)) {
+      console.log('Trying to render');
       this._element.innerHTML = block;
     }
   }
@@ -98,18 +100,32 @@ export class Block<P extends Record<string, any> = any> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
-  public render(): string {}
+  protected render(): string {}
 
   public getContent(): HTMLElement | null {
     return this.element;
   }
 
   private _makePropsProxy(props: P): P {
-    // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
-    // const self = this;
+    const proxy = new Proxy(props, {
+      get: (target, property: string): P[string] => {
+        return typeof target[property] === 'function'
+          ? target[property].bind(this)
+          : target[property];
+      },
+      set: (target, property: string, value): boolean => {
+        const old = { ...target };
 
-    // Здесь вам предстоит реализовать метод
-    return props;
+        // eslint-disable-next-line no-param-reassign
+        target[property as keyof P] = value;
+
+        this.eventBus().emit(EventEnum.FLOW_CDU, old, target);
+
+        return true;
+      },
+    });
+
+    return proxy;
   }
 
   protected _createDocumentElement(tagName: string): HTMLElement {

@@ -13,10 +13,10 @@
   render("#root", button);
 
   // Через секунду контент изменится сам, достаточно обновить пропсы
-  // setTimeout(() => {
-  //   button.setProps({
-  //     className: 'otherClass',
-  //     child: 'Click me, please',
-  //   });
-  // }, 1000);
+  setTimeout(() => {
+    button.setProps({
+      className: 'otherClass',
+      child: 'Click me, please',
+    });
+  }, 2000);
 </script>
