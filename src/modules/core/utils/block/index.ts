@@ -71,7 +71,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     return true;
   }
 
-  private _addEvents() {
+  private _addEvents(): void {
     const { events = {} } = this.props;
 
     const tuple = Object.entries<(this: HTMLElement, ev: HTMLElementEventMap[keyof HTMLElementEventMap]) => any>(events);
@@ -79,6 +79,17 @@ export abstract class Block<P extends Record<string, any> = any> {
 
     tuple.forEach(([name, listener]) => {
       this._element?.addEventListener(<keyof HTMLElementEventMap>name, listener)
+    })
+  }
+
+  private _removeEvents(): void {
+    const { events = {} } = this.props;
+
+    const tuple = Object.entries<(this: HTMLElement, ev: HTMLElementEventMap[keyof HTMLElementEventMap]) => any>(events);
+
+
+    tuple.forEach(([name, listener]) => {
+      this._element?.removeEventListener(<keyof HTMLElementEventMap>name, listener)
     })
   }
 
@@ -100,6 +111,10 @@ export abstract class Block<P extends Record<string, any> = any> {
     // Используйте шаблонизатор из npm или напишите свой безопасный
     // Нужно компилировать не в строку (или делать это правильно),
     // либо сразу превращать в DOM-элементы и возвращать из compile DOM-ноду
+
+    if (this.props?.events) {
+      this._removeEvents()
+    }
 
     if (isHTMLElement(this._element)) {
       console.log('Trying to render');
