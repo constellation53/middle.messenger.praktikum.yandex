@@ -18,7 +18,6 @@ export type MetaType<T> = {
 }
 
 export type CoreBlockType<T> = T & {
-  __id: string;
   settings?: {
     withInternalID?: boolean;
   }
