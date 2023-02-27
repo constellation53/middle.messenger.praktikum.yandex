@@ -1,9 +1,10 @@
 import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
 import { EventEnum, ListenersType, MetaType } from './types';
+import {TemplateDelegate} from "handlebars";
 
 // Нельзя создавать экземпляр данного класса
-export abstract class Block<P extends Record<string, any> = any> {
+export class Block<P extends Record<string, any> = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
@@ -14,10 +15,15 @@ export abstract class Block<P extends Record<string, any> = any> {
 
   protected props: P;
 
+  // eslint-disable-next-line no-use-before-define
+  public children: Record<string, Block>;
+
   protected eventBus: () => EventBus<ListenersType>;
 
-  constructor(tagName: string, props: P) {
+  protected constructor(tagName: string, properties: P) {
     const eventBus = new EventBus();
+
+    const { children, props } = this._getChildren(properties);
 
     this._meta = {
       tagName,
@@ -25,13 +31,44 @@ export abstract class Block<P extends Record<string, any> = any> {
     };
 
     this._id = nanoid(6);
-
-    this.props = this._makePropsProxy({  ...props, __id: this._id });
+    console.log(children)
+    this.props = this._makePropsProxy({ ...props, __id: this._id });
+    this.children = children;
 
     this.eventBus = (): EventBus<ListenersType> => eventBus;
 
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
+  }
+
+  compile(template: (context: any) => string, context: any): DocumentFragment {
+    const contextAndStubs = { ...context };
+
+    Object.entries(this.children).forEach(([key, child]) => {
+      contextAndStubs[key] = `<div data-id="${child._id}"></div>`
+    });
+
+    const fragment = document.createElement('template')
+
+    fragment.innerHTML = template(contextAndStubs);
+
+    const replaceStub = (component: Block): void => {
+      const stub = fragment.content.querySelector(`[data-id="${component._id}"]`);
+
+      if (!stub) {
+        return;
+      }
+
+      component.getContent()?.append(...Array.from(stub.childNodes));
+
+      stub.replaceWith(component.getContent()!);
+    }
+
+    Object.entries(this.children).forEach(([_, component]) => {
+      replaceStub(component);
+    });
+
+    return fragment.content;
   }
 
   private _registerEvents(eventBus: EventBus<ListenersType>): void {
@@ -52,8 +89,32 @@ export abstract class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
+  private _getChildren(properties: P):  { props: P, children: Record<string, Block> } {
+    const children: Record<string, Block> = {};
+    const props: Record<string, unknown> = {};
+
+    Object.entries(properties).forEach(([key, value]) => {
+      if (value instanceof Block) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    })
+
+    return {
+      props: props as P,
+      children
+    }
+  }
+
+
   private _componentDidMount(): void {
     this.componentDidMount();
+
+
+    Object.values(this.children).forEach(child => {
+      child.dispatchComponentDidMount();
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
@@ -111,7 +172,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     });
   }
 
-  public setProps = (nextProps: P): void => {
+  public setProps = (nextProps: Partial<P>): void => {
     if (!nextProps) {
       return;
     }
@@ -134,7 +195,9 @@ export abstract class Block<P extends Record<string, any> = any> {
       this._removeEvents();
     }
 
-    this._element.innerHTML = block;
+    this._element.innerHTML = '';
+    console.log(block)
+    this._element.appendChild(block)
 
     this._addEvents();
   }
@@ -143,7 +206,7 @@ export abstract class Block<P extends Record<string, any> = any> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
-  protected render(): string {}
+  protected render(): DocumentFragment {}
 
   public getContent(): HTMLElement | null {
     return this.element;

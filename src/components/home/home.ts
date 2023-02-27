@@ -3,20 +3,17 @@ import template from './template.hbs';
 import { CoreBlockType } from '../../modules/core/utils/block/types';
 
 type PropsType = CoreBlockType<{
-  child: string;
-  events: {
-    click: () => void;
-  }
+  child: any;
 }>;
 
-export default class Button extends Block<PropsType> {
+export default class Home extends Block<PropsType> {
   constructor(props: PropsType) {
     // Создаём враппер DOM-элемент button
-    super('button', props);
+    super('div', props);
   }
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type,class-methods-use-this
+
   render(): DocumentFragment {
     // В данном случае render возвращает строкой разметку из шаблонизатора
-    return this.compile(template, this.props)
+    return this.compile(template, { child: this.props.child });
   }
 }
