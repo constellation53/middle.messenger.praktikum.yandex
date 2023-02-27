@@ -1,10 +1,9 @@
 import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
 import { EventEnum, ListenersType, MetaType } from './types';
-import {TemplateDelegate} from "handlebars";
 
 // Нельзя создавать экземпляр данного класса
-export class Block<P extends Record<string, any> = any> {
+export abstract  class Block<P extends Record<string, any> = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
@@ -15,7 +14,6 @@ export class Block<P extends Record<string, any> = any> {
 
   protected props: P;
 
-  // eslint-disable-next-line no-use-before-define
   public children: Record<string, Block>;
 
   protected eventBus: () => EventBus<ListenersType>;
@@ -31,7 +29,7 @@ export class Block<P extends Record<string, any> = any> {
     };
 
     this._id = nanoid(6);
-    console.log(children)
+
     this.props = this._makePropsProxy({ ...props, __id: this._id });
     this.children = children;
 
@@ -45,15 +43,17 @@ export class Block<P extends Record<string, any> = any> {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([key, child]) => {
-      contextAndStubs[key] = `<div data-id="${child._id}"></div>`
+      contextAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
-    const fragment = document.createElement('template')
+    const fragment = document.createElement('template');
 
     fragment.innerHTML = template(contextAndStubs);
 
     const replaceStub = (component: Block): void => {
-      const stub = fragment.content.querySelector(`[data-id="${component._id}"]`);
+      const stub = fragment.content.querySelector(
+        `[data-id="${component._id}"]`
+      );
 
       if (!stub) {
         return;
@@ -62,7 +62,7 @@ export class Block<P extends Record<string, any> = any> {
       component.getContent()?.append(...Array.from(stub.childNodes));
 
       stub.replaceWith(component.getContent()!);
-    }
+    };
 
     Object.entries(this.children).forEach(([_, component]) => {
       replaceStub(component);
@@ -89,7 +89,10 @@ export class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  private _getChildren(properties: P):  { props: P, children: Record<string, Block> } {
+  private _getChildren(properties: P): {
+    props: P;
+    children: Record<string, Block>;
+  } {
     const children: Record<string, Block> = {};
     const props: Record<string, unknown> = {};
 
@@ -99,20 +102,18 @@ export class Block<P extends Record<string, any> = any> {
       } else {
         props[key] = value;
       }
-    })
+    });
 
     return {
       props: props as P,
-      children
-    }
+      children,
+    };
   }
-
 
   private _componentDidMount(): void {
     this.componentDidMount();
 
-
-    Object.values(this.children).forEach(child => {
+    Object.values(this.children).forEach((child) => {
       child.dispatchComponentDidMount();
     });
   }
@@ -196,8 +197,8 @@ export class Block<P extends Record<string, any> = any> {
     }
 
     this._element.innerHTML = '';
-    console.log(block)
-    this._element.appendChild(block)
+    console.log(block);
+    this._element.appendChild(block);
 
     this._addEvents();
   }
