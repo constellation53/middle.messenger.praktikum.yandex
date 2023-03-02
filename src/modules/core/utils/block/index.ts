@@ -14,6 +14,7 @@ export abstract  class Block<P extends Record<string, any> = any> {
 
   protected props: P;
 
+  // eslint-disable-next-line no-use-before-define
   public children: Record<string, Block>;
 
   protected eventBus: () => EventBus<ListenersType>;
@@ -74,7 +75,7 @@ export abstract  class Block<P extends Record<string, any> = any> {
   private _registerEvents(eventBus: EventBus<ListenersType>): void {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -127,7 +128,11 @@ export abstract  class Block<P extends Record<string, any> = any> {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  private _componentDidUpdate(oldProps: P, newProps: P): void {}
+  private _componentDidUpdate(oldProps: P, newProps: P): void {
+    if (this.componentDidUpdate(oldProps, newProps)) {
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    }
+  }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
