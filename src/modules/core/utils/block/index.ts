@@ -19,10 +19,10 @@ export abstract  class Block<P extends Record<string, any> = any> {
 
   protected eventBus: () => EventBus<ListenersType>;
 
-  protected constructor(tagName: string, properties: P) {
+  protected constructor(tagName: string, properties?: P) {
     const eventBus = new EventBus();
 
-    const { children, props } = this._getChildren(properties);
+    const { children, props } = this._getChildren(properties || {} as P);
 
     this._meta = {
       tagName,
@@ -40,7 +40,7 @@ export abstract  class Block<P extends Record<string, any> = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  compile(template: (context: any) => string, context: any): DocumentFragment {
+  compile(template: (context: any) => string, context: any = {}): DocumentFragment {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([key, child]) => {
