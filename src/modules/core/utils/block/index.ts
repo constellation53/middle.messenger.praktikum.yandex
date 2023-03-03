@@ -1,14 +1,12 @@
 import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
-import { EventEnum, ListenersType, MetaType } from './types';
+import { EventEnum, ListenersType } from './types';
 
 // Нельзя создавать экземпляр данного класса
-export abstract  class Block<P extends Record<string, any> = any> {
+export abstract class Block<P extends Record<string, any> = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
-
-  private readonly _meta: MetaType<P>;
 
   private readonly _id: string;
 
@@ -19,15 +17,10 @@ export abstract  class Block<P extends Record<string, any> = any> {
 
   protected eventBus: () => EventBus<ListenersType>;
 
-  protected constructor(tagName: string, properties?: P) {
+  protected constructor(properties?: P) {
     const eventBus = new EventBus();
 
-    const { children, props } = this._getChildren(properties || {} as P);
-
-    this._meta = {
-      tagName,
-      props,
-    };
+    const { children, props } = this._getChildren(properties || ({} as P));
 
     this._id = nanoid(6);
 
@@ -40,7 +33,10 @@ export abstract  class Block<P extends Record<string, any> = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  compile(template: (context: any) => string, context: any = {}): DocumentFragment {
+  compile(
+    template: (context: any) => string,
+    context: any = {}
+  ): DocumentFragment {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([key, child]) => {
@@ -79,14 +75,7 @@ export abstract  class Block<P extends Record<string, any> = any> {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private _createResources(): void {
-    const { tagName } = this._meta;
-
-    this._element = this._createDocumentElement(tagName);
-  }
-
   private _init(): void {
-    this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -201,9 +190,13 @@ export abstract  class Block<P extends Record<string, any> = any> {
       this._removeEvents();
     }
 
-    this._element.innerHTML = '';
-    console.log(block);
-    this._element.appendChild(block);
+    const newElement = block.firstElementChild as HTMLElement;
+
+    if (this._element && newElement) {
+      this._element.replaceWith(newElement);
+    }
+
+    this._element = newElement;
 
     this._addEvents();
   }
