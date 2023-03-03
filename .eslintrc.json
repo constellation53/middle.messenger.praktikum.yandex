@@ -21,9 +21,11 @@
     "import/extensions": 0,
     "no-underscore-dangle": 0,
     "class-methods-use-this": 0,
+    "no-useless-constructor": 0,
     "no-shadow": 0,
     "@typescript-eslint/no-shadow": 2,
     "@typescript-eslint/explicit-function-return-type": 2,
+    "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-var-requires": 0
   },
   "settings":  {
