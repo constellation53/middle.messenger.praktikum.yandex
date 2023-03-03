@@ -3,17 +3,18 @@ import { EventBus } from '../eventBus';
 import { EventEnum, ListenersType } from './types';
 
 // Нельзя создавать экземпляр данного класса
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class Block<P extends Record<string, any> = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
 
-  private readonly _id: string;
+  private readonly _id: string = nanoid(6);
 
   protected props: P;
 
   // eslint-disable-next-line no-use-before-define
-  public children: Record<string, Block>;
+  public children: Record<string, Block | Block[]>;
 
   protected eventBus: () => EventBus<ListenersType>;
 
@@ -34,13 +35,21 @@ export abstract class Block<P extends Record<string, any> = any> {
   }
 
   compile(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     template: (context: any) => string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     context: any = {}
   ): DocumentFragment {
     const contextAndStubs = { ...context };
 
-    Object.entries(this.children).forEach(([key, child]) => {
-      contextAndStubs[key] = `<div data-id="${child._id}"></div>`;
+    Object.entries(this.children).forEach(([key, children]) => {
+      if (Array.isArray(children)) {
+        contextAndStubs[key] = children.map(
+          (child) => `<div data-id="${child._id}"></div>`
+        );
+      } else {
+        contextAndStubs[key] = `<div data-id="${children._id}"></div>`;
+      }
     });
 
     const fragment = document.createElement('template');
@@ -61,8 +70,13 @@ export abstract class Block<P extends Record<string, any> = any> {
       stub.replaceWith(component.getContent()!);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Object.entries(this.children).forEach(([_, component]) => {
-      replaceStub(component);
+      if (Array.isArray(component)) {
+        component.forEach(replaceStub);
+      } else {
+        replaceStub(component);
+      }
     });
 
     return fragment.content;
@@ -81,13 +95,19 @@ export abstract class Block<P extends Record<string, any> = any> {
 
   private _getChildren(properties: P): {
     props: P;
-    children: Record<string, Block>;
+    children: Record<string, Block | Block[]>;
   } {
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block | Block[]> = {};
     const props: Record<string, unknown> = {};
 
     Object.entries(properties).forEach(([key, value]) => {
-      if (value instanceof Block) {
+      if (
+        Array.isArray(value) &&
+        value.length > 0 &&
+        value.every((v) => v instanceof Block)
+      ) {
+        children[key] = value as Block[];
+      } else if (value instanceof Block) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -104,7 +124,11 @@ export abstract class Block<P extends Record<string, any> = any> {
     this.componentDidMount();
 
     Object.values(this.children).forEach((child) => {
-      child.dispatchComponentDidMount();
+      if (Array.isArray(child)) {
+        child.forEach((ch) => ch.dispatchComponentDidMount());
+      } else {
+        child.dispatchComponentDidMount();
+      }
     });
   }
 
@@ -132,13 +156,13 @@ export abstract class Block<P extends Record<string, any> = any> {
   private _addEvents(): void {
     const { events = {} } = this.props;
 
-    const tuple =
-      Object.entries<
-        (
-          this: HTMLElement,
-          ev: HTMLElementEventMap[keyof HTMLElementEventMap]
-        ) => any
-      >(events);
+    const tuple = Object.entries<
+      (
+        this: HTMLElement,
+        ev: HTMLElementEventMap[keyof HTMLElementEventMap]
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ) => any
+    >(events);
 
     tuple.forEach(([name, listener]) => {
       this._element?.addEventListener(
@@ -151,13 +175,13 @@ export abstract class Block<P extends Record<string, any> = any> {
   private _removeEvents(): void {
     const { events = {} } = this.props;
 
-    const tuple =
-      Object.entries<
-        (
-          this: HTMLElement,
-          ev: HTMLElementEventMap[keyof HTMLElementEventMap]
-        ) => any
-      >(events);
+    const tuple = Object.entries<
+      (
+        this: HTMLElement,
+        ev: HTMLElementEventMap[keyof HTMLElementEventMap]
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ) => any
+    >(events);
 
     tuple.forEach(([name, listener]) => {
       this._element?.removeEventListener(
@@ -212,7 +236,7 @@ export abstract class Block<P extends Record<string, any> = any> {
   }
 
   private _makePropsProxy(props: P): P {
-    const proxy = new Proxy(props, {
+    return new Proxy(props, {
       get: (target, property: string): P[string] => {
         return typeof target[property] === 'function'
           ? target[property].bind(this)
@@ -229,19 +253,6 @@ export abstract class Block<P extends Record<string, any> = any> {
         return true;
       },
     });
-
-    return proxy;
-  }
-
-  protected _createDocumentElement(tagName: string): HTMLElement {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    const element = document.createElement(tagName);
-
-    if (this.props?.settings?.withInternalID) {
-      element.setAttribute('data-id', this._id);
-    }
-
-    return element;
   }
 
   public show(): void {
