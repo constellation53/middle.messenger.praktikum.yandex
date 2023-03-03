@@ -9,5 +9,10 @@ export type RouteNameType =
   | 'profileEditPassword'
   | 'profileUploadAvatar';
 
+type RouteType = {
+  name: RouteNameType;
+  path: string;
+};
 
-export type RoutesConfigType = Record<RouteNameType, string>;
+
+export type RoutesConfigType = Record<RouteNameType, RouteType>;
