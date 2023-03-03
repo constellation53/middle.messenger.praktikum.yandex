@@ -90,7 +90,14 @@ export abstract class Block<P extends Record<string, any> = any> {
   }
 
   private _init(): void {
+    this.init();
+
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  protected init(): void {
+
   }
 
   private _getChildren(properties: P): {
