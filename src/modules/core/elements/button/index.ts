@@ -1,4 +1,4 @@
-import Block from '../../core/utils/block';
+import Block from '../../utils/block';
 import { ButtonType } from './types';
 import template from './index.hbs';
 import styles from './styles/index.module.scss';
