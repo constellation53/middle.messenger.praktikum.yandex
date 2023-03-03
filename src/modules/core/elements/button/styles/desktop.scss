@@ -1,16 +1,16 @@
 & {
   border-radius: px(8);
 
-  &.--primary {
+  .primary {
     padding: px(12) 0;
   }
 
-  &.--secondary,
-  &.--tertiary {
+  .secondary,
+  .tertiary {
     padding: px(10) 0;
   }
 
-  &.--align-left {
+  .alignLeft {
     text-align: left;
   }
 }
