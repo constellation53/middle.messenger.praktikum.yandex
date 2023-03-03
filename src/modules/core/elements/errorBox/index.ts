@@ -1,6 +1,6 @@
-import Block from '../utils/block';
+import Block from '../../utils/block';
 import { ErrorBoxType } from './types';
-import { Button } from '../elements/button';
+import { Button } from '../button';
 import template from './index.hbs';
 import styles from './styles/index.module.scss';
 
