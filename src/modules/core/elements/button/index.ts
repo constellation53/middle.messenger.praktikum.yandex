@@ -10,7 +10,6 @@ export class Button extends Block<PropsType> {
   }
 
   render(): DocumentFragment {
-    console.log(styles)
     return this.compile(template, { ...this.props, styles });
   }
 }
