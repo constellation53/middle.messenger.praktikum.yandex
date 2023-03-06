@@ -4,15 +4,15 @@
   border-radius: px(12);
   box-shadow: 0 0 px(6) $formBoxShadow;
 
-  &__legend {
+  .legend {
     margin-bottom: px(40);
   }
 
-  &__fields-wrapper {
+  .fieldsWrapper {
     margin-bottom: px(143);
   }
 
-  &__button-wrapper {
+  .buttonWrapper {
     margin-bottom: px(4)
   }
 }
