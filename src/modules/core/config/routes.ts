@@ -19,7 +19,7 @@ export const routes: RoutesConfigType = {
   },
   internalError: {
     name: 'internalError',
-    path: '/src/pages/500/500.hbs',
+    path: '/src/pages/internalError',
   },
   profile: {
     name: 'profile',
