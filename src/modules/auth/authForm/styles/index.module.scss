@@ -1,18 +1,18 @@
-.auth-form {
+.authForm {
   @import '../../../../assets/styles/extensions';
   @import './palette';
 
   background: $formBackground;
 
-  &__fieldset {
+  .fieldset {
     border: none;
   }
 
-  &__legend {
+  .legend {
     text-align: center;
   }
 
-  &__fields-wrapper {
+  .fieldsWrapper {
     width: 100%;
   }
 
