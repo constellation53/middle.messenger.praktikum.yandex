@@ -1,5 +1,10 @@
 type HtmlTypeType = 'text' | 'password' | 'file';
 
+type ValidationType = {
+  error: boolean;
+  message?: string;
+};
+
 type CoreType = {
   id: string | number;
   name: string;
@@ -7,6 +12,7 @@ type CoreType = {
   htmlType?: HtmlTypeType;
   hidden?: boolean;
   value?: string;
+  validation?: ValidationType;
 };
 
 type HorizontalInputType = {

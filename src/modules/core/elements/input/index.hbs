@@ -27,7 +27,7 @@
   <input
       class="
         {{ styles.field }}
-        {{#if isError }}
+        {{#if validation.error }}
           {{ styles.error }}
         {{/if }}
         text
@@ -38,14 +38,14 @@
       id="{{ id }}"
       value="{{ value }}"
   />
-  {{#if errorMessage }}
+  {{#if validation.message }}
     <p class="
       {{ styles.errorMessage }}
       text
       size-15
      "
     >
-      {{ errorMessage }}
+      {{  validation.message }}
     </p>
   {{/if }}
 </div>
