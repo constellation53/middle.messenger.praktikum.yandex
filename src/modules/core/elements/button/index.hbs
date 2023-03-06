@@ -1,23 +1,25 @@
 {{#if href}}
   <a
-    class="{{ styles.button ~}}
-    {{~#if primary ~}}
-      {{ styles.primary }}
-    {{ else if secondary }}
-     {{ styles.tertiary }}
-    {{ else if tertiary }}
-      {{ styles.tertiary }}
-    {{else}}
-      {{ styles.primary }}
-    {{~/if }}
+    class="
+      {{ styles.button ~}}
+      {{~#if primary ~}}
+        {{ styles.primary }}
+      {{ else if secondary }}
+       {{ styles.tertiary }}
+      {{ else if tertiary }}
+        {{ styles.tertiary }}
+      {{else}}
+        {{ styles.primary }}
+      {{~/if }}
 
-    {{~#if fluid }}
-      {{ styles.fluid }}
-    {{~/if }}
+      {{~#if fluid }}
+        {{ styles.fluid }}
+      {{~/if }}
 
-    {{~#if alignLeft }}
-      {{ styles.alignLeft }}
-    {{~/if }}"
+      {{~#if alignLeft }}
+        {{ styles.alignLeft }}
+      {{~/if }}
+    "
     href={{ href }}
   >
     <span class="text size-7 {{ class }}">
@@ -26,20 +28,22 @@
   </a>
 {{ else }}
   <button
-    class="{{ styles.button ~}}
-    {{~#if primary ~}}
-      {{ styles.primary }}
-    {{ else if secondary }}
-      {{ styles.secondary }}
-    {{ else if tertiary }}
-      {{ styles.tertiary }}
-    {{else}}
-      {{ styles.primary }}
-    {{~/if }}
+    class="
+      {{ styles.button ~}}
+      {{~#if primary ~}}
+        {{ styles.primary }}
+      {{ else if secondary }}
+        {{ styles.secondary }}
+      {{ else if tertiary }}
+        {{ styles.tertiary }}
+      {{else}}
+        {{ styles.primary }}
+      {{~/if }}
 
-    {{~#if alignLeft }}
-      {{ styles.alignLeft }}
-    {{~/if }}"
+      {{~#if alignLeft }}
+        {{ styles.alignLeft }}
+      {{~/if }}
+    "
   >
     <span class="text size-7 {{ class }}">
       {{ text }}
