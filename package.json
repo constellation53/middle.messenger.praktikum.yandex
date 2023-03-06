@@ -8,10 +8,10 @@
     "start": "npm run build && node server -p 3000",
     "lint": "run-p lint:js lint:css",
     "lint:ts": "eslint --max-warnings 50 \"./**/*.ts\"",
-    "lint:js": "eslint './**/*.js'",
+    "lint:js": "eslint --fix './**/*.{js,ts}'",
     "lint:css": "stylelint './**/*.scss'",
     "lint:fix": "run-p lint:fix:js lint:fix:css",
-    "lint:fix:js": "eslint --fix './**/*.js'",
+    "lint:fix:js": "eslint --fix './**/*.{js,ts}'",
     "lint:fix:css": "stylelint --fix './**/*.scss'"
   },
   "dependencies": {
