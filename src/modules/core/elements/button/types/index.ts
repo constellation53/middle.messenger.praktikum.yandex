@@ -9,17 +9,16 @@ type AlignType = Partial<Record<AlignNameType, boolean>>;
 type CoreType = {
   text: string;
   class?: string;
+  fluid?: boolean;
 } & VariantType
   & AlignType;
 
 type LinkButtonType = CoreType & {
   href: string;
-  fluid?: boolean;
 };
 
 type StandardButtonType = CoreType & {
   href?: string;
-  fluid?: never;
 };
 
 export type ButtonType = LinkButtonType | StandardButtonType;
