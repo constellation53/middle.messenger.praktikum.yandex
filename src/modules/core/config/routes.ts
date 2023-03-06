@@ -15,7 +15,7 @@ export const routes: RoutesConfigType = {
   },
   notFound: {
     name: 'notFound',
-    path: '/src/pages/404/404.hbs',
+    path: '/pages/notFound',
   },
   internalError: {
     name: 'internalError',
