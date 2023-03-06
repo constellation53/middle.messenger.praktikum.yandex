@@ -6,7 +6,7 @@
     "dev": "parcel src/**/*.html -p 3000 --no-cache",
     "build": "parcel build src/**/*.html --no-cache",
     "start": "npm run build && node server -p 3000",
-    "lint": "run-p lint:js lint:css",
+    "lint": "tsc && run-p lint:js lint:css",
     "lint:ts": "eslint --max-warnings 50 \"./**/*.ts\"",
     "lint:js": "eslint --fix './**/*.{js,ts}'",
     "lint:css": "stylelint './**/*.scss'",
