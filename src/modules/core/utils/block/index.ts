@@ -16,7 +16,7 @@ export abstract class Block<P extends Record<string, any> = any> {
   // eslint-disable-next-line no-use-before-define
   public children: Record<string, Block | Block[]>;
 
-  protected eventBus: () => EventBus<ListenersType>;
+  protected eventBus: () => EventBus<ListenersType<P>>;
 
   protected constructor(properties?: P) {
     const eventBus = new EventBus();
@@ -28,7 +28,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     this.props = this._makePropsProxy({ ...props, __id: this._id });
     this.children = children;
 
-    this.eventBus = (): EventBus<ListenersType> => eventBus;
+    this.eventBus = (): EventBus<ListenersType<P>> => eventBus;
 
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
@@ -82,7 +82,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     return fragment.content;
   }
 
-  private _registerEvents(eventBus: EventBus<ListenersType>): void {
+  private _registerEvents(eventBus: EventBus<ListenersType<P>>): void {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));

@@ -5,10 +5,10 @@ export enum EventEnum {
   FLOW_CDU = 'flow:component-did-update',
 }
 
-export type ListenersType = {
+export type ListenersType<P> = {
   [EventEnum.INIT]: () => void;
   [EventEnum.FLOW_CDM]: () => void;
-  [EventEnum.FLOW_CDU]: (...args: unknown[]) => void;
+  [EventEnum.FLOW_CDU]: (oldProp: P, newProp: P) => void;
   [EventEnum.FLOW_RENDER]: () => void;
 };
 
