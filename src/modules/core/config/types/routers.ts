@@ -14,5 +14,4 @@ type RouteType = {
   path: string;
 };
 
-
 export type RoutesConfigType = Record<RouteNameType, RouteType>;

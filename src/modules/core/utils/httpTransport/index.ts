@@ -8,6 +8,7 @@ enum METHOD {
 
 type Options = {
   method: METHOD;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
 };
 

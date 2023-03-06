@@ -1,8 +1,15 @@
+// Infrastructure
 import Block from '../../modules/core/utils/block';
+
+// Templates
 import template from './index.hbs';
+
+// Components
+import { AuthFormComponent } from '../../modules/auth/authForm';
+
+// Other
 import { render } from '../../modules/core/utils/render';
 import styles from './styles/index.module.scss';
-import { AuthFormComponent } from '../../modules/auth/authForm';
 
 export class SignInPage extends Block {
   constructor() {

@@ -96,9 +96,7 @@ export abstract class Block<P extends Record<string, any> = any> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected init(): void {
-
-  }
+  protected init(): void {}
 
   private _getChildren(properties: P): {
     props: P;
@@ -156,6 +154,7 @@ export abstract class Block<P extends Record<string, any> = any> {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private componentDidUpdate(oldProps: P, newProps: P): boolean {
     return true;
   }

@@ -6,19 +6,19 @@ export enum EventEnum {
 }
 
 export type ListenersType = {
-  [EventEnum.INIT]: (...args: any[]) => void;
-  [EventEnum.FLOW_CDM]: (...args: any[]) => void;
-  [EventEnum.FLOW_RENDER]: (...args: any[]) => void;
-  [EventEnum.FLOW_CDU]: (...args: any[]) => void;
-}
+  [EventEnum.INIT]: () => void;
+  [EventEnum.FLOW_CDM]: () => void;
+  [EventEnum.FLOW_CDU]: (...args: unknown[]) => void;
+  [EventEnum.FLOW_RENDER]: () => void;
+};
 
 export type MetaType<T> = {
   tagName: string;
   props: T;
-}
+};
 
 export type CoreBlockType<T> = T & {
   settings?: {
     withInternalID?: boolean;
-  }
-}
+  };
+};

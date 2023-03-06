@@ -1,8 +1,13 @@
+// Infrastructure
 import Block from '../../modules/core/utils/block';
-import { ErrorBox } from '../../modules/core/elements/errorBox';
+
+// Templates
 import template from './index.hbs';
+
+// Other
+import { ErrorBox } from '../../modules/core/elements/errorBox';
 import { render } from '../../modules/core/utils/render';
-import styles from './styles/index.module.scss'
+import styles from './styles/index.module.scss';
 
 export class InternalErrorPage extends Block {
   constructor() {
