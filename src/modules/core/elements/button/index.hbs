@@ -1,14 +1,14 @@
 {{#if href}}
   <a
     class="{{ styles.button ~}}
-    {{~#if secondary }}
-      {{ styles.secondary }}
-    {{ else if tertiary }}
-     {{ styles.tertiary }}
-    {{ else if primary }}
+    {{~#if primary ~}}
       {{ styles.primary }}
-    {{else}}
+    {{ else if secondary }}
+     {{ styles.tertiary }}
+    {{ else if tertiary }}
       {{ styles.tertiary }}
+    {{else}}
+      {{ styles.primary }}
     {{~/if }}
 
     {{~#if fluid }}
@@ -27,14 +27,14 @@
 {{ else }}
   <button
     class="{{ styles.button ~}}
-    {{~#if secondary }}
+    {{~#if primary ~}}
+      {{ styles.primary }}
+    {{ else if secondary }}
       {{ styles.secondary }}
     {{ else if tertiary }}
       {{ styles.tertiary }}
-    {{ else if primary }}
-      {{ styles.primary }}
     {{else}}
-      {{ styles.tertiary }}
+      {{ styles.primary }}
     {{~/if }}
 
     {{~#if alignLeft }}

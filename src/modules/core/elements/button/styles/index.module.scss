@@ -10,25 +10,24 @@
     cursor: pointer;
   }
 
-  .primary {
+  &.primary {
     background: $primaryBackground;
     color: $primaryColor;
   }
 
-  .secondary {
+  &.secondary {
     background:  $secondaryBackground;
     color: $secondaryColor;
   }
 
-  .tertiary {
+  &.tertiary {
     background: $tertiaryBackground;
     color: $tertiaryColor;
   }
 
-  .fluid {
+  &.fluid {
     width: 100%;
   }
-
 
   @function px($px) {
     @return pxMedia($px, phonePortrait);
