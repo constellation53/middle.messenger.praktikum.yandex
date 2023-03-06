@@ -1,10 +1,18 @@
+// Infrastructure
 import Block from '../../utils/block';
-import { ErrorBoxType } from './types';
-import { Button } from '../button';
+
+// Templates
 import template from './index.hbs';
+
+// Elements
+import { Button } from '../button';
+
+// Other
+import { ErrorBoxType } from './types';
 import styles from './styles/index.module.scss';
 
 type PropsType = ErrorBoxType;
+
 export class ErrorBox extends Block<PropsType> {
   constructor(props: PropsType) {
     super(props);
