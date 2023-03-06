@@ -1,6 +1,7 @@
 import Block from '../../modules/core/utils/block';
 import template from './index.hbs';
-import { render } from "../../modules/core/utils/render";
+import { render } from '../../modules/core/utils/render';
+import styles from './styles/index.module.scss';
 
 export class SignInPage extends Block {
   constructor() {
@@ -8,10 +9,10 @@ export class SignInPage extends Block {
   }
 
   render(): DocumentFragment {
-    return this.compile(template);
+    return this.compile(template, { styles });
   }
 }
 
-const signInPage = new SignInPage()
+const signInPage = new SignInPage();
 
-render('#root', signInPage)
+render('#root', signInPage);
