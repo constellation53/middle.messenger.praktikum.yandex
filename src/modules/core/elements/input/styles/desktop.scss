@@ -1,20 +1,20 @@
 & {
-  &.--vertical {
+  &.vertical {
     height: px(52);
   }
 
-  &.--vertical .input__field {
+  &.vertical .field {
     padding: px(15) 0 px(5);
     border-bottom: px(1) solid $borderColor;
   }
 
 
-  &.--horizontal .input__field  {
+  &.horizontal .field  {
     height: px(33);
     padding: px(10);
   }
 
-  &__error-message {
+  .errorMessage {
     margin-top: px(7);
   }
 }

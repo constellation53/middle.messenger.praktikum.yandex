@@ -1,30 +1,30 @@
 .input {
-  @import '../../../../assets/styles/extensions';
+  @import '../../../../../assets/styles/extensions';
   @import './palette';
 
   position: relative;
 
   &,
-  &__field {
+  .field {
     width: 100%;
   }
 
-  &__field {
+  .field {
     border: 0;
 
-    &.--error {
+    .error {
       color: $errorColor;
     }
   }
 
-  &.--vertical .input__label {
+  &.vertical .label {
     position: absolute;
     top: 0;
     left: 0;
     color: $labelVerticalColor;
   }
 
-  &.--horizontal {
+  &.horizontal {
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
@@ -32,17 +32,17 @@
     width: 100%;
   }
 
-  &.--horizontal .input__field {
+  &.horizontal .field {
     display: block;
     border: 0;
     color: $inputHorizontalColor;
   }
 
-  &.--horizontal .input__label {
+  &.horizontal .label {
     color: $labelHorizontalColor;
   }
 
-  &__error-message {
+  .errorMessage {
     color: $errorColor;
   }
 
