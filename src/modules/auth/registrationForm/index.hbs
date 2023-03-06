@@ -3,30 +3,30 @@
     <legend class="{{ styles.legend }} text font-weight-500 size-2">Регистрация</legend>
     <div class="{{ styles.fieldsWrapper }}">
       <div>
-        {{!> elements/input/input name="email" id="email" type="text" value="pochta@yandex.ru" label="Почта"}}
+        {{{ emailInput }}}
       </div>
       <div>
-        {{!> elements/input/input name="login" id="login" type="text" value="ivanivanov" label="Логин"}}
+        {{{ loginInput }}}
       </div>
       <div>
-        {{!> elements/input/input name="first_name" id="first_name" type="text" value="Иван" label="Имя"}}
+        {{{ firstNameInput }}}
       </div>
       <div>
-        {{!> elements/input/input name="second_name" id="second_name" type="text" value="Иванов" label="Фамилия"}}
+        {{{ secondNameInput }}}
       </div>
       <div>
-        {{!> elements/input/input name="phone" id="phone" type="text" value="+7 (909) 967 30 30" label="Телефон"}}
+        {{{ phoneInput }}}
       </div>
       <div>
-        {{!> elements/input/input name="password" id="password" type="password" value="123456789123" label="Пароль" isError=true}}
+        {{{ passwordInput }}}
       </div>
       <div>
-        {{!> elements/input/input name="password" id="oldPassword" type="password" value="123456789123" label="Пароль (ещё раз)" isError=true errorMessage="Пароли не совпадают"}}
+        {{{ passwordCopyInput }}}
       </div>
     </div>
     <div class="{{ styles.buttonWrapper }}">
-      {{!> elements/button/button text="Создать аккаунт" fluid=true }}
+      {{{ registerButton }}}
     </div>
-    {{!> elements/button/button text="Войти" type="secondary" fluid=true href=routes.singUp textClass="size-12"}}
+    {{{ loginButton }}}
   </fieldset>
 </form>
