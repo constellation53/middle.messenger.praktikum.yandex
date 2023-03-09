@@ -17,7 +17,7 @@ export class SignUpPage extends Block {
   }
 
   init(): void {
-    this.children.registrationForm = new RegistrationFormComponent()
+    this.children.registrationForm = new RegistrationFormComponent();
   }
 
   render(): HTMLElement {

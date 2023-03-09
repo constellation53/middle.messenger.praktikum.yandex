@@ -46,11 +46,15 @@ export class AuthFormComponent extends Block {
     event.preventDefault();
 
     const formData = new FormData(<HTMLFormElement>event.target);
-    const data = Object.fromEntries(formData)
+    const data = Object.fromEntries(formData);
+    // eslint-disable-next-line no-console
     console.log(data);
   }
 
   render(): HTMLElement {
-    return this.compile(template, { styles, events: { submit: this.onSubmit } });
+    return this.compile(template, {
+      styles,
+      events: { submit: this.onSubmit },
+    });
   }
 }
