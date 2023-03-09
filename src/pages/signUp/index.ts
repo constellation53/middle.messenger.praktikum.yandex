@@ -20,7 +20,7 @@ export class SignUpPage extends Block {
     this.children.registrationForm = new RegistrationFormComponent()
   }
 
-  render(): DocumentFragment {
+  render(): HTMLElement {
     return this.compile(template, { styles });
   }
 }

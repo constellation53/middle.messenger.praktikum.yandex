@@ -20,7 +20,7 @@ export class SignInPage extends Block {
     this.children.authForm = new AuthFormComponent();
   }
 
-  render(): DocumentFragment {
+  render(): HTMLElement {
     return this.compile(template, { styles });
   }
 }
