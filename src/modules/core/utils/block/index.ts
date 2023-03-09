@@ -39,7 +39,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     template: (context: any) => string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     context: any = {}
-  ): DocumentFragment {
+  ): HTMLElement {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([key, children]) => {
@@ -79,7 +79,7 @@ export abstract class Block<P extends Record<string, any> = any> {
       }
     });
 
-    return fragment.content;
+    return <HTMLElement>fragment.content.firstElementChild;
   }
 
   private _registerEvents(eventBus: EventBus<ListenersType<P>>): void {
@@ -220,13 +220,11 @@ export abstract class Block<P extends Record<string, any> = any> {
       this._removeEvents();
     }
 
-    const newElement = block.firstElementChild as HTMLElement;
-
-    if (this._element && newElement) {
-      this._element.replaceWith(newElement);
+    if (this._element && block) {
+      this._element.replaceWith(block);
     }
 
-    this._element = newElement;
+    this._element = block;
 
     this._addEvents();
   }
@@ -235,7 +233,7 @@ export abstract class Block<P extends Record<string, any> = any> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
-  protected render(): DocumentFragment {}
+  protected render(): HTMLElement {}
 
   public getContent(): HTMLElement | null {
     return this.element;
