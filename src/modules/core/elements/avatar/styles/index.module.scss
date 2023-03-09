@@ -15,7 +15,7 @@
     background-size: initial;
   }
 
-  .editable:hover {
+  &.editable:hover {
     cursor: pointer;
   }
 
@@ -35,7 +35,7 @@
     white-space: pre;
   }
 
-  .editOverlay:hover .overlay {
+  &.editable:hover .editOverlay {
     display: grid;
     align-items: center;
   }
