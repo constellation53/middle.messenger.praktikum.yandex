@@ -1,6 +1,6 @@
 import Block from '../../utils/block';
 import template from './index.hbs';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 import { NavType } from './types';
 
 type PropsType = NavType;

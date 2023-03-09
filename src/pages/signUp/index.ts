@@ -9,7 +9,7 @@ import { RegistrationFormComponent } from '../../modules/auth/registrationForm';
 
 // Other
 import { render } from '../../modules/core/utils/render';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 
 export class SignUpPage extends Block {
   constructor() {

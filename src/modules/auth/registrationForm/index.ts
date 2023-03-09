@@ -9,7 +9,7 @@ import { Input } from '../../core/elements/input';
 import { Button } from '../../core/elements/button';
 
 // Other
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 import { routes } from '../../core/config';
 
 export class RegistrationFormComponent extends Block {

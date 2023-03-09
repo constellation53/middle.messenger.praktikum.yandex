@@ -6,7 +6,7 @@ import template from './index.hbs';
 
 // Other
 import { InputType } from './types';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 
 type PropsType = InputType;
 

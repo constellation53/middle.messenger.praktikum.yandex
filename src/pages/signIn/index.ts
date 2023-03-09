@@ -9,7 +9,7 @@ import { AuthFormComponent } from '../../modules/auth/authForm';
 
 // Other
 import { render } from '../../modules/core/utils/render';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 
 export class SignInPage extends Block {
   constructor() {

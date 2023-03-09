@@ -7,7 +7,7 @@ import { Button } from '../../core/elements/button';
 
 // Other
 import Block from '../../core/utils/block';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 import { routes } from '../../core/config';
 
 export class AuthFormComponent extends Block {

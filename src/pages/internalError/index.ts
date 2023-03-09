@@ -7,7 +7,7 @@ import template from './index.hbs';
 // Other
 import { ErrorBox } from '../../modules/core/elements/errorBox';
 import { render } from '../../modules/core/utils/render';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 
 export class InternalErrorPage extends Block {
   constructor() {

@@ -3,7 +3,7 @@ import Block from './modules/core/utils/block';
 import { NavComponent } from './modules/core/components/nav';
 import { routes } from './modules/core/config/routes';
 import template from './index.hbs';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 
 export class MainPage extends Block {
   constructor() {

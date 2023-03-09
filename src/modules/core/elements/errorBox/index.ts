@@ -9,7 +9,7 @@ import { Button } from '../button';
 
 // Other
 import { ErrorBoxType } from './types';
-import styles from './styles/index.module.scss';
+import * as styles from './styles/index.module.scss';
 
 type PropsType = ErrorBoxType;
 
