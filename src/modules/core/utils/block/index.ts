@@ -79,6 +79,16 @@ export abstract class Block<P extends Record<string, any> = any> {
       }
     });
 
+    if (contextAndStubs.events) {
+      this._removeEvents(contextAndStubs?.events);
+    }
+
+
+    if (contextAndStubs.events) {
+      this._addEvents(<HTMLElement>fragment.content.firstElementChild, contextAndStubs.events)
+    }
+
+
     return <HTMLElement>fragment.content.firstElementChild;
   }
 
@@ -159,8 +169,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     return true;
   }
 
-  private _addEvents(): void {
-    const { events = {} } = this.props;
+  private _addEvents(element: HTMLElement, events: Omit<P, 'events'>): void {
 
     const tuple = Object.entries<
       (
@@ -171,15 +180,14 @@ export abstract class Block<P extends Record<string, any> = any> {
     >(events);
 
     tuple.forEach(([name, listener]) => {
-      this._element?.addEventListener(
+      element?.addEventListener(
         <keyof HTMLElementEventMap>name,
         listener
       );
     });
   }
 
-  private _removeEvents(): void {
-    const { events = {} } = this.props;
+  private _removeEvents( events: Omit<P, 'events'>): void {
 
     const tuple = Object.entries<
       (
@@ -216,17 +224,12 @@ export abstract class Block<P extends Record<string, any> = any> {
     // Нужно компилировать не в строку (или делать это правильно),
     // либо сразу превращать в DOM-элементы и возвращать из compile DOM-ноду
 
-    if (this.props?.events) {
-      this._removeEvents();
-    }
 
     if (this._element && block) {
       this._element.replaceWith(block);
     }
 
     this._element = block;
-
-    this._addEvents();
   }
 
   // Переопределяется пользователем. Необходимо вернуть разметку
