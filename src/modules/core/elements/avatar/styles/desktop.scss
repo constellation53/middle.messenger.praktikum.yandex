@@ -1,14 +1,14 @@
 & {
-  .empty {
+  &.empty {
     background-size: px(40) px(40);
   }
 
-  .small {
+  &.small {
     width: px(47);
     height: px(47);
   }
 
-  .medium {
+  &.medium {
     width: px(130);
     height: px(130);
   }
