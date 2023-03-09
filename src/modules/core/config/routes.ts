@@ -3,11 +3,11 @@ import { RoutesConfigType } from './types';
 export const routes: RoutesConfigType = {
   signIn: {
     name: 'signIn',
-    path: '/src/pages/signIn/singIn.hbs',
+    path: '/pages/signIn',
   },
   signUp: {
     name: 'signUp',
-    path: '/src/pages/signUp/signUp.hbs',
+    path: '/pages/signUp',
   },
   chat: {
     name: 'chat',
@@ -19,7 +19,7 @@ export const routes: RoutesConfigType = {
   },
   internalError: {
     name: 'internalError',
-    path: '/src/pages/internalError',
+    path: '/pages/internalError',
   },
   profile: {
     name: 'profile',
