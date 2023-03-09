@@ -27,7 +27,7 @@ export class ErrorBox extends Block<PropsType> {
     });
   }
 
-  render(): DocumentFragment {
+  render(): HTMLElement {
     return this.compile(template, { ...this.props, styles });
   }
 }
