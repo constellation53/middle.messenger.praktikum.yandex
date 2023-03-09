@@ -1,29 +1,29 @@
 & {
-  &__nav {
+  .nav {
     width: px(64);
   }
 
-  &__info,
-  &__actions {
+  .info,
+  .actions {
     max-width: px(510)
   }
 
-  &__avatar-and-name {
+  .avatarAndName {
     height: px(167);
     margin-bottom: px(50);
   }
 
-  &__avatar {
+  .avatar {
     margin: px(60) 0 px(21);
   }
 
 
-  &__back {
+  .back {
     width: px(28);
     height: px(28);
   }
 
-  &__questionnaire {
+  .questionnaire {
     height: px(203);
     margin-bottom: px(40);
   }
