@@ -2,39 +2,41 @@
   <img
     class="
       {{ styles.avatar}}
-      {{~# if medium }}
+      {{# if medium }}
         {{ styles.medium}}
       {{ else if small }}
         {{ styles.small }}
       {{ else }}
         {{ styles.small }}
-      {{~/if}}
-      {{~# if editable }}
+      {{/if}}
+      {{# if editable }}
         {{ styles.editable }}
-      {{~/if}}
+      {{/if}}
     "
     src={{ imgSrc }}
-    alt={{ alt }}
+    alt="{{ alt }}"
     fetchpriority="high"
   />
 {{ else }}
   <div
-    {{ styles.avatar}}
-    {{ styles.empty }}
-    {{~# if medium }}
-      {{ styles.medium}}
-    {{ else if small }}
-      {{ styles.small }}
-    {{ else }}
-      {{ styles.small }}
-    {{~/if}}
-    {{~# if editable }}
-      {{ styles.editable }}
-    {{~/if}}
+    class="
+      {{ styles.avatar}}
+      {{ styles.empty }}
+      {{# if medium }}
+        {{ styles.medium}}
+      {{ else if small }}
+        {{ styles.small }}
+      {{ else }}
+        {{ styles.small }}
+      {{/if}}
+      {{# if editable }}
+        {{ styles.editable }}
+      {{/if}}
+    "
     role="img"
-    aria-label={{ alt }}
+    aria-label="{{ alt }}"
   >
-    {{~# if edit }}
+    {{~# if editable }}
       <div class="{{ styles.editOverlay }}">
         <p class="text size-6">Поменять аватар</p>
       </div>
