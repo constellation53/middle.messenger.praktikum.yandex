@@ -42,7 +42,13 @@ export class AuthFormComponent extends Block {
     });
   }
 
-  render(): DocumentFragment {
-    return this.compile(template, { styles });
+  onSubmit(event: SubmitEvent): void {
+    event.stopPropagation();
+    console.log(event);
+    event.preventDefault();
+  }
+
+  render(): HTMLElement {
+    return this.compile(template, { styles, events: { submit: this.onSubmit } });
   }
 }
