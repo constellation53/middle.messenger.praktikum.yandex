@@ -1,4 +1,5 @@
-export const addEvents = <P extends Record<string, any>>(element: HTMLElement, events: Omit<P, 'events'>): void => {
+export const removeEvents =  <P extends Record<string, any>>(element: HTMLElement, events: Omit<P, 'events'>): void => {
+
   const tuple = Object.entries<
     (
       this: HTMLElement,
@@ -8,6 +9,9 @@ export const addEvents = <P extends Record<string, any>>(element: HTMLElement, e
   >(events);
 
   tuple.forEach(([name, listener]) => {
-    element.addEventListener(<keyof HTMLElementEventMap>name, listener);
+    element?.removeEventListener(
+      <keyof HTMLElementEventMap>name,
+      listener
+    );
   });
-};
+}

@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
 import { EventEnum, ListenersType } from './types';
+import { addEvents } from './helpers/addEvents';
+import { removeEvents } from './helpers/removeEvents';
 
 // Нельзя создавать экземпляр данного класса
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,12 +82,12 @@ export abstract class Block<P extends Record<string, any> = any> {
     });
 
     if (contextAndStubs.events) {
-      this._removeEvents(contextAndStubs?.events);
+      removeEvents(<HTMLElement>fragment.content.firstElementChild, contextAndStubs.events);
     }
 
 
     if (contextAndStubs.events) {
-      this._addEvents(<HTMLElement>fragment.content.firstElementChild, contextAndStubs.events)
+      addEvents(<HTMLElement>fragment.content.firstElementChild, contextAndStubs.events)
     }
 
 
@@ -168,43 +170,6 @@ export abstract class Block<P extends Record<string, any> = any> {
   private componentDidUpdate(oldProps: P, newProps: P): boolean {
     return true;
   }
-
-  private _addEvents(element: HTMLElement, events: Omit<P, 'events'>): void {
-
-    const tuple = Object.entries<
-      (
-        this: HTMLElement,
-        ev: HTMLElementEventMap[keyof HTMLElementEventMap]
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ) => any
-    >(events);
-
-    tuple.forEach(([name, listener]) => {
-      element?.addEventListener(
-        <keyof HTMLElementEventMap>name,
-        listener
-      );
-    });
-  }
-
-  private _removeEvents( events: Omit<P, 'events'>): void {
-
-    const tuple = Object.entries<
-      (
-        this: HTMLElement,
-        ev: HTMLElementEventMap[keyof HTMLElementEventMap]
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ) => any
-    >(events);
-
-    tuple.forEach(([name, listener]) => {
-      this._element?.removeEventListener(
-        <keyof HTMLElementEventMap>name,
-        listener
-      );
-    });
-  }
-
   public setProps = (nextProps: Partial<P>): void => {
     if (!nextProps) {
       return;
