@@ -1,20 +1,42 @@
-<link rel="stylesheet" href='/src/modules/elements/avatar/styles/index.scss' />
 {{~#if imgSrc }}
   <img
-    class="avatar {{~# if size }} --{{ size }} {{ else }} --small {{~/if}} {{~# if edit }} --edit  {{~/if}}"
+    class="
+      {{ styles.avatar}}
+      {{~# if medium }}
+        {{ styles.medium}}
+      {{ else if small }}
+        {{ styles.small }}
+      {{ else }}
+        {{ styles.small }}
+      {{~/if}}
+      {{~# if editable }}
+        {{ styles.editable }}
+      {{~/if}}
+    "
     src={{ imgSrc }}
     alt={{ alt }}
     fetchpriority="high"
   />
 {{ else }}
   <div
-    class="avatar {{~# if size }} --{{ size }} {{ else }} --small {{~/if}} {{~# if edit }} --edit  {{~/if}} --not-avatar"
+    {{ styles.avatar}}
+    {{ styles.empty }}
+    {{~# if medium }}
+      {{ styles.medium}}
+    {{ else if small }}
+      {{ styles.small }}
+    {{ else }}
+      {{ styles.small }}
+    {{~/if}}
+    {{~# if editable }}
+      {{ styles.editable }}
+    {{~/if}}
     role="img"
     aria-label={{ alt }}
   >
     {{~# if edit }}
-      <div class="avatar__edit">
-        <p class="avatar__edit-text text size-6">Поменять аватар</p>
+      <div class="{{ styles.editOverlay }}">
+        <p class="text size-6">Поменять аватар</p>
       </div>
     {{~/if}}
   </div>
