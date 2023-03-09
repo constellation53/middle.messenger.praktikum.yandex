@@ -1,5 +1,8 @@
-export const removeEvents =  <P extends Record<string, any>>(element: HTMLElement, events: Omit<P, 'events'>): void => {
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const removeEvents = <P extends Record<string, any>>(
+  element: HTMLElement,
+  events: Omit<P, 'events'>
+): void => {
   const tuple = Object.entries<
     (
       this: HTMLElement,
@@ -9,9 +12,6 @@ export const removeEvents =  <P extends Record<string, any>>(element: HTMLElemen
   >(events);
 
   tuple.forEach(([name, listener]) => {
-    element?.removeEventListener(
-      <keyof HTMLElementEventMap>name,
-      listener
-    );
+    element?.removeEventListener(<keyof HTMLElementEventMap>name, listener);
   });
-}
+};

@@ -1,4 +1,8 @@
-export const addEvents = <P extends Record<string, any>>(element: HTMLElement, events: Omit<P, 'events'>): void => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addEvents = <P extends Record<string, any>>(
+  element: HTMLElement,
+  events: Omit<P, 'events'>
+): void => {
   const tuple = Object.entries<
     (
       this: HTMLElement,
