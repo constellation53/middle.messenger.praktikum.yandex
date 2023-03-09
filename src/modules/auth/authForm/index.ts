@@ -44,8 +44,11 @@ export class AuthFormComponent extends Block {
 
   onSubmit(event: SubmitEvent): void {
     event.stopPropagation();
-    console.log(event);
     event.preventDefault();
+
+    const formData = new FormData(<HTMLFormElement>event.target);
+    const data = Object.fromEntries(formData)
+    console.log(data);
   }
 
   render(): HTMLElement {
