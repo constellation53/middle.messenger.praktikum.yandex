@@ -25,7 +25,7 @@ export class NotFoundPage extends Block {
     });
   }
 
-  render(): DocumentFragment {
+  render(): HTMLElement {
     return this.compile(template, { styles });
   }
 }

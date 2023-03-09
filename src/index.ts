@@ -14,7 +14,7 @@ export class MainPage extends Block {
     this.children.navigation = new NavComponent({ routes });
   }
 
-  render(): DocumentFragment {
+  render(): HTMLElement {
     return this.compile(template, {
       ...this.props,
       styles,

@@ -10,7 +10,7 @@ export class NavComponent extends Block<NavType> {
     super(props);
   }
 
-  render(): DocumentFragment {
+  render(): HTMLElement {
     return this.compile(template, { ...this.props, styles });
   }
 }
