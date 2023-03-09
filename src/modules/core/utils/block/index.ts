@@ -3,6 +3,7 @@ import { EventBus } from '../eventBus';
 import { EventEnum, ListenersType } from './types';
 import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
+import { replaceStub } from './helpers/replaceStub';
 
 // Нельзя создавать экземпляр данного класса
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,7 +12,7 @@ export abstract class Block<P extends Record<string, any> = any> {
 
   private _element: HTMLElement;
 
-  private readonly _id: string = nanoid(6);
+  readonly _id: string = nanoid(6);
 
   protected props: P;
 
@@ -58,26 +59,12 @@ export abstract class Block<P extends Record<string, any> = any> {
 
     fragment.innerHTML = template(contextAndStubs);
 
-    const replaceStub = (component: Block): void => {
-      const stub = fragment.content.querySelector(
-        `[data-id="${component._id}"]`
-      );
-
-      if (!stub) {
-        return;
-      }
-
-      component.getContent()?.append(...Array.from(stub.childNodes));
-
-      stub.replaceWith(component.getContent()!);
-    };
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Object.entries(this.children).forEach(([_, component]) => {
       if (Array.isArray(component)) {
-        component.forEach(replaceStub);
+        component.forEach((item) => replaceStub(fragment, item));
       } else {
-        replaceStub(component);
+        replaceStub(fragment, component);
       }
     });
 
