@@ -85,7 +85,15 @@ export class RegistrationFormComponent extends Block {
     });
   }
 
+  onSubmit(event: SubmitEvent): void {
+    event.preventDefault();
+
+    const formData = new FormData(<HTMLFormElement>event.target);
+    const data = Object.fromEntries(formData)
+    console.log(data);
+  }
+
   render(): HTMLElement {
-    return this.compile(template, { styles });
+    return this.compile(template, { styles, events: { submit: this.onSubmit } });
   }
 }
