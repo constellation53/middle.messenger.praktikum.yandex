@@ -15,7 +15,7 @@ export class Button extends Block<PropsType> {
     super(props);
   }
 
-  render(): DocumentFragment {
+  render(): HTMLElement {
     return this.compile(template, { ...this.props, styles });
   }
 }
