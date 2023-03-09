@@ -69,14 +69,18 @@ export abstract class Block<P extends Record<string, any> = any> {
     });
 
     if (contextAndStubs.events) {
-      removeEvents(<HTMLElement>fragment.content.firstElementChild, contextAndStubs.events);
+      removeEvents(
+        <HTMLElement>fragment.content.firstElementChild,
+        contextAndStubs.events
+      );
     }
-
 
     if (contextAndStubs.events) {
-      addEvents(<HTMLElement>fragment.content.firstElementChild, contextAndStubs.events)
+      addEvents(
+        <HTMLElement>fragment.content.firstElementChild,
+        contextAndStubs.events
+      );
     }
-
 
     return <HTMLElement>fragment.content.firstElementChild;
   }
@@ -157,6 +161,7 @@ export abstract class Block<P extends Record<string, any> = any> {
   private componentDidUpdate(oldProps: P, newProps: P): boolean {
     return true;
   }
+
   public setProps = (nextProps: Partial<P>): void => {
     if (!nextProps) {
       return;
@@ -175,7 +180,6 @@ export abstract class Block<P extends Record<string, any> = any> {
     // Используйте шаблонизатор из npm или напишите свой безопасный
     // Нужно компилировать не в строку (или делать это правильно),
     // либо сразу превращать в DOM-элементы и возвращать из compile DOM-ноду
-
 
     if (this._element && block) {
       this._element.replaceWith(block);
