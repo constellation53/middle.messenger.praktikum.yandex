@@ -4,12 +4,16 @@ import Block from '../../../core/utils/block';
 // Templates
 import template from './index.hbs';
 
-export class Questionnaire extends Block {
+// Other
+import * as styles from './styles/index.module.scss';
+
+export class ProfileInfoFormComponent extends Block {
   constructor() {
     super();
   }
 
   render(): HTMLElement {
-    return this.compile(template);
+    console.log(styles)
+    return this.compile(template, { styles });
   }
 }

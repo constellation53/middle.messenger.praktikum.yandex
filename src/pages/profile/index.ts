@@ -8,7 +8,7 @@ import template from './index.hbs';
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
 import { Avatar } from '../../modules/core/elements/avatar';
-import { Questionnaire } from '../../modules/profile/elements/questionnaire';
+import { ProfileInfoFormComponent } from '../../modules/profile/components/profileInfoForm';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -22,7 +22,7 @@ export class ProfilePage extends Block {
       alt: 'Загрузить фото',
     });
 
-    this.children.questionnaireForm = new Questionnaire();
+    this.children.profileInfoForm = new ProfileInfoFormComponent();
   }
 
   render(): HTMLElement {

@@ -1,5 +1,7 @@
-<div class={{ styles.questionnaire }}>
+<div class="{{ styles.profileInfoForm }}">
+  profileInfoForm
   {{!#each list }}
     {{!> elements/input/input name=name id=id type=type value=value label=label layout="horizontal" }}
   {{!/each}}
+  {{log styles}}
 </div>
