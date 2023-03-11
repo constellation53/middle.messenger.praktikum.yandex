@@ -1,4 +1,11 @@
-<link rel="stylesheet" href="/src/modules/elements/listItem/styles/index.scss" />
-<div class="list-item {{~#if last }} --last {{~/if}} {{~#if noPadding }} --no-padding {{~/if}}">
+<div class="
+  {{ styles.listItem }}
+  {{#if last }}
+    {{ styles.last }}
+  {{/if}}
+  {{#if noPadding }}
+    {{ styles.noPadding}}
+  {{~/if}}
+  ">
   {{> content }}
 </div>

@@ -2,12 +2,12 @@
   padding: px(10) 0;
   border-bottom: px(1) solid $border;
 
-  &.--last {
+  &.last {
     padding: px(10) 0 px(10);
     border: 0;
   }
 
-  &.--no-padding {
+  &.no-padding {
     padding: 0;
   }
 }
