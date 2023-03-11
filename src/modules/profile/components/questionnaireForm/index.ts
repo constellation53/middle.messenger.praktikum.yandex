@@ -4,7 +4,7 @@ import Block from '../../../core/utils/block';
 // Templates
 import template from './index.hbs';
 
-export class QuestionnaireComponent extends Block {
+export class QuestionnaireFormComponent extends Block {
   constructor() {
     super();
   }
