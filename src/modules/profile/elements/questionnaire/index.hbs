@@ -1,9 +1,5 @@
 <div class={{ styles.questionnaire }}>
   {{!#each list }}
-    {{!#>elements/listItem/listItem last=@last noPadding=true }}
-      {{!#*inline "content"}}
-        {{!> elements/input/input name=name id=id type=type value=value label=label layout="horizontal" }}
-      {{!/inline}}
-    {{!/elements/listItem/listItem}}
+    {{!> elements/input/input name=name id=id type=type value=value label=label layout="horizontal" }}
   {{!/each}}
 </div>
