@@ -1,8 +1,8 @@
 {{#if href}}
   <a
     class="
-      {{ styles.button ~}}
-      {{~#if primary ~}}
+      {{ styles.button }}
+      {{#if primary }}
         {{ styles.primary }}
       {{ else if secondary }}
        {{ styles.secondary }}
@@ -10,15 +10,15 @@
         {{ styles.tertiary }}
       {{else}}
         {{ styles.primary }}
-      {{~/if }}
+      {{/if }}
 
-      {{~#if fluid }}
+      {{#if fluid }}
         {{ styles.fluid }}
-      {{~/if }}
+      {{/if }}
 
-      {{~#if alignLeft }}
+      {{#if alignLeft }}
         {{ styles.alignLeft }}
-      {{~/if }}
+      {{/if }}
     "
     href={{ href }}
   >
@@ -29,8 +29,8 @@
 {{ else }}
   <button
     class="
-      {{ styles.button ~}}
-      {{~#if primary ~}}
+      {{ styles.button }}
+      {{#if primary }}
         {{ styles.primary }}
       {{ else if secondary }}
         {{ styles.secondary }}
@@ -38,15 +38,15 @@
         {{ styles.tertiary }}
       {{else}}
         {{ styles.primary }}
-      {{~/if }}
+      {{/if }}
 
-      {{~#if fluid }}
+      {{#if fluid }}
         {{ styles.fluid }}
-      {{~/if }}
+      {{/if }}
 
-      {{~#if alignLeft }}
+      {{#if alignLeft }}
         {{ styles.alignLeft }}
-      {{~/if }}
+      {{/if }}
     "
   >
     <span class="text size-7 {{ class }}">
