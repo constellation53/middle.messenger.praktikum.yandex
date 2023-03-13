@@ -3,13 +3,13 @@ import Block from '../../../core/utils/block';
 
 // Elements
 import { Divider } from '../../../core/elements/divider';
+import { Input } from '../../../core/elements/input';
 
 // Templates
 import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { Input } from '../../../core/elements/input';
 
 export class ProfileInfoFormComponent extends Block {
   constructor() {
