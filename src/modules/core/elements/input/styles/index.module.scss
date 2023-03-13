@@ -52,12 +52,12 @@
     }
   }
 
-  .errorMessage {
-    color: $errorColor;
+  &.hidden {
+    @include visuallyHidden()
   }
 
-  &.--hidden {
-    @include visuallyHidden()
+  .errorMessage {
+    color: $errorColor;
   }
 
   @function px($px) {
