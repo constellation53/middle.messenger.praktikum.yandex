@@ -23,7 +23,7 @@ export const routes: RoutesConfigType = {
   },
   profile: {
     name: 'profile',
-    path: '/src/pages/profile/profile.hbs',
+    path: '/pages/profile',
   },
   profileEdit: {
     name: 'profileEdit',
