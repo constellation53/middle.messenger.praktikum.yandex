@@ -8,9 +8,11 @@ import template from './index.hbs';
 import * as styles from './styles/index.module.scss';
 import { ModalType } from './types';
 
+type PropsType = ModalType;
+
 export class Modal extends Block<ModalType> {
-  constructor() {
-    super();
+  constructor(props: PropsType) {
+    super(props);
   }
 
   render(): HTMLElement {
