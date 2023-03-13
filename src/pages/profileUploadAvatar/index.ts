@@ -11,6 +11,8 @@ import { Avatar } from '../../modules/core/elements/avatar';
 import { InfoFormComponent } from '../../modules/profile/components/infoForm';
 import { Button } from '../../modules/core/elements/button';
 import { Divider } from '../../modules/core/elements/divider';
+import { Modal } from '../../modules/core/elements/modal';
+import { AvatarFormComponent } from '../../modules/profile/components/avatarForm';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -24,7 +26,7 @@ export class ProfilePage extends Block {
       alt: 'Загрузить фото',
     });
 
-    this.children.profileInfoForm = new InfoFormComponent({disabled: true,});
+    this.children.infoForm = new InfoFormComponent({ disabled: true, });
 
     // TODO: ADD LINKS
     this.children.changeProfileInfoButton = new Button({
@@ -51,6 +53,12 @@ export class ProfilePage extends Block {
       alignLeft: true,
       fluid: true,
     });
+
+
+
+    const avatarForm = new AvatarFormComponent()
+
+    this.children.changeAvatarModal = new Modal({ content: avatarForm })
   }
 
   render(): HTMLElement {
