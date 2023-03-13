@@ -1,13 +1,13 @@
 & {
   $modalIndent: 30;
 
-  &__dialog {
+  .dialog {
     max-height: calc(100vh - #{px($modalIndent)});
     padding: px(40) px(30);
     border-radius: px(12);
   }
 
-  &__title {
+  .title {
     margin-bottom: px(20);
   }
 }
