@@ -27,7 +27,7 @@ export const routes: RoutesConfigType = {
   },
   profileEdit: {
     name: 'profileEdit',
-    path: '/src/pages/profileEdit/profileEdit.hbs',
+    path: '/pages/profileEdit',
   },
   profileEditPassword: {
     name: 'profileEditPassword',
