@@ -1,16 +1,16 @@
-.upload-avatar-form {
+.uploadAvatarForm {
   @import '../../../../../assets/styles/extensions';
   @import './palette';
 
   background: $formBackground;
 
-  &__text-wrapper {
+  .textWrapper {
     display: grid;
     justify-content: center;
     text-align: center;
   }
 
-  &__text {
+  .text {
     color: $textColor;
     text-decoration: underline;
     cursor: pointer;
