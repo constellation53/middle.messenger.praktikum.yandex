@@ -1,28 +1,21 @@
 <form class="{{ styles.profileInfoForm }}">
- <div class="{{ styles.inputWrapper }}">
-   {{{ emailInput }}}
-   {{{ emailDivider }}}
- </div>
-  <div class="{{ styles.inputWrapper }}">
+  <div class="{{ styles.inputsWrapper }}">
+    {{{ emailInput }}}
+    {{{ emailDivider }}}
     {{{ loginInput }}}
     {{{ loginDivider }}}
-  </div>
-  <div class="{{ styles.inputWrapper }}">
     {{{ firstNameInput }}}
     {{{ firstNameDivider }}}
-  </div>
-  <div class="{{ styles.inputWrapper }}">
     {{{ secondNameInput }}}
     {{{ secondNameDivider }}}
-  </div>
-  <div class="{{ styles.inputWrapper }}">
     {{{ displayNameInput }}}
     {{{ displayNameDivider }}}
-  </div>
-  <div class="{{ styles.inputWrapper }}">
     {{{ phoneInput }}}
   </div>
+
   {{#unless disabled}}
-    {{{ saveButton }}}
+    <div class="{{ styles.buttonWrapper }} center">
+      {{{ saveButton }}}
+    </div>
   {{/unless}}
 </form>
