@@ -4,6 +4,7 @@ import Block from '../../../core/utils/block';
 // Elements
 import { Divider } from '../../../core/elements/divider';
 import { Input } from '../../../core/elements/input';
+import { Button } from '../../../core/elements/button';
 
 // Templates
 import template from './index.hbs';
@@ -72,9 +73,14 @@ export class ProfileInfoFormComponent extends Block<PropsType> {
     this.children.firstNameDivider = new Divider();
 
     this.children.secondNameDivider = new Divider();
+
+    this.children.saveButton = new Button({
+      text: 'Сохранить',
+      fluid: true
+    });
   }
 
   render(): HTMLElement {
-    return this.compile(template, { styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }
