@@ -18,6 +18,7 @@ type LinkButtonType = CoreType & {
 
 type StandardButtonType = CoreType & {
   href?: string;
+  htmlType?: string;
 };
 
 export type ButtonType = LinkButtonType | StandardButtonType;

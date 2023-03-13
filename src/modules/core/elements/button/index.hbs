@@ -48,6 +48,11 @@
         {{ styles.alignLeft }}
       {{/if }}
     "
+    {{#if htmlType }}
+      type={{ htmlType }}
+    {{else}}
+      type="button"
+    {{/if }}
   >
     <span class="text size-7 {{ class }}">
       {{ text }}
