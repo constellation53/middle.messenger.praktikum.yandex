@@ -21,23 +21,11 @@
       </section>
 
         <section class="{{ styles.actions }} center">
-          <ul>
-            {{!>elements/listItem/listItem noPadding=true}}
-              {{!*inline "content"}}
-                {{! elements/button/button text="Изменить данные" type="secondary" textAlign="left"  fluid=true}}
-              {{!inline}}
-            {{!elements/listItem/listItem}}
-            {{!>elements/listItem/listItem noPadding=true}}
-              {{!*inline "content"}}
-                {{! elements/button/button text="Изменить пароль" type="secondary" textAlign="left"  fluid=true}}
-              {{!inline}}
-            {{!elements/listItem/listItem}}
-            {{!>elements/listItem/listItem noPadding=true last=true }}
-              {{!*inline "content"}}
-                {{! elements/button/button text="Выйти" type="tertiary" textAlign="left" fluid=true}}
-              {{!inline}}
-            {{!elements/listItem/listItem}}
-          </ul>
+          {{{ changeProfileInfoButton }}}
+          {{{ changeProfileInfoDivider }}}
+          {{{ changeProfilePasswordButton }}}
+          {{{ changeProfileePasswordDivider }}}
+          {{{ logoutButton }}}
         </section>
       </div>
     </div>
