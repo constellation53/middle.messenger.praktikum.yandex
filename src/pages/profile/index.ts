@@ -22,7 +22,7 @@ export class ProfilePage extends Block {
       alt: 'Загрузить фото',
     });
 
-    this.children.profileInfoForm = new ProfileInfoFormComponent();
+    this.children.profileInfoForm = new ProfileInfoFormComponent({ disabled: true});
   }
 
   render(): HTMLElement {

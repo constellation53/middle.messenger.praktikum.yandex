@@ -10,10 +10,13 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
+import { ProfileInfoFormType } from './types';
 
-export class ProfileInfoFormComponent extends Block {
-  constructor() {
-    super();
+type PropsType = ProfileInfoFormType;
+
+export class ProfileInfoFormComponent extends Block<PropsType> {
+  constructor(props: PropsType = {}) {
+    super(props);
   }
 
   init(): void {
@@ -23,6 +26,7 @@ export class ProfileInfoFormComponent extends Block {
       label: 'Почта',
       value: 'pochta@yandex.ru',
       horizontal: true,
+      disabled: this.props.disabled,
     });
 
     this.children.loginInput = new Input({
@@ -31,6 +35,7 @@ export class ProfileInfoFormComponent extends Block {
       label: 'Логин',
       value: 'ivanivanov',
       horizontal: true,
+      disabled: this.props.disabled,
     });
 
     this.children.firstNameInput = new Input({
@@ -39,6 +44,7 @@ export class ProfileInfoFormComponent extends Block {
       label: 'Имя',
       value: 'Иван',
       horizontal: true,
+      disabled: this.props.disabled,
     });
 
     this.children.secondNameInput = new Input({
@@ -47,6 +53,7 @@ export class ProfileInfoFormComponent extends Block {
       label: 'Фамилия',
       value: 'Иванов',
       horizontal: true,
+      disabled: this.props.disabled,
     });
 
     this.children.phoneInput = new Input({
@@ -55,6 +62,7 @@ export class ProfileInfoFormComponent extends Block {
       label: 'Телефон',
       value: '+7 (909) 967 30 30',
       horizontal: true,
+      disabled: this.props.disabled,
     });
 
     this.children.emailDivider = new Divider();
