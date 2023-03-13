@@ -1,7 +1,12 @@
 <div class="{{ styles.profileInfoForm }}">
-  profileInfoForm
-  {{!#each list }}
-    {{!> elements/input/input name=name id=id type=type value=value label=label layout="horizontal" }}
-  {{!/each}}
+  {{{ emailInput }}}
+  {{{ emailDivider }}}
+  {{{ loginInput }}}
+  {{{ loginDivider }}}
+  {{{ firstNameInput }}}
+  {{{ firstNameDivider }}}
+  {{{ secondNameInput }}}
+  {{{ secondNameDivider }}}
+  {{{ phoneInput }}}
   {{log styles}}
 </div>
