@@ -57,6 +57,15 @@ export class ProfileInfoFormComponent extends Block<PropsType> {
       disabled: this.props.disabled,
     });
 
+    this.children.displayNameInput = new Input({
+      id: 'display_name',
+      name: 'display_name',
+      label: 'Имя в чате',
+      value: 'Иван',
+      horizontal: true,
+      disabled: this.props.disabled,
+    });
+
     this.children.phoneInput = new Input({
       id: 'phone',
       name: 'phone',
@@ -73,6 +82,8 @@ export class ProfileInfoFormComponent extends Block<PropsType> {
     this.children.firstNameDivider = new Divider();
 
     this.children.secondNameDivider = new Divider();
+
+    this.children.displayNameDivider = new Divider();
 
     this.children.saveButton = new Button({
       text: 'Сохранить',
