@@ -31,7 +31,11 @@ export class AuthFormComponent extends Block {
       htmlType: 'password',
     });
 
-    this.children.loginButton = new Button({ text: 'Войти', fluid: true });
+    this.children.loginButton = new Button({
+      text: 'Войти',
+      fluid: true,
+      htmlType: 'submit',
+    });
 
     this.children.registerButton = new Button({
       text: 'Нет аккаунта',

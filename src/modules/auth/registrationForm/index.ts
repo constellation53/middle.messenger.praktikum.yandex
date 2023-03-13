@@ -74,6 +74,7 @@ export class RegistrationFormComponent extends Block {
     this.children.registerButton = new Button({
       text: 'Создать аккаунт',
       fluid: true,
+      htmlType: 'submit',
     });
 
     this.children.loginButton = new Button({
