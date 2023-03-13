@@ -11,6 +11,8 @@
 
   .field {
     border: 0;
+    background: $backgroundColor;
+    color: $verticalInputColor;
 
     &.error {
       color: $errorColor;
@@ -21,7 +23,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    color: $labelVerticalColor;
+    color: $verticalLabelColor;
   }
 
   &.horizontal {
@@ -35,11 +37,19 @@
   &.horizontal .field {
     display: block;
     border: 0;
-    color: $inputHorizontalColor;
+    color: $horizontalInputColor;
   }
 
   &.horizontal .label {
-    color: $labelHorizontalColor;
+    color: $horizontalLabelColor;
+  }
+
+  &.horizontal .field,
+  &.vertical .field {
+    &:disabled {
+      color: $disabledInputColor;
+      cursor: not-allowed;
+    }
   }
 
   .errorMessage {

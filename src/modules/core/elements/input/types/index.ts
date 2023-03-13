@@ -13,6 +13,7 @@ type CoreType = {
   hidden?: boolean;
   value?: string;
   validation?: ValidationType;
+  disabled?: boolean;
 };
 
 type HorizontalInputType = {

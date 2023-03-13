@@ -1,6 +1,12 @@
+$backgroundColor: var(--paletteColor0);
 $borderColor: var(--paletteColor5);
-$labelVerticalColor: var(--paletteColor6);
+
 $errorColor: var(--paletteColor7);
 
-$labelHorizontalColor: var(--paletteColor12);
-$inputHorizontalColor:  var(--paletteColor6);
+$verticalLabelColor: var(--paletteColor6);
+$verticalInputColor: var(--paletteColor12);
+
+$horizontalLabelColor: var(--paletteColor12);
+$horizontalInputColor:  var(--paletteColor12);
+
+$disabledInputColor: var(--paletteColor6)
