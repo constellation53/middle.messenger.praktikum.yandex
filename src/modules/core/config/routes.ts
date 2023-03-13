@@ -31,7 +31,7 @@ export const routes: RoutesConfigType = {
   },
   profileEditPassword: {
     name: 'profileEditPassword',
-    path: '/src/pages/profileEditPassword/profileEditPassword.hbs',
+    path: '/pages/profileEditPassword',
   },
   profileUploadAvatar: {
     name: 'profileUploadAvatar',
