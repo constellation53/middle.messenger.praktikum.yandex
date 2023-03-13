@@ -37,7 +37,10 @@
       name="{{ name }}"
       id="{{ id }}"
       value="{{ value }}"
-      disabled="{{ disabled }}"
+    {{#if disabled }}
+      disabled
+    {{/if }}
+      tabindex="0"
   />
   {{#if validation.message }}
     <p class="
