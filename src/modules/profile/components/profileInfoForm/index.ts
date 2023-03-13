@@ -87,11 +87,25 @@ export class ProfileInfoFormComponent extends Block<PropsType> {
 
     this.children.saveButton = new Button({
       text: 'Сохранить',
-      fluid: true
+      fluid: true,
+      htmlType: 'submit',
     });
   }
 
+  onSubmit(event: SubmitEvent): void {
+    event.preventDefault();
+
+    const formData = new FormData(<HTMLFormElement>event.target);
+    const data = Object.fromEntries(formData);
+    // eslint-disable-next-line no-console
+    console.log(data);
+  }
+
   render(): HTMLElement {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {
+      ...this.props,
+      styles,
+      events: { submit: this.onSubmit },
+    });
   }
 }
