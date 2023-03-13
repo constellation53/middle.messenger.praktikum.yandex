@@ -11,11 +11,11 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { ProfileInfoFormType } from './types';
+import { InfoFormType } from './types';
 
-type PropsType = ProfileInfoFormType;
+type PropsType = InfoFormType;
 
-export class ProfileInfoFormComponent extends Block<PropsType> {
+export class InfoFormComponent extends Block<PropsType> {
   constructor(props: PropsType = {}) {
     super(props);
   }

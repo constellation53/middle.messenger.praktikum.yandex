@@ -8,7 +8,7 @@ import template from './index.hbs';
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
 import { Avatar } from '../../modules/core/elements/avatar';
-import { ProfileInfoFormComponent } from '../../modules/profile/components/profileInfoForm';
+import { InfoFormComponent } from '../../modules/profile/components/infoForm';
 import { Button } from '../../modules/core/elements/button';
 import { Divider } from '../../modules/core/elements/divider';
 
@@ -24,7 +24,7 @@ export class ProfilePage extends Block {
       alt: 'Загрузить фото',
     });
 
-    this.children.profileInfoForm = new ProfileInfoFormComponent({disabled: true,});
+    this.children.profileInfoForm = new InfoFormComponent({disabled: true,});
 
     // TODO: ADD LINKS
     this.children.changeProfileInfoButton = new Button({

@@ -5,7 +5,7 @@ import Block from '../../modules/core/utils/block';
 import template from './index.hbs';
 
 // Components
-import { ProfileInfoFormComponent } from '../../modules/profile/components/profileInfoForm';
+import { InfoFormComponent } from '../../modules/profile/components/infoForm';
 
 // Other
 import { render } from '../../modules/core/utils/render';
@@ -24,7 +24,7 @@ export class ProfilePage extends Block {
       alt: 'Загрузить фото',
     });
 
-    this.children.profileInfoForm = new ProfileInfoFormComponent();
+    this.children.profileInfoForm = new InfoFormComponent();
   }
 
   render(): HTMLElement {
