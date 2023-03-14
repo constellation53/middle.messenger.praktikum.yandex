@@ -29,6 +29,10 @@
     width: 100%;
   }
 
+  &.underline {
+    text-decoration: underline;
+  }
+
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }
