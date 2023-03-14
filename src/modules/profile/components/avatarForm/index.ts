@@ -10,27 +10,19 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
+import { isHTMLElement } from '../../../core/utils/guards/isHTMLElement';
 
 export class AvatarFormComponent extends Block {
   constructor() {
     super();
   }
 
-  init(): void {
-    this.children.avatarInput = new Input({
-      id: 'avatar',
-      name: 'avatar',
-      label: 'Загрузить фото',
-      value: '•••••••••',
-      htmlType: 'file',
-      hidden: true
-    });
+  onChooseFileButtonClick(): void {
+    const ref = document.querySelector('input[type="file"]');
 
-    this.children.changeButton = new Button({
-      text: 'Поменять',
-      fluid: true,
-      htmlType: 'submit',
-    });
+    if (isHTMLElement(ref)) {
+      ref.click();
+    }
   }
 
   onSubmit(event: SubmitEvent): void {
@@ -40,6 +32,32 @@ export class AvatarFormComponent extends Block {
     const data = Object.fromEntries(formData);
     // eslint-disable-next-line no-console
     console.log(data);
+  }
+
+  init(): void {
+    this.children.chooseFileButton = new Button({
+      text: 'Выбрать файл на компьютере',
+      fluid: true,
+      secondary: true,
+      underline: true,
+      class: 'size-8 font-weight-500',
+      events: { click: this.onChooseFileButtonClick },
+    });
+
+    this.children.avatarInput = new Input({
+      id: 'avatar',
+      name: 'avatar',
+      label: 'Загрузить фото',
+      value: '•••••••••',
+      htmlType: 'file',
+      hidden: true,
+    });
+
+    this.children.changeButton = new Button({
+      text: 'Поменять',
+      fluid: true,
+      htmlType: 'submit',
+    });
   }
 
   render(): HTMLElement {
