@@ -11,6 +11,7 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { isHTMLElement } from '../../../core/utils/guards/isHTMLElement';
+import { HTMLInputEventType } from '../../../core/types/events/input';
 
 export class AvatarFormComponent extends Block {
   constructor() {
@@ -23,6 +24,12 @@ export class AvatarFormComponent extends Block {
     if (isHTMLElement(ref)) {
       ref.click();
     }
+  }
+
+  onFileChose(event: HTMLInputEventType): void {
+    const [file] = event.target?.files || [];
+
+    console.log(file);
   }
 
   onSubmit(event: SubmitEvent): void {
@@ -51,6 +58,7 @@ export class AvatarFormComponent extends Block {
       value: '•••••••••',
       htmlType: 'file',
       hidden: true,
+      events: { change: this.onFileChose },
     });
 
     this.children.changeButton = new Button({
