@@ -1,8 +1,15 @@
+// Other
+import { HTMLInputEventType } from '../../../types/events/input';
+
 type HtmlTypeType = 'text' | 'password' | 'file';
 
 type ValidationType = {
   error: boolean;
   message?: string;
+};
+
+type EventsType = {
+  change?: (event: HTMLInputEventType) => void;
 };
 
 type CoreType = {
@@ -14,6 +21,7 @@ type CoreType = {
   value?: string;
   validation?: ValidationType;
   disabled?: boolean;
+  events?: EventsType;
 };
 
 type HorizontalInputType = {
