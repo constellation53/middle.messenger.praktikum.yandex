@@ -24,6 +24,14 @@ export class Modal extends Block<ModalType> {
     }
   }
 
+  componentDidMount(): void {
+    const { opened } = this.props;
+
+    if (!opened) {
+      this.hide()
+    }
+  }
+
   render(): HTMLElement {
     return this.compile(template, {
       ...this.props,
