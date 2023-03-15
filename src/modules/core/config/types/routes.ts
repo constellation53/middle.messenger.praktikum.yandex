@@ -6,8 +6,7 @@ export type RouteNameType =
   | 'internalError'
   | 'profile'
   | 'profileEdit'
-  | 'profileEditPassword'
-  | 'profileUploadAvatar';
+  | 'profileEditPassword';
 
 type RouteType = {
   name: RouteNameType;
