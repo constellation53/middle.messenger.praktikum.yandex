@@ -39,7 +39,7 @@ export class HTTPTransport {
     url: string,
     options: OptionsType = { method: Method.GET }
   ): Promise<XMLHttpRequest> {
-    const { method, data } = options;
+    const { method = Method.GET , data } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -53,7 +53,7 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === Method.GET || !data) {
+      if (!data) {
         xhr.send();
       } else {
         xhr.send(data);
