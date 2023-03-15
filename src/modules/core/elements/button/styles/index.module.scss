@@ -11,18 +11,23 @@
   }
 
   &.primary {
-    background: $primaryBackground;
+    background: $primaryBackgroundColor;
     color: $primaryColor;
   }
 
   &.secondary {
-    background:  $secondaryBackground;
+    background:  $secondaryBackgroundColor;
     color: $secondaryColor;
   }
 
   &.tertiary {
-    background: $tertiaryBackground;
+    background: $tertiaryBackgroundColor;
     color: $tertiaryColor;
+  }
+
+  &.quaternary {
+    background: $quaternaryBackgroundColor;
+    color: $quaternaryColor;
   }
 
   &.fluid {

@@ -1,5 +1,5 @@
 type AlignNameType = 'alignLeft';
-type VariantNameType = 'primary' | 'secondary' | 'tertiary';
+type VariantNameType = 'primary' | 'secondary' | 'tertiary' | 'quaternary';
 
 type VariantType = Partial<Record<VariantNameType, boolean>>;
 
