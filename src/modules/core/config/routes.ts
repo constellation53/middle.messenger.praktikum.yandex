@@ -11,7 +11,7 @@ export const routes: RoutesConfigType = {
   },
   chat: {
     name: 'chat',
-    path: '/src/pages/chat/chat.hbs',
+    path: '/pages/chat',
   },
   notFound: {
     name: 'notFound',
