@@ -1,9 +1,10 @@
+// Infrastructure
 import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
 import {
-  CoreBlockType,
+  BlockType,
   EventEnum,
-  ListenersType
+  ListenersType,
 } from './types';
 import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
@@ -11,9 +12,7 @@ import { replaceStub } from './helpers/replaceStub';
 
 // Нельзя создавать экземпляр данного класса
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export abstract class Block<
-  P extends CoreBlockType<Record<string, any>> = any
-> {
+export abstract class Block<P extends BlockType = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
@@ -47,7 +46,7 @@ export abstract class Block<
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     template: (context: any) => string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    context: CoreBlockType<Record<string, any>> = {}
+    context: BlockType = {}
   ): HTMLElement {
     const contextAndStubs = { ...context };
 

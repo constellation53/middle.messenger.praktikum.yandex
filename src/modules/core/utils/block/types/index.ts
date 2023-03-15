@@ -24,3 +24,5 @@ export type CoreBlockType<T> = T & {
     withInternalID?: boolean;
   };
 };
+
+export type BlockType = CoreBlockType<Record<string, any>>;
