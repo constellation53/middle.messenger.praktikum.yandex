@@ -1,22 +1,33 @@
 // Infrastructure
 import Block from '../../modules/core/utils/block';
 
+// Elements
+import { Avatar } from '../../modules/core/elements/avatar';
+import { Button } from '../../modules/core/elements/button';
+import { Divider } from '../../modules/core/elements/divider';
+import { Modal } from '../../modules/core/elements/modal';
+
 // Templates
 import template from './index.hbs';
+
+// Components
+import { InfoFormComponent } from '../../modules/profile/components/infoForm';
+import { AvatarFormComponent } from '../../modules/profile/components/avatarForm';
 
 // Other
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
-import { Avatar } from '../../modules/core/elements/avatar';
-import { InfoFormComponent } from '../../modules/profile/components/infoForm';
-import { Button } from '../../modules/core/elements/button';
-import { Divider } from '../../modules/core/elements/divider';
-import { Modal } from '../../modules/core/elements/modal';
-import { AvatarFormComponent } from '../../modules/profile/components/avatarForm';
+import { isBlockClass } from '../../modules/core/utils/guards/isBlockClass';
 
 export class ProfilePage extends Block {
   constructor() {
     super();
+  }
+
+  onAvatarClick(): void {
+    if (isBlockClass(this.children.changeAvatarModal)) {
+      this.children.changeAvatarModal.show();
+    }
   }
 
   init(): void {
@@ -24,9 +35,10 @@ export class ProfilePage extends Block {
       medium: true,
       editable: true,
       alt: 'Загрузить фото',
+      events: { click: this.onAvatarClick.bind(this) },
     });
 
-    this.children.infoForm = new InfoFormComponent({ disabled: true, });
+    this.children.infoForm = new InfoFormComponent({ disabled: true });
 
     // TODO: ADD LINKS
     this.children.changeProfileInfoButton = new Button({
@@ -45,7 +57,7 @@ export class ProfilePage extends Block {
       fluid: true,
     });
 
-    this.children.changeProfileePasswordDivider = new Divider()
+    this.children.changeProfileePasswordDivider = new Divider();
 
     this.children.logoutButton = new Button({
       text: 'Выйти',
@@ -54,11 +66,9 @@ export class ProfilePage extends Block {
       fluid: true,
     });
 
+    const avatarForm = new AvatarFormComponent();
 
-
-    const avatarForm = new AvatarFormComponent()
-
-    this.children.changeAvatarModal = new Modal({ content: avatarForm })
+    this.children.changeAvatarModal = new Modal({ content: avatarForm });
   }
 
   render(): HTMLElement {
