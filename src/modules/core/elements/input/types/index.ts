@@ -1,5 +1,5 @@
 // Other
-import { HTMLInputEventType } from '../../../types/events/input';
+import { HTMLInputEventType } from '../../../types/events';
 
 type HtmlTypeType = 'text' | 'password' | 'file';
 
