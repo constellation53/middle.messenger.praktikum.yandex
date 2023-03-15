@@ -1,5 +1,10 @@
+// Infrastructure
 import Block from '../../utils/block';
+
+// Template
 import template from './index.hbs';
+
+// Other
 import * as styles from './styles/index.module.scss';
 import { NavType } from './types';
 
