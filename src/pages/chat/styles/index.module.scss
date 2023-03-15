@@ -2,9 +2,6 @@
   @import '../../../assets/styles/extensions';
   @import './palette';
 
-  display: grid;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
 
   @function px($px) {
