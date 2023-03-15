@@ -4,7 +4,7 @@ import {
   OptionsType,
   OptionsWithoutMethod
 } from './types';
-
+import { queryStringify } from './helpers/queryStringify';
 
 export class HTTPTransport {
   get(
@@ -39,11 +39,22 @@ export class HTTPTransport {
     url: string,
     options: OptionsType = { method: Method.GET }
   ): Promise<XMLHttpRequest> {
-    const { method = Method.GET , data } = options;
+    const {
+      data,
+      method = Method.GET,
+      headers = {}
+    } = options;
+
+    const endpoint =
+      method === Method.GET && data ? `${url}${queryStringify(data)}` : url;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, endpoint);
+
+      Object.entries(headers).forEach(([key, value]) => {
+        xhr.setRequestHeader(key, value);
+      });
 
       xhr.onload = (): void => {
         resolve(xhr);
