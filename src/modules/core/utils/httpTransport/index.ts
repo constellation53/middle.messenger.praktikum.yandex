@@ -1,51 +1,43 @@
-enum METHOD {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  PATCH = 'PATCH',
-  DELETE = 'DELETE',
-}
+// Other
+import {
+  Method,
+  OptionsType,
+  OptionsWithoutMethod
+} from './types';
 
-type Options = {
-  method: METHOD;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: any;
-};
-
-type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 export class HTTPTransport {
   get(
     url: string,
     options: OptionsWithoutMethod = {}
   ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.GET });
+    return this.request(url, { ...options, method: Method.GET });
   }
 
   post(
     url: string,
     options: OptionsWithoutMethod = {}
   ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.POST });
+    return this.request(url, { ...options, method: Method.POST });
   }
 
   put(
     url: string,
     options: OptionsWithoutMethod = {}
   ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.PUT });
+    return this.request(url, { ...options, method: Method.PUT });
   }
 
   delete(
     url: string,
     options: OptionsWithoutMethod = {}
   ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.DELETE });
+    return this.request(url, { ...options, method: Method.DELETE });
   }
 
   request(
     url: string,
-    options: Options = { method: METHOD.GET }
+    options: OptionsType = { method: Method.GET }
   ): Promise<XMLHttpRequest> {
     const { method, data } = options;
 
@@ -61,7 +53,7 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === METHOD.GET || !data) {
+      if (method === Method.GET || !data) {
         xhr.send();
       } else {
         xhr.send(data);
