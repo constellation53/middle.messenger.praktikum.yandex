@@ -90,7 +90,7 @@ export abstract class Block<
 
     const element = <HTMLElement>fragment.content.firstElementChild;
 
-    if (context.setting?.withInternalID) {
+    if (context.settings?.withInternalID) {
       element.setAttribute('data-id', this.id);
     }
 
