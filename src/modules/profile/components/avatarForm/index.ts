@@ -11,7 +11,7 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { isHTMLElement } from '../../../core/utils/guards/isHTMLElement';
-import { HTMLInputEventType } from '../../../core/types/events/input';
+import { HTMLInputEventType } from '../../../core/types/events';
 
 export class AvatarFormComponent extends Block {
   constructor() {
