@@ -11,10 +11,20 @@ import { PasswordFormComponent } from '../../modules/profile/components/password
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
 import { Avatar } from '../../modules/core/elements/avatar';
+import { isBlockClass } from '../../modules/core/utils/guards/isBlockClass';
+import { AvatarFormComponent } from '../../modules/profile/components/avatarForm';
+import { Modal } from '../../modules/core/elements/modal';
 
-export class ProfilePage extends Block {
+export class ProfileEditPasswordPage extends Block {
   constructor() {
     super();
+  }
+
+  onAvatarClick(): void {
+    console.log(isBlockClass(this.children.changeAvatarModal))
+    if (isBlockClass(this.children.changeAvatarModal)) {
+      this.children.changeAvatarModal.show();
+    }
   }
 
   init(): void {
@@ -22,9 +32,15 @@ export class ProfilePage extends Block {
       medium: true,
       editable: true,
       alt: 'Загрузить фото',
+      events: { click: this.onAvatarClick.bind(this) },
     });
 
     this.children.passwordForm = new PasswordFormComponent();
+
+
+    const avatarForm = new AvatarFormComponent();
+
+    this.children.changeAvatarModal = new Modal({ content: avatarForm });
   }
 
   render(): HTMLElement {
@@ -32,6 +48,6 @@ export class ProfilePage extends Block {
   }
 }
 
-const profilePage = new ProfilePage();
+const profileEditPasswordPage = new ProfileEditPasswordPage();
 
-render('#root', profilePage);
+render('#root', profileEditPasswordPage);
