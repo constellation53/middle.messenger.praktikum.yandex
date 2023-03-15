@@ -1,18 +1,24 @@
 import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
-import { EventEnum, ListenersType } from './types';
+import {
+  CoreBlockType,
+  EventEnum,
+  ListenersType
+} from './types';
 import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
 import { replaceStub } from './helpers/replaceStub';
 
 // Нельзя создавать экземпляр данного класса
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export abstract class Block<P extends Record<string, any> = any> {
+export abstract class Block<
+  P extends CoreBlockType<Record<string, any>> = any
+> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
 
-  readonly _id: string = nanoid(6);
+  readonly id: string = nanoid(6);
 
   protected props: P;
 
@@ -26,9 +32,9 @@ export abstract class Block<P extends Record<string, any> = any> {
 
     const { children, props } = this._getChildren(properties || ({} as P));
 
-    this._id = nanoid(6);
+    this.id = nanoid(6);
 
-    this.props = this._makePropsProxy({ ...props, __id: this._id });
+    this.props = this._makePropsProxy({ ...props, id: this.id });
     this.children = children;
 
     this.eventBus = (): EventBus<ListenersType<P>> => eventBus;
@@ -41,17 +47,17 @@ export abstract class Block<P extends Record<string, any> = any> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     template: (context: any) => string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    context: any = {}
+    context: CoreBlockType<Record<string, any>> = {}
   ): HTMLElement {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([key, children]) => {
       if (Array.isArray(children)) {
         contextAndStubs[key] = children.map(
-          (child) => `<div data-id="${child._id}"></div>`
+          (child) => `<div data-id="${child.id}"></div>`
         );
       } else {
-        contextAndStubs[key] = `<div data-id="${children._id}"></div>`;
+        contextAndStubs[key] = `<div data-id="${children.id}"></div>`;
       }
     });
 
@@ -80,6 +86,12 @@ export abstract class Block<P extends Record<string, any> = any> {
         <HTMLElement>fragment.content.firstElementChild,
         contextAndStubs.events
       );
+    }
+
+    const element = <HTMLElement>fragment.content.firstElementChild;
+
+    if (context.setting?.withInternalID) {
+      element.setAttribute('data-id', this.id);
     }
 
     return <HTMLElement>fragment.content.firstElementChild;

@@ -18,6 +18,8 @@ export type MetaType<T> = {
 };
 
 export type CoreBlockType<T> = T & {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  events?: Record<string, Function>;
   settings?: {
     withInternalID?: boolean;
   };
