@@ -9,17 +9,12 @@
     display: flex;
     position: relative;
     justify-content: flex-end;
-    margin-right: 16px;
     color: $linkColor;
     text-decoration: none;
 
     &:after {
       content: '';
       position: absolute;
-      top: 2px;
-      right: -15px;
-      width: 6px;
-      height: 10px;
       background-image: url('../../../../../assets/images/rightShoulderLoop.svg');
     }
   }

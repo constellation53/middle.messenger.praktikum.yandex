@@ -2,4 +2,19 @@
   padding: px(20) px(10) 0;
   overflow-y: auto;
   border-right: px(1) solid $borderColor;
+
+  .linkWrapper {
+    margin-bottom: px(25);
+  }
+
+  .link {
+    margin-right: px(16);
+
+    &:after {
+      top: px(2);
+      right: px(-15);
+      width: px(6);
+      height: px(10);
+    }
+  }
 }
