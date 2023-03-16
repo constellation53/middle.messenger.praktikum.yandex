@@ -1,0 +1,12 @@
+& {
+  .field {
+    height: px(32);
+    padding: px(6) px(6) px(6) px(30);
+    border: px(1) solid $borderColor;
+    border-radius: px(5);
+    background-position: px(5) center;
+    background-size: px(20);
+    font-size: px(12);
+    line-height: px(12);
+  }
+}
