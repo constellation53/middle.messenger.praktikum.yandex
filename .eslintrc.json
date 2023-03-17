@@ -20,9 +20,9 @@
     "no-underscore-dangle": 0,
     "class-methods-use-this": 0,
     "no-useless-constructor": 0,
-    "quotes": ["error", "single"],
-    "indent": ["error", 2],
-    "object-curly-newline": ["error", {
+    "quotes": [2, "single"],
+    "indent": [2, 2],
+    "object-curly-newline": [2, {
       "ObjectExpression": {
         "multiline": true,
         "minProperties": 3,
@@ -44,8 +44,13 @@
         "consistent": false
       }
     }],
+    "max-len": [2, {
+      "code": 80
+    }],
     "linebreak-style": 0,
     "no-shadow": 0,
+    "semi": 0,
+    "@typescript-eslint/semi": [2],
     "@typescript-eslint/no-shadow": 2,
     "@typescript-eslint/explicit-function-return-type": 2,
     "@typescript-eslint/no-non-null-assertion": 0,
