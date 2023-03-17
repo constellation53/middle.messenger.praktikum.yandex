@@ -28,7 +28,7 @@ export class Modal extends Block<ModalType> {
     const { opened } = this.props;
 
     if (!opened) {
-      this.hide()
+      this.hide();
     }
   }
 
