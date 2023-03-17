@@ -2,51 +2,50 @@
 import {
   Method,
   OptionsType,
-  OptionsWithoutMethod
+  OptionsWithoutMethod,
 } from './types';
 import { queryStringify } from './helpers/queryStringify';
 
 export class HTTPTransport {
   get(
     url: string,
-    options: OptionsWithoutMethod = {}
+    options: OptionsWithoutMethod = {},
   ): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.GET });
   }
 
   post(
     url: string,
-    options: OptionsWithoutMethod = {}
+    options: OptionsWithoutMethod = {},
   ): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.POST });
   }
 
   put(
     url: string,
-    options: OptionsWithoutMethod = {}
+    options: OptionsWithoutMethod = {},
   ): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.PUT });
   }
 
   delete(
     url: string,
-    options: OptionsWithoutMethod = {}
+    options: OptionsWithoutMethod = {},
   ): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.DELETE });
   }
 
   request(
     url: string,
-    options: OptionsType = { method: Method.GET }
+    options: OptionsType = { method: Method.GET },
   ): Promise<XMLHttpRequest> {
     const {
       data,
       method = Method.GET,
-      headers = {}
+      headers = {},
     } = options;
 
-    const endpoint =
-      method === Method.GET && data ? `${url}${queryStringify(data)}` : url;
+    const endpoint = method === Method.GET && data ? `${url}${queryStringify(data)}` : url;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();

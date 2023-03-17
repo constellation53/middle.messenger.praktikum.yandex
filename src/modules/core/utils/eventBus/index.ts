@@ -24,7 +24,7 @@ export class EventBus<T = BaseGenericType> {
     }
 
     this.listeners[event] = this.listeners[event]!.filter(
-      (listener) => listener !== callback
+      (listener) => listener !== callback,
     );
   };
 
