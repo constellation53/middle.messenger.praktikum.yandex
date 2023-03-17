@@ -5,7 +5,7 @@ import Block from '../../../../core/utils/block';
 import template from './index.hbs';
 
 // Other
-import * as styles from '../styles/index.module.scss'
+import * as styles from '../styles/index.module.scss';
 import { routes } from '../../../../core/config';
 
 export class LinkComponent extends Block {
@@ -14,6 +14,6 @@ export class LinkComponent extends Block {
   }
 
   render(): HTMLElement {
-    return this.compile(template, { styles, routes })
+    return this.compile(template, { styles, routes });
   }
 }
