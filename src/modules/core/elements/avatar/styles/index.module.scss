@@ -8,7 +8,7 @@
   background: $avatarBackground;
   word-wrap: break-word;
 
-  &.empty {
+  &.medium.empty {
     background-image: url('/src/assets/images/profileStub.svg');
     background-repeat: no-repeat;
     background-position: center;
