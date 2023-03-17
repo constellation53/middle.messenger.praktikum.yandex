@@ -17,4 +17,23 @@
       height: px(10);
     }
   }
+
+  .searchWrapper {
+    margin-bottom: px(14);
+  }
+
+  .content {
+    padding: px(12) px(10);
+    gap: px(10);
+  }
+
+  .info {
+    gap: px(4);
+  }
+
+  .counter {
+    min-width: px(20);
+    min-height: px(20);
+    border-radius: px(12);
+  }
 }

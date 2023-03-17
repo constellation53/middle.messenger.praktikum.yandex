@@ -19,6 +19,55 @@
     }
   }
 
+  .chatItem {
+    width: 100%;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: fit-content(100%) 1fr;
+  }
+
+  .info,
+  .infoWrapper,
+  .subtitle {
+    display: grid;
+  }
+
+  .info {
+    grid-template-rows: auto 1fr;
+  }
+
+  .infoWrapper {
+    grid-template-columns: repeat(2, min-content);
+    justify-content: space-between;
+  }
+
+  .subtitle {
+    grid-template-columns: 1fr min-content;
+  }
+
+  .title {
+    color: $titleColor;
+  }
+
+  .lastMessage {
+    color: $lastMessageColor;
+  }
+
+  .time {
+    color: $timeColor;
+  }
+
+  .counter {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: center;
+    background: $counterBackgroundColor;
+    color: $counterColor;
+  }
+
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }
