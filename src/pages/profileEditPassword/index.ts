@@ -1,19 +1,21 @@
 // Infrastructure
 import Block from '../../modules/core/utils/block';
 
+// Elements
+import { Avatar } from '../../modules/core/elements/avatar';
+import { Modal } from '../../modules/core/elements/modal';
+
 // Templates
 import template from './index.hbs';
 
 // Components
 import { PasswordFormComponent } from '../../modules/profile/components/passwordForm';
+import { AvatarFormComponent } from '../../modules/profile/components/avatarForm';
 
 // Other
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
-import { Avatar } from '../../modules/core/elements/avatar';
 import { isBlockClass } from '../../modules/core/utils/guards/isBlockClass';
-import { AvatarFormComponent } from '../../modules/profile/components/avatarForm';
-import { Modal } from '../../modules/core/elements/modal';
 
 export class ProfileEditPasswordPage extends Block {
   constructor() {
@@ -21,7 +23,6 @@ export class ProfileEditPasswordPage extends Block {
   }
 
   onAvatarClick(): void {
-    console.log(isBlockClass(this.children.changeAvatarModal))
     if (isBlockClass(this.children.changeAvatarModal)) {
       this.children.changeAvatarModal.show();
     }
@@ -36,7 +37,6 @@ export class ProfileEditPasswordPage extends Block {
     });
 
     this.children.passwordForm = new PasswordFormComponent();
-
 
     const avatarForm = new AvatarFormComponent();
 

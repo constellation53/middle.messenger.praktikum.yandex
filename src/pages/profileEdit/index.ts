@@ -23,7 +23,6 @@ export class ProfileEditPage extends Block {
   }
 
   onAvatarClick(): void {
-    console.log(isBlockClass(this.children.changeAvatarModal))
     if (isBlockClass(this.children.changeAvatarModal)) {
       this.children.changeAvatarModal.show();
     }

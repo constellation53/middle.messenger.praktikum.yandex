@@ -29,6 +29,7 @@ export class AvatarFormComponent extends Block {
   onFileChose(event: HTMLInputEventType): void {
     const [file] = event.target?.files || [];
 
+    // eslint-disable-next-line no-console
     console.log(file);
   }
 

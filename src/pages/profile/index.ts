@@ -25,7 +25,6 @@ export class ProfilePage extends Block {
   }
 
   onAvatarClick(): void {
-    console.log(isBlockClass(this.children.changeAvatarModal))
     if (isBlockClass(this.children.changeAvatarModal)) {
       this.children.changeAvatarModal.show();
     }
@@ -39,7 +38,7 @@ export class ProfilePage extends Block {
       events: { click: this.onAvatarClick.bind(this) },
     });
 
-    this.children.profileInfoForm = new InfoFormComponent({disabled: true,});
+    this.children.profileInfoForm = new InfoFormComponent({ disabled: true });
 
     // TODO: ADD LINKS
     this.children.changeProfileInfoButton = new Button({
@@ -58,7 +57,7 @@ export class ProfilePage extends Block {
       fluid: true,
     });
 
-    this.children.changeProfileePasswordDivider = new Divider()
+    this.children.changeProfileePasswordDivider = new Divider();
 
     this.children.logoutButton = new Button({
       text: 'Выйти',
