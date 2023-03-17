@@ -40,7 +40,7 @@
       }
     }],
     "max-len": [2, {
-      "code": 80
+      "code": 100
     }],
     "linebreak-style": 0,
     "no-shadow": 0,
