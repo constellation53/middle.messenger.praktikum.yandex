@@ -46,14 +46,14 @@ export abstract class Block<P extends BlockType = any> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     template: (context: any) => string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    context: BlockType = {}
+    context: BlockType = {},
   ): HTMLElement {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([key, children]) => {
       if (Array.isArray(children)) {
         contextAndStubs[key] = children.map(
-          (child) => `<div data-id="${child.id}"></div>`
+          (child) => `<div data-id="${child.id}"></div>`,
         );
       } else {
         contextAndStubs[key] = `<div data-id="${children.id}"></div>`;
@@ -76,14 +76,14 @@ export abstract class Block<P extends BlockType = any> {
     if (contextAndStubs.events) {
       removeEvents(
         <HTMLElement>fragment.content.firstElementChild,
-        contextAndStubs.events
+        contextAndStubs.events,
       );
     }
 
     if (contextAndStubs.events) {
       addEvents(
         <HTMLElement>fragment.content.firstElementChild,
-        contextAndStubs.events
+        contextAndStubs.events,
       );
     }
 
@@ -121,9 +121,9 @@ export abstract class Block<P extends BlockType = any> {
 
     Object.entries(properties).forEach(([key, value]) => {
       if (
-        Array.isArray(value) &&
-        value.length > 0 &&
-        value.every((v) => v instanceof Block)
+        Array.isArray(value)
+        && value.length > 0
+        && value.every((v) => v instanceof Block)
       ) {
         children[key] = value as Block[];
       } else if (value instanceof Block) {
@@ -202,6 +202,7 @@ export abstract class Block<P extends BlockType = any> {
   // Переопределяется пользователем. Необходимо вернуть разметку
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
+  // eslint-disable-next-line max-len
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
   protected render(): HTMLElement {}
 
@@ -211,11 +212,9 @@ export abstract class Block<P extends BlockType = any> {
 
   private _makePropsProxy(props: P): P {
     return new Proxy(props, {
-      get: (target, property: string): P[string] => {
-        return typeof target[property] === 'function'
-          ? target[property].bind(this)
-          : target[property];
-      },
+      get: (target, property: string): P[string] => (typeof target[property] === 'function'
+        ? target[property].bind(this)
+        : target[property]),
       set: (target, property: string, value): boolean => {
         const old = { ...target };
 
