@@ -7,7 +7,6 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 
-
 export class Divider extends Block {
   constructor() {
     super();
