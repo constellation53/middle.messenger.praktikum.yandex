@@ -1,4 +1,4 @@
-// Infrastructure
+// Core
 import Block from '../../modules/core/utils/block';
 
 // Templates
