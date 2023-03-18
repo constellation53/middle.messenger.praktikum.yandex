@@ -17,9 +17,11 @@
        <div class="{{ styles.lastMessage }} text size-9">
          {{ lastMessage.content }}
        </div>
-       <p class="{{ styles.counter }} text size-11">
-         {{ unreadCount }}
-       </p>
+       {{#if unreadCount}}
+         <p class="{{ styles.counter }} text size-11">
+           {{ unreadCount }}
+         </p>
+       {{/if}}
      </div>
    </div>
   </div>
