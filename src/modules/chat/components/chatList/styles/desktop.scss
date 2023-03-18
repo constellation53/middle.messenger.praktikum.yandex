@@ -1,5 +1,5 @@
 & {
-  $height: px(93);
+  $height: px(83);
 
   height: calc(100% - #{px(20)});
   padding: px(20) 0 0;
@@ -30,19 +30,17 @@
   .listWrapper {
     height: calc(100% - #{$height});
 
-    &:hover::-webkit-scrollbar-track {
-      border: px(2) solid $backgroundColor;
-      border-radius: px(17);
-    }
-
     &::-webkit-scrollbar {
       width: px(10);
     }
 
-    &::-webkit-scrollbar-track {
-      border: px(2) solid $backgroundColor;
+    &::-webkit-scrollbar-thumb {
+      border: px(2) solid $scrollThumbBorderColor;
       border-radius: px(17);
-      background: $scrollTrackDefaultColor;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: px(17);
     }
   }
 

@@ -22,12 +22,12 @@
     overflow-y: auto;
     background: $backgroundColor;
 
-    &::-webkit-scrollbar-track {
-      background: $scrollTrackDefaultColor;
+    &:hover::-webkit-scrollbar-thumb {
+      background: $scrollThumbColor;
     }
 
-    &:hover::-webkit-scrollbar-track {
-      background: $scrollHoverColor;
+    &::-webkit-scrollbar-track {
+      background: $scrollTrackColor;
     }
   }
 
