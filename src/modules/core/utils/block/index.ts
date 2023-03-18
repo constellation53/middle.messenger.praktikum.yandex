@@ -37,10 +37,11 @@ export abstract class Block<P extends BlockType = any> {
 
     const { children, props } = divideProperties<P>(properties || ({} as P));
 
-    this.props = makePropsProxy({ ...props, id: this.id }, this.eventBus);
-    this.children = children;
-
     this.eventBus = (): EventBus<ListenersType<P>> => eventBus;
+
+    this.props = makePropsProxy({ ...props, id: this.id }, this.eventBus);
+
+    this.children = children;
 
     this._registerEvents(eventBus);
 
