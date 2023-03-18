@@ -8,7 +8,8 @@ import {
 } from './types';
 import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
-import { replaceStub } from './helpers/replaceStub';
+import { replaceStubs } from './helpers/replaceStub';
+import { generateStub } from './helpers/generateStub';
 
 // Нельзя создавать экземпляр данного класса
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,14 +32,13 @@ export abstract class Block<P extends BlockType = any> {
 
     const { children, props } = this._getChildren(properties || ({} as P));
 
-    this.id = nanoid(6);
-
     this.props = this._makePropsProxy({ ...props, id: this.id });
     this.children = children;
 
     this.eventBus = (): EventBus<ListenersType<P>> => eventBus;
 
     this._registerEvents(eventBus);
+
     eventBus.emit(Block.EVENTS.INIT);
   }
 
@@ -48,30 +48,13 @@ export abstract class Block<P extends BlockType = any> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     context: BlockType = {},
   ): HTMLElement {
-    const contextAndStubs = { ...context };
-
-    Object.entries(this.children).forEach(([key, children]) => {
-      if (Array.isArray(children)) {
-        contextAndStubs[key] = children.map(
-          (child) => `<div data-id="${child.id}"></div>`,
-        );
-      } else {
-        contextAndStubs[key] = `<div data-id="${children.id}"></div>`;
-      }
-    });
+    const contextAndStubs = generateStub(context, this.children);
 
     const fragment = document.createElement('template');
 
     fragment.innerHTML = template(contextAndStubs);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    Object.entries(this.children).forEach(([_, component]) => {
-      if (Array.isArray(component)) {
-        component.forEach((item) => replaceStub(fragment, item));
-      } else {
-        replaceStub(fragment, component);
-      }
-    });
+    replaceStubs(fragment, this.children);
 
     if (contextAndStubs.events) {
       removeEvents(
@@ -211,9 +194,11 @@ export abstract class Block<P extends BlockType = any> {
 
   private _makePropsProxy(props: P): P {
     return new Proxy(props, {
-      get: (target, property: string): P[string] => (typeof target[property] === 'function'
-        ? target[property].bind(this)
-        : target[property]),
+      get: (target, property: string): P[string] => {
+        const isFunction = typeof target[property] === 'function';
+
+        return isFunction ? target[property].bind(this) : target[property];
+      },
       set: (target, property: string, value): boolean => {
         const old = { ...target };
 
