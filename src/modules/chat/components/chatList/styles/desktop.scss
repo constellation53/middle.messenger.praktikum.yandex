@@ -44,12 +44,13 @@
     }
   }
 
-  &:not(.overflow) .listWrapper {
-    padding-right: px(10);
+  .dividerWrapper {
+    padding: 0 px(10);
   }
 
   .content {
-    padding: px(12) px(10);
+    margin: px(2) 0;
+    padding: px(10);
     gap: px(10);
   }
 

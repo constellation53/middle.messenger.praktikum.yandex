@@ -33,11 +33,16 @@
 
   .chatItem {
     width: 100%;
+    cursor: pointer;
   }
 
   .content {
     display: grid;
     grid-template-columns: fit-content(100%) 1fr;
+
+    &:hover {
+      background: $chatItemHoverBackgroundColor;
+    }
   }
 
   .info,
@@ -58,6 +63,8 @@
   .subtitle {
     grid-template-columns: 1fr min-content;
   }
+
+
 
   .title {
     color: $titleColor;
