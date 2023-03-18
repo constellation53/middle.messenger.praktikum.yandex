@@ -12,7 +12,7 @@ import { ChatItemComponent } from './chatItem';
 // Other
 import * as styles from './styles/index.module.scss';
 import { ChatItemType } from './types';
-import { isBlockArrayClass } from '../../../core/utils/guards/isBlockClass';
+import { isBlockArrayClass } from '../../../core/utils/guards/isBlockArrayClass';
 
 const chats: ChatItemType[] = [
   {
