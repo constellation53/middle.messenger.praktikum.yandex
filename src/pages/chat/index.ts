@@ -6,6 +6,7 @@ import template from './index.hbs';
 
 // Components
 import { ChatListComponent } from '../../modules/chat/components/chatList';
+import { DialogComponent } from '../../modules/chat/components/dialog';
 
 // Other
 import { render } from '../../modules/core/utils/render';
@@ -18,6 +19,8 @@ export class ChatPage extends Block {
 
   init(): void {
     this.children.chatList = new ChatListComponent();
+
+    this.children.dialog = new DialogComponent();
   }
 
   render(): HTMLElement {

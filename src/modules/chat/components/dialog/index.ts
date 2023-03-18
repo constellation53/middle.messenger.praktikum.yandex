@@ -8,6 +8,6 @@ export class DialogComponent extends Block {
   }
 
   render(): HTMLElement {
-    return this.compile(template, { styles });
+    return this.compile(template, { styles, isEmpty: true });
   }
 }

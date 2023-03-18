@@ -2,8 +2,21 @@
   @import '../../../../../assets/styles/extensions';
   @import './palette';
 
+  background: $backgroundColor;
+
+  &,
+  .stub {
+    height: 100%;
+  }
+
+  .stub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .chooseChat {
-    background: $stubColor;
+    color: $stubColor;
   }
 
 
