@@ -1,7 +1,12 @@
 // Infrastructure
 import Block from '../../block';
 
-export const isBlockClass = (
+// Other
+import { isBlockClass } from '../isBlockClass';
+
+export const isBlockArrayClass = (
   component: unknown,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): component is Block<any> => component instanceof Block<any>;
+): component is Block<any>[] => Array.isArray(component)
+  && component.length > 0
+  && component.every(isBlockClass);

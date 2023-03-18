@@ -1,3 +1,5 @@
+import Block from '../index';
+
 export enum EventEnum {
   INIT = 'init',
   FLOW_CDM = 'flow:component-did-mount',
@@ -17,13 +19,23 @@ export type MetaType<T> = {
   props: T;
 };
 
+export type EventHandlerType = (
+  this: HTMLElement,
+  ev: HTMLElementEventMap[keyof HTMLElementEventMap]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+) => any;
+
+// eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-explicit-any
+export type EventsType = Record<string, any>;
+
 export type CoreBlockType<T> = T & {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  events?: Record<string, Function>;
+  events?: EventsType;
   settings?: {
     withInternalID?: boolean;
   };
 };
+
+export type ChildrenType = Record<string, Block | Block[]>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type BlockType = CoreBlockType<Record<string, any>>;

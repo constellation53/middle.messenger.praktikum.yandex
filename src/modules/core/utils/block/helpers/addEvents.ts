@@ -1,15 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const addEvents = <P extends Record<string, any>>(
+// Other
+import { EventHandlerType, EventsType } from '../types';
+
+export const addEvents = (
   element: HTMLElement,
-  events: Omit<P, 'events'>,
+  events: EventsType,
 ): void => {
-  const tuple = Object.entries<(
-    this: HTMLElement,
-    ev: HTMLElementEventMap[keyof HTMLElementEventMap]
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ) => any
-    >(events,
-    );
+  const tuple = Object.entries<EventHandlerType>(events);
 
   tuple.forEach(([name, listener]) => {
     element.addEventListener(<keyof HTMLElementEventMap>name, listener);

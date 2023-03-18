@@ -1,6 +1,9 @@
 // Infrastructure
 import Block from '../index';
 
+// Other
+import { ChildrenType } from '../types';
+
 export const executeComponent = (
   fragment: HTMLTemplateElement,
   component: Block,
@@ -16,10 +19,9 @@ export const executeComponent = (
   stub.replaceWith(component.getContent()!);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const replaceStubs = (
   fragment: HTMLTemplateElement,
-  children: Record<string, Block<any> | Block<any>[]>,
+  children: ChildrenType,
 ): void => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Object.entries(children).forEach(([_, component]) => {

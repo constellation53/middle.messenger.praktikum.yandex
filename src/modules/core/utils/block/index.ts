@@ -1,8 +1,11 @@
 // Infrastructure
 import { nanoid } from 'nanoid';
 import { EventBus } from '../eventBus';
+
+// Other
 import {
   BlockType,
+  ChildrenType,
   EventEnum,
   ListenersType,
 } from './types';
@@ -10,8 +13,9 @@ import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
 import { replaceStubs } from './helpers/replaceStub';
 import { generateStub } from './helpers/generateStub';
+import { isBlockArrayClass } from '../guards/isBlockArrayClass';
+import { isBlockClass } from '../guards/isBlockClass';
 
-// Нельзя создавать экземпляр данного класса
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class Block<P extends BlockType = any> {
   static EVENTS = EventEnum;
@@ -22,8 +26,7 @@ export abstract class Block<P extends BlockType = any> {
 
   protected props: P;
 
-  // eslint-disable-next-line no-use-before-define
-  public children: Record<string, Block | Block[]>;
+  public children: ChildrenType;
 
   protected eventBus: () => EventBus<ListenersType<P>>;
 
@@ -97,19 +100,15 @@ export abstract class Block<P extends BlockType = any> {
 
   private _getChildren(properties: P): {
     props: P;
-    children: Record<string, Block | Block[]>;
+    children: ChildrenType;
   } {
-    const children: Record<string, Block | Block[]> = {};
+    const children: ChildrenType = {};
     const props: Record<string, unknown> = {};
 
     Object.entries(properties).forEach(([key, value]) => {
-      if (
-        Array.isArray(value)
-        && value.length > 0
-        && value.every((v) => v instanceof Block)
-      ) {
-        children[key] = value as Block[];
-      } else if (value instanceof Block) {
+      if (isBlockArrayClass(value)) {
+        children[key] = value;
+      } else if (isBlockClass(value)) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -141,8 +140,6 @@ export abstract class Block<P extends BlockType = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   private _componentDidUpdate(oldProps: P, newProps: P): void {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
@@ -170,10 +167,6 @@ export abstract class Block<P extends BlockType = any> {
 
   private _render(): void {
     const block = this.render();
-    // Это небезопасный метод для упрощения логики
-    // Используйте шаблонизатор из npm или напишите свой безопасный
-    // Нужно компилировать не в строку (или делать это правильно),
-    // либо сразу превращать в DOM-элементы и возвращать из compile DOM-ноду
 
     if (this._element && block) {
       this._element.replaceWith(block);
@@ -182,7 +175,6 @@ export abstract class Block<P extends BlockType = any> {
     this._element = block;
   }
 
-  // Переопределяется пользователем. Необходимо вернуть разметку
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
