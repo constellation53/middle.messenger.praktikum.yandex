@@ -64,6 +64,7 @@
 
   .counter {
     display: flex;
+    box-sizing: border-box;
     align-items: center;
     align-self: flex-end;
     justify-content: center;
