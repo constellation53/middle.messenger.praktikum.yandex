@@ -1,9 +1,11 @@
 // Infrastructure
 import { nanoid } from 'nanoid';
+import { TemplateDelegate } from 'handlebars';
 import { EventBus } from '../eventBus';
 
 // Other
 import {
+  BlockEventBusType,
   BlockType,
   ChildrenType,
   EventEnum,
@@ -13,8 +15,8 @@ import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
 import { replaceStubs } from './helpers/replaceStub';
 import { generateStub } from './helpers/generateStub';
-import { isBlockArrayClass } from '../guards/isBlockArrayClass';
-import { isBlockClass } from '../guards/isBlockClass';
+import { divideProperties } from './helpers/divideProperties';
+import { makePropsProxy } from './helpers/makePropsProxy';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class Block<P extends BlockType = any> {
@@ -28,14 +30,14 @@ export abstract class Block<P extends BlockType = any> {
 
   public children: ChildrenType;
 
-  protected eventBus: () => EventBus<ListenersType<P>>;
+  protected eventBus: BlockEventBusType<P>;
 
   protected constructor(properties?: P) {
     const eventBus = new EventBus();
 
-    const { children, props } = this._getChildren(properties || ({} as P));
+    const { children, props } = divideProperties<P>(properties || ({} as P));
 
-    this.props = this._makePropsProxy({ ...props, id: this.id });
+    this.props = makePropsProxy({ ...props, id: this.id }, this.eventBus);
     this.children = children;
 
     this.eventBus = (): EventBus<ListenersType<P>> => eventBus;
@@ -43,43 +45,6 @@ export abstract class Block<P extends BlockType = any> {
     this._registerEvents(eventBus);
 
     eventBus.emit(Block.EVENTS.INIT);
-  }
-
-  compile(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    template: (context: any) => string,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    context: BlockType = {},
-  ): HTMLElement {
-    const contextAndStubs = generateStub(context, this.children);
-
-    const fragment = document.createElement('template');
-
-    fragment.innerHTML = template(contextAndStubs);
-
-    replaceStubs(fragment, this.children);
-
-    if (contextAndStubs.events) {
-      removeEvents(
-        <HTMLElement>fragment.content.firstElementChild,
-        contextAndStubs.events,
-      );
-    }
-
-    if (contextAndStubs.events) {
-      addEvents(
-        <HTMLElement>fragment.content.firstElementChild,
-        contextAndStubs.events,
-      );
-    }
-
-    const element = <HTMLElement>fragment.content.firstElementChild;
-
-    if (context.settings?.withInternalID) {
-      element.setAttribute('data-id', this.id);
-    }
-
-    return <HTMLElement>fragment.content.firstElementChild;
   }
 
   private _registerEvents(eventBus: EventBus<ListenersType<P>>): void {
@@ -97,29 +62,6 @@ export abstract class Block<P extends BlockType = any> {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   protected init(): void {}
-
-  private _getChildren(properties: P): {
-    props: P;
-    children: ChildrenType;
-  } {
-    const children: ChildrenType = {};
-    const props: Record<string, unknown> = {};
-
-    Object.entries(properties).forEach(([key, value]) => {
-      if (isBlockArrayClass(value)) {
-        children[key] = value;
-      } else if (isBlockClass(value)) {
-        children[key] = value;
-      } else {
-        props[key] = value;
-      }
-    });
-
-    return {
-      props: props as P,
-      children,
-    };
-  }
 
   private _componentDidMount(): void {
     this.componentDidMount();
@@ -180,28 +122,43 @@ export abstract class Block<P extends BlockType = any> {
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
   protected render(): HTMLElement {}
 
-  public getContent(): HTMLElement | null {
-    return this.element;
+  compile(
+    template: TemplateDelegate,
+    context: BlockType = {},
+  ): HTMLElement {
+    const contextAndStubs = generateStub(context, this.children);
+
+    const fragment = document.createElement('template');
+
+    fragment.innerHTML = template(contextAndStubs);
+
+    replaceStubs(fragment, this.children);
+
+    if (contextAndStubs.events) {
+      removeEvents(
+        <HTMLElement>fragment.content.firstElementChild,
+        contextAndStubs.events,
+      );
+    }
+
+    if (contextAndStubs.events) {
+      addEvents(
+        <HTMLElement>fragment.content.firstElementChild,
+        contextAndStubs.events,
+      );
+    }
+
+    const element = <HTMLElement>fragment.content.firstElementChild;
+
+    if (context.settings?.withInternalID) {
+      element.setAttribute('data-id', this.id);
+    }
+
+    return <HTMLElement>fragment.content.firstElementChild;
   }
 
-  private _makePropsProxy(props: P): P {
-    return new Proxy(props, {
-      get: (target, property: string): P[string] => {
-        const isFunction = typeof target[property] === 'function';
-
-        return isFunction ? target[property].bind(this) : target[property];
-      },
-      set: (target, property: string, value): boolean => {
-        const old = { ...target };
-
-        // eslint-disable-next-line no-param-reassign
-        target[property as keyof P] = value;
-
-        this.eventBus().emit(EventEnum.FLOW_CDU, old, target);
-
-        return true;
-      },
-    });
+  public getContent(): HTMLElement | null {
+    return this.element;
   }
 
   public show(): void {

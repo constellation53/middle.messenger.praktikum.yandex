@@ -1,4 +1,5 @@
 import Block from '../index';
+import { EventBus } from '../../eventBus';
 
 export enum EventEnum {
   INIT = 'init',
@@ -36,6 +37,8 @@ export type CoreBlockType<T> = T & {
 };
 
 export type ChildrenType = Record<string, Block | Block[]>;
+
+export type BlockEventBusType<P> = () => EventBus<ListenersType<P>>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type BlockType = CoreBlockType<Record<string, any>>;
