@@ -1,13 +1,15 @@
-<section data-attr="chat" class="{{ styles.chatList }}">
+<aside data-attr="chat" class="{{ styles.chatList }}">
   <div class="{{ styles.linkWrapper }}">
     {{{ link }}}
   </div>
   <div class="{{ styles.searchWrapper }}">
     {{{ search }}}
   </div>
-  <div class="{{ styles.listWrapper }}">
+  <ul class="{{ styles.listWrapper }}">
     {{#each list}}
-      {{{this}}}
+      <li>
+        {{{this}}}
+      </li>
     {{/each}}
-  </div>
-</section>
+  </ul>
+</aside>
