@@ -1,4 +1,4 @@
-// Infrastructure
+// Core
 import Block from '../index';
 
 // Other

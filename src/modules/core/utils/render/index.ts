@@ -1,4 +1,4 @@
-// Infrastructure
+// Core
 import Block from '../block';
 
 export const render = (query: string, block: Block): Element | null => {

@@ -1,4 +1,4 @@
-// Infrastructure
+// Core
 import { nanoid } from 'nanoid';
 import { TemplateDelegate } from 'handlebars';
 import { EventBus } from '../eventBus';
