@@ -1,11 +1,13 @@
-<section class="{{ styles.chatList }}">
+<section data-attr="chat" class="{{ styles.chatList }}">
   <div class="{{ styles.linkWrapper }}">
     {{{ link }}}
   </div>
   <div class="{{ styles.searchWrapper }}">
     {{{ search }}}
   </div>
-  {{#each list}}
-    {{{this}}}
-  {{/each}}
+  <div class="{{ styles.listWrapper }}">
+    {{#each list}}
+      {{{this}}}
+    {{/each}}
+  </div>
 </section>

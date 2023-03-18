@@ -2,7 +2,6 @@
   @import '../../../../../assets/styles/extensions';
   @import './palette';
 
-  height: 100%;
   background: $backgroundColor;
 
   .link {
@@ -16,6 +15,19 @@
       content: '';
       position: absolute;
       background-image: url('../../../../../assets/images/rightShoulderLoop.svg');
+    }
+  }
+
+  .listWrapper {
+    overflow-y: auto;
+    background: $backgroundColor;
+
+    &::-webkit-scrollbar-track {
+      background: $scrollTrackDefaultColor;
+    }
+
+    &:hover::-webkit-scrollbar-track {
+      background: $scrollHoverColor;
     }
   }
 

@@ -12,6 +12,7 @@ import { ChatItemComponent } from './chatItem';
 // Other
 import * as styles from './styles/index.module.scss';
 import { ChatItemType } from './types';
+import { isBlockArrayClass } from '../../../core/utils/guards/isBlockClass';
 
 const chats: ChatItemType[] = [
   {
@@ -180,11 +181,7 @@ export class ChatListComponent extends Block {
   prepareList(list: ChatItemType[]): Block<ChatItemType>[] {
     return list.map(
       ({
-        title,
-        id,
-        avatar,
-        unreadCount,
-        lastMessage,
+        title, id, avatar, unreadCount, lastMessage,
       }) => new ChatItemComponent({
         title,
         id,
@@ -199,6 +196,22 @@ export class ChatListComponent extends Block {
     this.children.link = new LinkComponent();
     this.children.search = new SearchFormComponent();
     this.children.list = this.prepareList(chats);
+  }
+
+  componentDidMount(): void {
+    const root = this.getContent();
+
+    const lastChatItem = isBlockArrayClass(this.children.list)
+      ? this.children.list.at(-1)!.getContent()
+      : null;
+
+    const observer = new IntersectionObserver((([{ intersectionRatio }]) => {
+      root?.classList.toggle(styles.overflow, intersectionRatio < 1);
+    }), { root });
+
+    if (lastChatItem) {
+      observer.observe(lastChatItem);
+    }
   }
 
   render(): HTMLElement {

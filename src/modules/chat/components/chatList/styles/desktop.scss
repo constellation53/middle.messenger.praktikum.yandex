@@ -1,10 +1,14 @@
 & {
-  padding: px(20) px(10) 0;
-  overflow-y: auto;
+  $height: px(93);
+
+  height: calc(100% - #{px(20)});
+  padding: px(20) 0 0;
   border-right: px(1) solid $borderColor;
+
 
   .linkWrapper {
     margin-bottom: px(25);
+    padding: 0 px(10);
   }
 
   .link {
@@ -20,6 +24,30 @@
 
   .searchWrapper {
     margin-bottom: px(14);
+    padding: 0 px(10);
+  }
+
+  .listWrapper {
+    height: calc(100% - #{$height});
+
+    &:hover::-webkit-scrollbar-track {
+      border: px(2) solid $backgroundColor;
+      border-radius: px(17);
+    }
+
+    &::-webkit-scrollbar {
+      width: px(10);
+    }
+
+    &::-webkit-scrollbar-track {
+      border: px(2) solid $backgroundColor;
+      border-radius: px(17);
+      background: $scrollTrackDefaultColor;
+    }
+  }
+
+  &:not(.overflow) .listWrapper {
+    padding-right: px(10);
   }
 
   .content {
