@@ -1,3 +1,6 @@
+// Core
+import Block from '../../core/utils/block';
+
 // Templates
 import template from './index.hbs';
 
@@ -6,7 +9,6 @@ import { Input } from '../../core/elements/input';
 import { Button } from '../../core/elements/button';
 
 // Other
-import Block from '../../core/utils/block';
 import * as styles from './styles/index.module.scss';
 import { routes } from '../../core/config';
 
