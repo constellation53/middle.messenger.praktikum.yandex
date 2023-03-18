@@ -1,4 +1,4 @@
-// Infrastructure
+// Core
 import Block from '../../../core/utils/block';
 
 // Elements
