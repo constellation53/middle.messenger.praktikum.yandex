@@ -55,7 +55,7 @@
     align-self: flex-start;
     color: $lastMessageColor;
 
-    @include hideTextWithEllipsis(1)
+    @include hideTextWithEllipsis(2)
   }
 
   .time {
