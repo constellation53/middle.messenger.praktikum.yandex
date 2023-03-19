@@ -5,5 +5,17 @@
         Выберите чат чтобы отправить сообщение
       </p>
     </div>
+  {{ else }}
+    <div>
+      {{{ header }}}
+      <ul class="{{ styles.messages }}">
+        {{#each list}}
+          <li>
+            {{{this}}}
+          </li>
+        {{/each}}
+      </ul>
+      {{{ messageForm }}}
+    </div>
   {{/if}}
 </section>

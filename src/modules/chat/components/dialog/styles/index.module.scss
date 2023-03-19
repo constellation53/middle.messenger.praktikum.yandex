@@ -5,7 +5,8 @@
   background: $backgroundColor;
 
   &,
-  .stub {
+  .stub,
+  .messages {
     height: 100%;
   }
 
@@ -17,6 +18,19 @@
 
   .chooseChat {
     color: $stubColor;
+  }
+
+  .messages {
+    display: grid;
+  }
+
+  .textMessage {
+    box-sizing: border-box;
+    background: $grayMessageBackgroundColor;
+  }
+
+  .textMessage .content {
+    white-space: pre-line;
   }
 
 

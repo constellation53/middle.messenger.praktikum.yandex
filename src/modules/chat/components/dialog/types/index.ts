@@ -1,3 +1,15 @@
+import Block from '../../../../core/utils/block';
+
+export type MessagesType = {
+  list: Block[];
+};
+
+export type TextMessageType = {
+  content: string;
+  time: string;
+  fullTime: string;
+};
+
 type UserType = {
   firstName: string;
   secondName: string;
@@ -7,7 +19,7 @@ type UserType = {
   phone: string;
 };
 
-export type ChatItemType = {
+export type MessageItemType = {
   id: number;
   title: string;
   avatar: string | null;
