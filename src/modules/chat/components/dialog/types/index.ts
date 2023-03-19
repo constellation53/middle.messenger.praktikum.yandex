@@ -4,10 +4,11 @@ export type MessagesType = {
   list: Block[];
 };
 
-export type TextMessageType = {
+export type MessageType = {
   content: string;
   time: string;
   fullTime: string;
+  isImage: boolean;
 };
 
 type UserType = {

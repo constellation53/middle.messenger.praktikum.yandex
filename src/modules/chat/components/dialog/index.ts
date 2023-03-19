@@ -7,8 +7,10 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { MessageItemType } from '../chatList/types';
-import { TextMessageType } from './types';
-import { TextMessageComponent } from './textMessage';
+import { MessageType } from './types';
+import { MessageComponent } from './message';
+import { isImage } from './utils/isImage';
+import image from '../../../../assets/images/message.jpg';
 
 const messages: MessageItemType[] = [
   {
@@ -52,7 +54,9 @@ const messages: MessageItemType[] = [
         phone: '8(911)-222-33-22',
       },
       time: '12:00',
-      content: 'Cтикер',
+      content: 'https://randompicturegenerator.com/img/'
+        + 'cat-generator/g42f0c7f455898d8c885774bc78dbe661706bf5d87d59c'
+        + 'da41ed00cff967dc44d61a7274d5c00c5caed5404e7cd1f3220_640.jpg',
     },
   },
 ];
@@ -62,14 +66,17 @@ export class DialogComponent extends Block {
     super();
   }
 
-  prepareList(list: MessageItemType[]): Block<TextMessageType>[] {
+  prepareList(list: MessageItemType[]): Block<MessageType>[] {
     return list.map((
       {
         lastMessage:
         { content, time },
       },
-    ) => new TextMessageComponent({
-      content, time, fullTime: time,
+    ) => new MessageComponent({
+      content,
+      time,
+      fullTime: time,
+      isImage: isImage(content),
     }));
   }
 

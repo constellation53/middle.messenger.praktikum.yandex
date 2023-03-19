@@ -5,12 +5,12 @@ import Block from '../../../../core/utils/block';
 import template from './index.hbs';
 
 // Other
-import { TextMessageType } from '../types';
+import { MessageType } from '../types';
 import * as styles from '../styles/index.module.scss';
 
-type PropsType = TextMessageType;
+type PropsType = MessageType;
 
-export class TextMessageComponent extends Block<PropsType> {
+export class MessageComponent extends Block<PropsType> {
   constructor(props: PropsType) {
     super(props);
   }

@@ -1,0 +1,17 @@
+<div class="
+  {{ styles.message }}
+  {{#if isImage }}
+    {{ styles.image }}
+  {{/if}}
+  ">
+  <div class="{{ styles.content }} text size-9">
+    {{#if isImage }}
+      <img class="{{ styles.imageContent }}" src="{{ content }}" loading="lazy" />
+    {{else}}
+      {{ content }}
+    {{/if}}
+  </div>
+  <time class="{{ styles.time }} text size-14" datetime="{{ fullTime }}">
+    {{ time }}
+  </time>
+</div>
