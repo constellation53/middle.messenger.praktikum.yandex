@@ -49,23 +49,36 @@
   }
 
   .time {
-    position: absolute;
     color: $textMessageTextColor;
   }
 
+  .text .time {
+    display: block;
+    width: min-content;
+    margin-left: auto;
+  }
+
   .image .time {
+    position: absolute;
     background: $imageMessageTimeBackgroundColor;
     color: $imageMessageTimeColor;
   }
 
-  .message.isMy {
-
+  .isMy {
     align-self: center;
     margin-left: auto;
     background-color: $myMessageBackgroundColor;
   }
 
-  .message.isMy .time::after {
+  .isMy .time {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    width: min-content;
+    margin-left: auto;
+  }
+
+  .isMy .time::after {
     content: '';
     position: absolute;
     background-image: url('../../../../../assets/images/ticks.svg');

@@ -15,23 +15,28 @@
   }
 
   .time {
-    right: px(11);
-    bottom:  px(11);
+    margin-top: px(5);
   }
 
   .image .time {
+    right: px(11);
+    bottom:  px(11);
     padding: px(2) px(7);
     border-radius: px(30)
   }
 
-  .message.isMy {
-    padding-right: px(63);
-  }
-
-  .message.isMy .time::after {
+  .isMy .time::after {
     top: px(3);
-    left: px(-15);
+    right: px(30);
     width: px(10);
     height: px(4);
+  }
+
+  .oneLine  {
+    display: flex;
+  }
+
+  .oneLine .content {
+    padding-right: px(28);
   }
 }

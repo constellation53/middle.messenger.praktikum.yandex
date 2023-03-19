@@ -2,9 +2,10 @@
   {{ styles.message }}
   {{#if isMy }}
     {{ styles.isMy }}
-  {{/if}}
-  {{#if isImage }}
+  {{else if isImage }}
     {{ styles.image }}
+  {{ else }}
+    {{ styles.text }}
   {{/if}}
   ">
   <div class="{{ styles.content }} text size-9">
