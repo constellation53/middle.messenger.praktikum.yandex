@@ -1,7 +1,6 @@
 & {
-  $height: px(83);
+  $height: px(103);
 
-  height: calc(100% - #{px(20)});
   padding: px(20) 0 0;
   border-right: px(1) solid $borderColor;
 
@@ -28,7 +27,7 @@
   }
 
   .listWrapper {
-    height: calc(100% - #{$height});
+    height: calc(100vh - #{$height});
 
     &::-webkit-scrollbar {
       width: px(10);

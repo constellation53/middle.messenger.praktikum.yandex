@@ -7,7 +7,7 @@ type UserType = {
   phone: string;
 };
 
-export type MessageItemType = {
+export type ChatItemType = {
   id: number;
   title: string;
   avatar: string | null;
