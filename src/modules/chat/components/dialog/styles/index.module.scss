@@ -4,6 +4,25 @@
 
   background: $backgroundColor;
 
+  .headerWrapper {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    justify-content: space-between;
+  }
+
+  .user {
+    display: grid;
+    grid-template-columns: min-content min-content;
+    align-items: center;
+  }
+
+  .hamburger {
+    align-self: center;
+    background-image: url('../../../../../assets/images/hamburger.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   .stub {
     display: flex;
     align-items: center;
@@ -26,7 +45,6 @@
     width: fit-content;
     background: $textMessageBackgroundColor;
   }
-
 
   .message.image {
     display: flex;

@@ -10,6 +10,7 @@ import { MessageItemType, MessageType } from './types';
 
 import { MessageComponent } from './message';
 import { isImage } from './utils/isImage';
+import { HeaderComponent } from './header';
 
 const messages: MessageItemType[] = [
   {
@@ -101,6 +102,7 @@ export class DialogComponent extends Block {
   }
 
   init(): void {
+    this.children.header = new HeaderComponent();
     this.children.list = this.prepareList(messages);
     console.log(this.children.list);
   }

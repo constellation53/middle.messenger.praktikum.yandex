@@ -1,4 +1,26 @@
 & {
+  .header {
+    padding: px(10) px(20) 0;
+  }
+
+  .headerWrapper {
+    margin-bottom: px(10);
+  }
+
+  .user {
+    gap: px(10);
+  }
+
+  .hamburger {
+    width: px(25);
+    height: px(25);
+    cursor: pointer;
+
+    &:focus {
+      @include focusOutline($outlineColor, #{px(1)});
+    }
+  }
+
   .messages {
     padding: px(48) px(20) px(30);
     gap: px(10);
