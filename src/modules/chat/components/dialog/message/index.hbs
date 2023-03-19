@@ -1,15 +1,18 @@
 <div class="
   {{ styles.message }}
+  {{#if isMy }}
+    {{ styles.isMy }}
+  {{/if}}
   {{#if isImage }}
     {{ styles.image }}
   {{/if}}
   ">
   <div class="{{ styles.content }} text size-9">
-    {{#if isImage }}
+    {{~#if isImage }}
       <img class="{{ styles.imageContent }}" src="{{ content }}" loading="lazy" />
     {{else}}
-      {{ content }}
-    {{/if}}
+      {{~content~}}
+    {{~/if}}
   </div>
   <time class="{{ styles.time }} text size-14" datetime="{{ fullTime }}">
     {{ time }}

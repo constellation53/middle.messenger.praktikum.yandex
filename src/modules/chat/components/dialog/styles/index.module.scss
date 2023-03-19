@@ -4,15 +4,11 @@
 
   background: $backgroundColor;
 
-  .stub,
-  .messages {
-    height: 100%;
-  }
-
   .stub {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
   }
 
   .chooseChat {
@@ -60,6 +56,20 @@
   .image .time {
     background: $imageMessageTimeBackgroundColor;
     color: $imageMessageTimeColor;
+  }
+
+  .message.isMy {
+
+    align-self: center;
+    margin-left: auto;
+    background-color: $myMessageBackgroundColor;
+  }
+
+  .message.isMy .time::after {
+    content: '';
+    position: absolute;
+    background-image: url('../../../../../assets/images/ticks.svg');
+    background-repeat: no-repeat;
   }
 
 

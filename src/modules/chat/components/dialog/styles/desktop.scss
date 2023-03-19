@@ -23,4 +23,15 @@
     padding: px(2) px(7);
     border-radius: px(30)
   }
+
+  .message.isMy {
+    padding-right: px(63);
+  }
+
+  .message.isMy .time::after {
+    top: px(3);
+    left: px(-15);
+    width: px(10);
+    height: px(4);
+  }
 }

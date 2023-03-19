@@ -58,6 +58,24 @@ const messages: MessageItemType[] = [
         + 'da41ed00cff967dc44d61a7274d5c00c5caed5404e7cd1f3220_640.jpg',
     },
   },
+  {
+    id: 123,
+    title: 'Андрей',
+    avatar: null,
+    unreadCount: 15,
+    lastMessage: {
+      user: {
+        firstName: 'Андрей',
+        secondName: 'Pupkin',
+        avatar: null,
+        email: 'nurzhan@email.com',
+        login: 'userLogin',
+        phone: '8(911)-222-33-22',
+      },
+      time: '12:00',
+      content: 'Круто!',
+    },
+  },
 ];
 
 export class DialogComponent extends Block {
@@ -69,13 +87,16 @@ export class DialogComponent extends Block {
     return list.map((
       {
         lastMessage:
-        { content, time },
+        {
+          content, time, user,
+        },
       },
     ) => new MessageComponent({
       content,
       time,
       fullTime: time,
       isImage: isImage(content),
+      isMy: user.email === 'nurzhan@email.com',
     }));
   }
 

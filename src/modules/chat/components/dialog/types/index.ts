@@ -9,6 +9,7 @@ export type MessageType = {
   time: string;
   fullTime: string;
   isImage: boolean;
+  isMy: boolean;
 };
 
 type UserType = {
