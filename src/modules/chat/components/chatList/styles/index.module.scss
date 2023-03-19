@@ -7,6 +7,11 @@
   overflow: hidden;
   background: $backgroundColor;
 
+  .linkWrapper {
+    width: min-content;
+    margin-left: auto;
+  }
+
   .link {
     display: flex;
     position: relative;

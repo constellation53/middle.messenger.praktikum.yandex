@@ -48,6 +48,10 @@
     padding: 0 px(10);
   }
 
+  .chatItem:focus {
+    @include focusOutline($outlineColor, #{px(1)});
+  }
+
   .content {
     margin: px(2) 0;
     padding: px(10);
