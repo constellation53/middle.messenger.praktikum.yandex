@@ -22,15 +22,22 @@
 
   .messages {
     display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(0, max-content));
   }
 
   .textMessage {
+    position: relative;
     box-sizing: border-box;
     background: $grayMessageBackgroundColor;
   }
 
   .textMessage .content {
     white-space: pre-line;
+  }
+
+  .time {
+    position: absolute;
+    color: $grayMessageTextColor;
   }
 
 
