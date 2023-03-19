@@ -85,6 +85,9 @@
     background-repeat: no-repeat;
   }
 
+  .oneLine  {
+    display: flex;
+  }
 
   @function px($px) {
     @return pxMedia($px, phonePortrait);
