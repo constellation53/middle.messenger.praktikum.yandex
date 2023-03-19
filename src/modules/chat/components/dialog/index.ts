@@ -6,11 +6,10 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { MessageItemType } from '../chatList/types';
-import { MessageType } from './types';
+import { MessageItemType, MessageType } from './types';
+
 import { MessageComponent } from './message';
 import { isImage } from './utils/isImage';
-import image from '../../../../assets/images/message.jpg';
 
 const messages: MessageItemType[] = [
   {
