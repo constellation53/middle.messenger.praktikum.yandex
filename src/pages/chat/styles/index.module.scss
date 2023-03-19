@@ -2,6 +2,10 @@
   @import '../../../assets/styles/extensions';
   @import './palette';
 
+  &,
+  .chatWrapper {
+    height: 100%;
+  }
 
   @function px($px) {
     @return pxMedia($px, phonePortrait);

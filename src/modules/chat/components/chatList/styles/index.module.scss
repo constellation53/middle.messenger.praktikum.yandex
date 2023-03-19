@@ -2,6 +2,9 @@
   @import '../../../../../assets/styles/extensions';
   @import './palette';
 
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
   background: $backgroundColor;
 
   .link {
