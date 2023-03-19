@@ -13,6 +13,7 @@ import { ChatItemComponent } from './chatItem';
 import * as styles from './styles/index.module.scss';
 import { ChatItemType } from './types';
 import { isBlockArrayClass } from '../../../core/utils/guards/isBlockArrayClass';
+import { Divider } from '../../../core/elements/divider';
 
 const chats: ChatItemType[] = [
   {
@@ -352,6 +353,7 @@ export class ChatListComponent extends Block {
     this.children.link = new LinkComponent();
     this.children.search = new SearchFormComponent();
     this.children.list = this.prepareList(chats);
+    this.children.divider = new Divider();
   }
 
   componentDidMount(): void {
