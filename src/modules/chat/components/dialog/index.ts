@@ -11,7 +11,7 @@ import { MessageFormComponent } from './messageForm';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { MessageItemType, MessageType } from './types';
+import { DialogType, MessageItemType, MessageType } from './types';
 import { isImage } from './utils/isImage';
 
 const messages: MessageItemType[] = [
@@ -81,9 +81,11 @@ const messages: MessageItemType[] = [
   },
 ];
 
-export class DialogComponent extends Block {
-  constructor() {
-    super();
+type PropsType = DialogType;
+
+export class DialogComponent extends Block<PropsType> {
+  constructor(props: PropsType) {
+    super(props);
   }
 
   prepareList(list: MessageItemType[]): Block<MessageType>[] {
@@ -105,11 +107,11 @@ export class DialogComponent extends Block {
 
   init(): void {
     this.children.header = new HeaderComponent();
-    this.children.list = this.prepareList(messages);
+    this.children.list = this.props.isEmpty ? [] : this.prepareList(messages);
     this.children.footer = new MessageFormComponent();
   }
 
   render(): HTMLElement {
-    return this.compile(template, { styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }

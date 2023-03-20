@@ -32,3 +32,7 @@ export type MessageItemType = {
 export type MessageFormType = {
   disabled?: boolean;
 };
+
+export type DialogType = {
+  isEmpty?: boolean;
+};
