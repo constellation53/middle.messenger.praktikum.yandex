@@ -23,13 +23,17 @@
 
   .messages {
     padding: px(48) px(20) px(30);
-    gap: px(10);
   }
 
   .message {
     max-width: px(402);
+    margin-bottom: px(10);
     padding: px(11);
     border-radius: px(10);
+  }
+
+  .message:last-of-type {
+    margin-bottom: 0;
   }
 
   .message.image {

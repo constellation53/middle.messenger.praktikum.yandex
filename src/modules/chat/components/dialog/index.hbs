@@ -8,13 +8,11 @@
   {{ else }}
     <div class="{{ styles.contentWrapper }}">
       {{{ header }}}
-      <ul class="{{ styles.messages }}">
+      <div class="{{ styles.messages }}">
         {{#each list}}
-          <li>
-            {{{this}}}
-          </li>
+          {{{this}}}
         {{/each}}
-      </ul>
+      </div>
       {{{ footer }}}
     </div>
   {{/if}}
