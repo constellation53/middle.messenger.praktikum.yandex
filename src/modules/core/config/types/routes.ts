@@ -2,6 +2,7 @@ export type RouteNameType =
   | 'signIn'
   | 'signUp'
   | 'chat'
+  | 'emptyChat'
   | 'notFound'
   | 'internalError'
   | 'profile'

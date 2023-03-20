@@ -13,6 +13,10 @@ export const routes: RoutesConfigType = {
     name: 'chat',
     path: '/pages/chat',
   },
+  emptyChat: {
+    name: 'emptyChat',
+    path: '/pages/emptyChat',
+  },
   notFound: {
     name: 'notFound',
     path: '/pages/notFound',
