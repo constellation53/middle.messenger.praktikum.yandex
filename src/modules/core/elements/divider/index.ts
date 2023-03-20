@@ -1,5 +1,5 @@
 // Core
-import Block from '../../utils/block';
+import { Block } from '../../utils/block';
 
 // Templates
 import template from './index.hbs';
