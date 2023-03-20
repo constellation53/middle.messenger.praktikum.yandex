@@ -1,5 +1,5 @@
 // Core
-import Block from '../../modules/core/utils/block';
+import { Block } from '../../modules/core/utils/block';
 
 // Elements
 import { Avatar } from '../../modules/core/elements/avatar';
