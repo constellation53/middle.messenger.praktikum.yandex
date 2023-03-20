@@ -170,5 +170,3 @@ export abstract class Block<P extends BlockType = any> {
     this.getContent()!.style.display = 'none';
   }
 }
-
-export default Block;
