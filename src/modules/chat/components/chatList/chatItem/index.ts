@@ -1,5 +1,5 @@
 // Core
-import Block from '../../../../core/utils/block';
+import { Block } from '../../../../core/utils/block';
 
 // Elements
 import { Divider } from '../../../../core/elements/divider';

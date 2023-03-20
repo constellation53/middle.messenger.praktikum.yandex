@@ -1,5 +1,5 @@
 // Core
-import Block from '../../../../core/utils/block';
+import { Block } from '../../../../core/utils/block';
 
 // Elements
 import { Search } from '../../../../core/elements/search';
