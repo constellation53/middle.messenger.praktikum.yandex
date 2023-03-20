@@ -8,13 +8,18 @@
        <h4 class="{{ styles.title }} text size-7">
          {{ title }}
        </h4>
-       <time class="{{ styles.time }} text size-13" datetime="{{ fullTime }}">
+       <time class="{{ styles.time }} text size-13 font-weight-500" datetime="{{ fullTime }}">
          {{ lastMessage.time }}
        </time>
      </div>
      <div class="{{ styles.subtitle }}">
-       <div class="{{ styles.lastMessage }} text size-9">
-         {{ lastMessage.content }}
+       <div class="{{ styles.lastMessage }} text size-9 font-weight-500">
+         {{#if isMy }}
+            <span class="{{ styles.postfix }}">Вы: </span>
+           {{ lastMessage.content }}
+           {{else}}
+            {{ lastMessage.content }}
+         {{/if}}
        </div>
        {{#if unreadCount}}
          <p class="{{ styles.counter }} text size-11">

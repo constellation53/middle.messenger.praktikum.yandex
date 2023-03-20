@@ -99,6 +99,10 @@
     color: $counterColor;
   }
 
+  .postfix {
+    color: $postfixColor
+  }
+
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }

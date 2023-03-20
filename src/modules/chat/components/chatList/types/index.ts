@@ -17,4 +17,5 @@ export type ChatItemType = {
     time: string
     content: string
   }
+  isMy: boolean;
 };

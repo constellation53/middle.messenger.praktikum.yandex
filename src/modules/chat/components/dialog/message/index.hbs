@@ -12,7 +12,9 @@
     {{~#if isImage }}
       <img class="{{ styles.imageContent }}" src="{{ content }}" loading="lazy" />
     {{else}}
-      {{~content~}}
+      <div class="text font-weight-500">
+        {{~content~}}
+      </div>
     {{~/if}}
   </div>
   <time class="{{ styles.time }} text size-14" datetime="{{ fullTime }}">
