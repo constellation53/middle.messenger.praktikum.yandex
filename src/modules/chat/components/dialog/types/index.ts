@@ -1,9 +1,3 @@
-import Block from '../../../../core/utils/block';
-
-export type MessagesType = {
-  list: Block[];
-};
-
 export type MessageType = {
   content: string;
   time: string;
@@ -21,14 +15,20 @@ type UserType = {
   phone: string;
 };
 
+type LastMessageType = {
+  user: UserType
+  time: string
+  content: string
+};
+
 export type MessageItemType = {
   id: number;
   title: string;
   avatar: string | null;
   unreadCount: number | null;
-  lastMessage: {
-    user: UserType
-    time: string
-    content: string
-  }
+  lastMessage: LastMessageType;
+};
+
+export type MessageFormType = {
+  disabled?: boolean;
 };

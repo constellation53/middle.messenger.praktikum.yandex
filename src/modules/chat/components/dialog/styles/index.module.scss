@@ -34,9 +34,16 @@
     color: $stubColor;
   }
 
+  .contentWrapper {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    height: 100%;
+  }
+
   .messages {
     display: grid;
     grid-template-rows: repeat(auto-fit, minmax(0, max-content));
+    max-height: max-content;
   }
 
   .message {
@@ -105,6 +112,25 @@
 
   .oneLine  {
     display: flex;
+  }
+
+  .messageFormWrapper {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    align-items: center;
+  }
+
+  .attachMedia {
+    background-image: url('../../../../../assets/images/clip.svg');
+  }
+
+  .sendMessageInput {
+    border: 0;
+    background: $inputBackgroundColor;
+  }
+
+  .sendMessageButton {
+    background-image: url('../../../../../assets/images/arrowRight.svg');
   }
 
   @function px($px) {

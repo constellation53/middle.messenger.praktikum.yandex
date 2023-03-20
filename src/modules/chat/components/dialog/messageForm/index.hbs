@@ -1,0 +1,19 @@
+<form class="{{ styles.messageForm }}">
+  {{{ divider }}}
+  <div class="{{ styles.messageFormWrapper }}">
+    <button class="{{ styles.attachMedia }}" aria-label="attach media"></button>
+    <input
+      class="{{ styles.sendMessageInput }} text size-10"
+      id="message"
+      name="message"
+      type="text"
+      placeholder="Сообщение"
+    />
+    <button
+      type="submit"
+      class="{{ styles.sendMessageButton }}"
+      aria-label="send message"
+    >
+    </button>
+  </div>
+</form>

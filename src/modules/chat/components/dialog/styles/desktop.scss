@@ -57,4 +57,28 @@
   .oneLine .content {
     padding-right: px(28);
   }
+
+  .messageForm {
+    padding: 0 px(20) px(11);
+  }
+
+  .messageFormWrapper {
+    margin-top: px(11);
+    gap: px(10)
+  }
+
+  .attachMedia {
+    width: px(32);
+    height: px(32);
+  }
+
+  .sendMessageInput {
+    padding: px(10) px(20);
+    border-radius: px(30);
+  }
+
+  .sendMessageButton {
+    width: px(28);
+    height: px(28)
+  }
 }

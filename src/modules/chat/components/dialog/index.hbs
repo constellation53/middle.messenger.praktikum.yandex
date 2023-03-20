@@ -6,7 +6,7 @@
       </p>
     </div>
   {{ else }}
-    <div>
+    <div class="{{ styles.contentWrapper }}">
       {{{ header }}}
       <ul class="{{ styles.messages }}">
         {{#each list}}
@@ -15,7 +15,7 @@
           </li>
         {{/each}}
       </ul>
-      {{{ messageForm }}}
+      {{{ footer }}}
     </div>
   {{/if}}
 </section>

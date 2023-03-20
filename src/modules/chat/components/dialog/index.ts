@@ -4,13 +4,15 @@ import Block from '../../../core/utils/block';
 // Templates
 import template from './index.hbs';
 
+// Components
+import { HeaderComponent } from './header';
+import { MessageComponent } from './message';
+import { MessageFormComponent } from './messageForm';
+
 // Other
 import * as styles from './styles/index.module.scss';
 import { MessageItemType, MessageType } from './types';
-
-import { MessageComponent } from './message';
 import { isImage } from './utils/isImage';
-import { HeaderComponent } from './header';
 
 const messages: MessageItemType[] = [
   {
@@ -104,7 +106,7 @@ export class DialogComponent extends Block {
   init(): void {
     this.children.header = new HeaderComponent();
     this.children.list = this.prepareList(messages);
-    console.log(this.children.list);
+    this.children.footer = new MessageFormComponent();
   }
 
   render(): HTMLElement {
