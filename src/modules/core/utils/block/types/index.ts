@@ -1,4 +1,4 @@
-import Block from '../index';
+import { Block } from '../index';
 import { EventBus } from '../../eventBus';
 
 export enum EventEnum {

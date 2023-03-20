@@ -1,5 +1,5 @@
 // Core
-import Block from '../index';
+import { Block } from '../index';
 
 // Other
 import { BlockType } from '../types';

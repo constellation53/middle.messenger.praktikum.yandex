@@ -1,5 +1,5 @@
 // Core
-import Block from '../../block';
+import { Block } from '../../block';
 
 // Other
 import { isBlockClass } from '../isBlockClass';

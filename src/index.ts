@@ -1,5 +1,5 @@
 import { render } from './modules/core/utils/render';
-import Block from './modules/core/utils/block';
+import { Block } from './modules/core/utils/block';
 import { NavComponent } from './modules/core/components/nav';
 import { routes } from './modules/core/config/routes';
 import template from './index.hbs';
