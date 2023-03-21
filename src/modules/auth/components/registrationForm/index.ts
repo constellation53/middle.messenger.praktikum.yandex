@@ -195,7 +195,7 @@ export class RegistrationFormComponent extends Block {
       text: 'Войти',
       secondary: true,
       fluid: true,
-      href: routes.signUp.path,
+      href: routes.signIn.path,
       class: 'size-12',
     });
   }
