@@ -3,7 +3,7 @@ type VariantNameType = 'primary' | 'secondary' | 'tertiary' | 'quaternary';
 
 type VariantType = Partial<Record<VariantNameType, boolean>>;
 
-type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
+type RequireOnlyOneType<T, Keys extends keyof T = keyof T> = Pick<
   T,
   Exclude<keyof T, Keys>
 > &
@@ -22,7 +22,7 @@ type CoreType = {
   class?: string;
   fluid?: boolean;
   underline?: boolean;
-} & RequireOnlyOne<VariantType> &
+} & RequireOnlyOneType<VariantType> &
   AlignType;
 
 type LinkButtonType = CoreType & {
