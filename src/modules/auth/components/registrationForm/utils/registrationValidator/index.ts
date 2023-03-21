@@ -7,7 +7,9 @@ import { EmailValidationRule } from '../../../../utils/emailValidationRule';
 import { LoginValidationRule } from '../../../../utils/loginValidationRule';
 import { PasswordValidationRule } from '../../../../utils/passwordValidationRule';
 import { PasswordCopyValidationRule } from '../../../../utils/passwordCopyValidationRule';
-import { RequiredValidationRule } from '../../../../utils/requeiredValidationRule';
+import {
+  RequiredValidationRule,
+} from '../../../../../core/utils/validationRules/requeiredValidationRule';
 import { FieldsType } from '../../types';
 
 export class RegistrationValidator extends Validator<FieldsType> {
