@@ -10,8 +10,8 @@ export class LoginValidationRule extends ValidationRule {
   }
 
   execute(value: string): ErrorType {
-    const symbols = /^[A-Za-z][A-Za-z0-9]*$/;
-    const minChar = /^[0-9a-zA-Z]{4,}$/;
+    const symbols = /^[\w\d]+$/;
+    const minChar = /^[\w\d]{4,}$/;
 
     const rules: [RegExp, string][] = [
       [
@@ -20,7 +20,7 @@ export class LoginValidationRule extends ValidationRule {
       ],
       [
         minChar,
-        'Логин должен состоять как минимум из английских 4',
+        'Логин должен состоять как минимум из 4 символов',
       ],
     ];
 
