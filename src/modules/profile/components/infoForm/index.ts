@@ -114,7 +114,7 @@ export class InfoFormComponent extends Block<PropsType> {
   onFocus(field: FieldsType, event: FocusEvent): void {
     const target = <HTMLInputElement>event.target;
 
-    this.validator.execute(field, target);
+    this.validator.execute(field, target.value);
 
     const errors = this.validator.getErrors();
 
