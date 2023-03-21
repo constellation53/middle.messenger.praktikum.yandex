@@ -1,7 +1,8 @@
+// Other
 import { isString } from '../guards/isString';
-import { BaseGenericType, ListenersStateType } from './types';
+import { EventBusHandlerType, EventBusType, ListenersStateType } from './types';
 
-export class EventBus<T = BaseGenericType> {
+export class EventBus<T = EventBusType> {
   listeners: ListenersStateType<T>;
 
   constructor() {
@@ -30,8 +31,7 @@ export class EventBus<T = BaseGenericType> {
 
   emit = <Event extends keyof T>(
     event: Event,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...args: T[Event] extends (...args: infer A) => any ? A : never[]
+    ...args: EventBusHandlerType<T, Event>
   ): void => {
     if (isString(event) && !this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);

@@ -24,7 +24,6 @@ export type MetaType<T> = {
 export type EventHandlerType<K extends keyof HTMLElementEventMap> =
   (event: HTMLElementEventMap[K]) => void;
 
-// eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-explicit-any
 export type EventsType = {
   [Key in keyof HTMLElementEventMap]?: EventHandlerType<Key>
 };
