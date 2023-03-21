@@ -32,10 +32,6 @@
     border-radius: px(10);
   }
 
-  .message:last-of-type {
-    margin-bottom: 0;
-  }
-
   .message.image {
     border: px(1) solid var(--paletteColor10);
   }

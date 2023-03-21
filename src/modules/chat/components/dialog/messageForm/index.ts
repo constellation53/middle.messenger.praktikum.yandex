@@ -12,6 +12,7 @@ import * as styles from '../styles/index.module.scss';
 import { MessageFormType } from '../types';
 
 type PropsType = MessageFormType;
+
 export class MessageFormComponent extends Block<PropsType> {
   constructor(props: PropsType = {}) {
     super(props);

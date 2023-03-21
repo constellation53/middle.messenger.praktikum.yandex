@@ -1,3 +1,4 @@
+// Core
 import { EventHandlerType } from '../../../utils/block/types';
 
 type HtmlTypeType = 'text' | 'password' | 'file';

@@ -10,9 +10,9 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { isHTMLElement } from '../../../core/utils/guards/isHTMLElement';
 import { AvatarValidator } from './utils/avatarValidator';
 import { FormFieldsType } from './types';
+import { isBlockClass } from '../../../core/utils/guards/isBlockClass';
 
 export class AvatarFormComponent extends Block {
   protected readonly validator = new AvatarValidator();
@@ -22,9 +22,9 @@ export class AvatarFormComponent extends Block {
   }
 
   onChooseFileButtonClick(): void {
-    const ref = document.querySelector('input[type="file"]');
+    if (isBlockClass(this.children.avatarInput)) {
+      const ref = this.children.avatarInput.getContent()!;
 
-    if (isHTMLElement(ref)) {
       ref.click();
     }
   }
