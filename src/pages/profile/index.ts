@@ -18,6 +18,7 @@ import { InfoFormComponent } from '../../modules/profile/components/infoForm';
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
 import { isBlockClass } from '../../modules/core/utils/guards/isBlockClass';
+import { routes } from '../../modules/core/config';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -40,12 +41,12 @@ export class ProfilePage extends Block {
 
     this.children.profileInfoForm = new InfoFormComponent({ disabled: true });
 
-    // TODO: ADD LINKS
     this.children.changeProfileInfoButton = new Button({
       text: 'Изменить данные',
       secondary: true,
       alignLeft: true,
       fluid: true,
+      href: routes.profileEdit.path,
     });
 
     this.children.changeProfileInfoDivider = new Divider();
@@ -55,6 +56,7 @@ export class ProfilePage extends Block {
       secondary: true,
       alignLeft: true,
       fluid: true,
+      href: routes.profileEditPassword.path,
     });
 
     this.children.changeProfileePasswordDivider = new Divider();

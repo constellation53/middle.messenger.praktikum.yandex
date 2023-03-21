@@ -11,7 +11,7 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { InfoFormType, FormFieldsType } from './types';
+import { InfoFormType, FormFieldsType, FieldsType } from './types';
 import { InfoValidator } from './utils/infoValidator';
 
 type PropsType = InfoFormType;
@@ -32,26 +32,8 @@ export class InfoFormComponent extends Block<PropsType> {
       horizontal: true,
       disabled: this.props.disabled,
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('email', target);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('email', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this, 'email'),
+        blur:  this.onFocus.bind(this, 'email'),
       },
     });
 
@@ -63,26 +45,8 @@ export class InfoFormComponent extends Block<PropsType> {
       horizontal: true,
       disabled: this.props.disabled,
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('login', target);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('login', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this, 'login'),
+        blur: this.onFocus.bind(this, 'login'),
       },
     });
 
@@ -94,26 +58,8 @@ export class InfoFormComponent extends Block<PropsType> {
       horizontal: true,
       disabled: this.props.disabled,
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('first_name', target);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('first_name', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this, 'first_name'),
+        blur:this.onFocus.bind(this, 'first_name'),
       },
     });
 
@@ -134,26 +80,8 @@ export class InfoFormComponent extends Block<PropsType> {
       horizontal: true,
       disabled: this.props.disabled,
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('display_name', target);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('display_name', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this, 'display_name'),
+        blur: this.onFocus.bind(this, 'display_name'),
       },
     });
 
@@ -181,6 +109,17 @@ export class InfoFormComponent extends Block<PropsType> {
       fluid: true,
       htmlType: 'submit',
     });
+  }
+
+  onFocus(field: FieldsType, event: FocusEvent): void {
+    const target = <HTMLInputElement>event.target;
+
+    this.validator.execute(field, target);
+
+    const errors = this.validator.getErrors();
+
+    // eslint-disable-next-line no-console
+    console.log('errors => ', errors);
   }
 
   onSubmit(event: SubmitEvent): void {
