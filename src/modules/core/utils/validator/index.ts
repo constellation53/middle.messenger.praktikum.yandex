@@ -2,37 +2,40 @@
 import { ErrorType, ValidatorType } from './types';
 import { ValidatorRuleType } from '../validationRule/types';
 
-export abstract class Validator<T> implements ValidatorType<T> {
-  private validators: Map<T, ValidatorRuleType>;
+export abstract class Validator<K extends string> implements ValidatorType<K> {
+  private validators: Map<K, ValidatorRuleType>;
 
-  private errors: ErrorType[] = [];
+  public errors: Map<K, ErrorType> = new Map<K, ErrorType>();
 
-  protected constructor(validators: Map<T, ValidatorRuleType>) {
+  protected constructor(validators: Map<K, ValidatorRuleType>) {
     this.validators = validators;
+    validators.forEach((_, key) => {
+      this.errors.set(key, { error: false });
+    });
   }
 
   clear(): void {
-    this.errors = [];
+    this.errors.clear();
   }
 
-  getErrors(): ErrorType[] {
-    return this.errors;
+  getErrors(): Record<K, ErrorType> {
+    return <Record<K, ErrorType>>Object.fromEntries(this.errors);
   }
 
-  private getRule(type: T): ValidatorRuleType {
+  private getRule(type: K): ValidatorRuleType {
     const rule = this.validators.get(type);
-    if (!rule && typeof type === 'string') {
-      throw new Error(`Rule not found for type:${type?.toString()}`);
+    if (!rule) {
+      throw new Error(`Rule not found for type:${type.toString()}`);
     }
 
     return rule!;
   }
 
-  execute(type: T, ...args: any[]): void {
+  execute(type: K, ...args: unknown[]): void {
     const rule = this.getRule(type);
-    const result = rule.execute(args);
+    const result = rule.execute(...args);
     if (result) {
-      this.errors.push(result);
+      this.errors.set(type, result);
     }
   }
 }
