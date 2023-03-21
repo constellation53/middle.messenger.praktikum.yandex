@@ -1,3 +1,4 @@
+// Core
 import { Block } from '../index';
 import { EventBus } from '../../eventBus';
 
@@ -20,14 +21,13 @@ export type MetaType<T> = {
   props: T;
 };
 
-export type EventHandlerType = (
-  this: HTMLElement,
-  ev: HTMLElementEventMap[keyof HTMLElementEventMap]
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-) => any;
+export type EventHandlerType<K extends keyof HTMLElementEventMap> =
+  (event: HTMLElementEventMap[K]) => void;
 
 // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-explicit-any
-export type EventsType = Record<string, any>;
+export type EventsType = {
+  [Key in keyof HTMLElementEventMap]?: EventHandlerType<Key>
+};
 
 type SettingsType = {
   withInternalID?: boolean;

@@ -5,7 +5,8 @@ export const removeEvents = (
   element: HTMLElement,
   events: EventsType,
 ): void => {
-  const tuple = Object.entries<EventHandlerType>(events);
+  const tuple = <[keyof HTMLElementEventMap, EventHandlerType<keyof HTMLElementEventMap>][]>
+    Object.entries(events);
 
   tuple.forEach(([name, listener]) => {
     element?.removeEventListener(<keyof HTMLElementEventMap>name, listener);

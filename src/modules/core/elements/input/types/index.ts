@@ -1,5 +1,4 @@
-// Other
-import { HTMLInputEventType } from '../../../types/events';
+import { EventHandlerType } from '../../../utils/block/types';
 
 type HtmlTypeType = 'text' | 'password' | 'file';
 
@@ -9,9 +8,9 @@ type ValidationType = {
 };
 
 type EventsType = {
-  change?: (event: HTMLInputEventType) => void;
-  focus?: (event: HTMLInputEventType) => void;
-  blur?: (event: HTMLInputEventType) => void;
+  change?: EventHandlerType<'change'>;
+  focus?: EventHandlerType<'focus'>;
+  blur?: EventHandlerType<'blur'>;
 };
 
 type CoreType = {

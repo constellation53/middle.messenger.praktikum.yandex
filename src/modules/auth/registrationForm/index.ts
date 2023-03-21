@@ -29,7 +29,9 @@ export class RegistrationFormComponent extends Block {
       value: 'pochta@yandex.ru',
       events: {
         focus: (event): void => {
-          this.validator.execute('email', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('email', target);
 
           const errors = this.validator.getErrors();
 
@@ -37,7 +39,9 @@ export class RegistrationFormComponent extends Block {
           console.log('errors => ', errors);
         },
         blur: (event): void => {
-          this.validator.execute('email', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('email', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -54,7 +58,9 @@ export class RegistrationFormComponent extends Block {
       value: 'ivanivanov',
       events: {
         focus: (event): void => {
-          this.validator.execute('login', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('login', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -62,7 +68,9 @@ export class RegistrationFormComponent extends Block {
           console.log('errors => ', errors);
         },
         blur: (event): void => {
-          this.validator.execute('login', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('login', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -79,7 +87,9 @@ export class RegistrationFormComponent extends Block {
       value: 'Иван',
       events: {
         focus: (event): void => {
-          this.validator.execute('first_name', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('first_name', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -87,7 +97,9 @@ export class RegistrationFormComponent extends Block {
           console.log('errors => ', errors);
         },
         blur: (event): void => {
-          this.validator.execute('first_name', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('first_name', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -120,7 +132,9 @@ export class RegistrationFormComponent extends Block {
       validation: { error: true },
       events: {
         focus: (event): void => {
-          this.validator.execute('password', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('password', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -128,7 +142,9 @@ export class RegistrationFormComponent extends Block {
           console.log('errors => ', errors);
         },
         blur: (event): void => {
-          this.validator.execute('password', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('password', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -147,7 +163,9 @@ export class RegistrationFormComponent extends Block {
       validation: { error: true, message: 'Пароли не совпадают' },
       events: {
         focus: (event): void => {
-          this.validator.execute('passwordCopy', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('passwordCopy', target.value);
 
           const errors = this.validator.getErrors();
 
@@ -155,7 +173,9 @@ export class RegistrationFormComponent extends Block {
           console.log('errors => ', errors);
         },
         blur: (event): void => {
-          this.validator.execute('passwordCopy', event.target.value);
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('passwordCopy', target.value);
 
           const errors = this.validator.getErrors();
 

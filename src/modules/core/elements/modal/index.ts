@@ -7,7 +7,6 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { ModalType } from './types';
-import { HTMLElementEventType } from '../../types/events';
 
 type PropsType = ModalType;
 
@@ -16,8 +15,10 @@ export class Modal extends Block<ModalType> {
     super(props);
   }
 
-  onClickToOverlay(event: HTMLElementEventType): void {
-    const isRootElement = this.id === event.target.getAttribute('data-id');
+  onClickToOverlay(event: Event): void {
+    const target = <HTMLDivElement>event.target;
+
+    const isRootElement = this.id === target.getAttribute('data-id');
 
     if (isRootElement) {
       this.hide();

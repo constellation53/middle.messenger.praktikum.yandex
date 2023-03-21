@@ -11,7 +11,6 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { isHTMLElement } from '../../../core/utils/guards/isHTMLElement';
-import { HTMLInputEventType } from '../../../core/types/events';
 
 export class AvatarFormComponent extends Block {
   constructor() {
@@ -26,8 +25,9 @@ export class AvatarFormComponent extends Block {
     }
   }
 
-  onFileChose(event: HTMLInputEventType): void {
-    const [file] = event.target?.files || [];
+  onFileChose(event: Event): void {
+    const target = <HTMLInputElement>event.target;
+    const [file] = target.files || [];
 
     // eslint-disable-next-line no-console
     console.log(file);

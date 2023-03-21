@@ -84,7 +84,7 @@ const messages: MessageItemType[] = [
 type PropsType = DialogType;
 
 export class DialogComponent extends Block<PropsType> {
-  constructor(props: PropsType) {
+  constructor(props?: PropsType) {
     super(props);
   }
 

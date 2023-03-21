@@ -33,7 +33,7 @@ const chats: ChatItemType[] = [
       time: '10:49',
       content: 'Изображение',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 1234,
@@ -52,7 +52,7 @@ const chats: ChatItemType[] = [
       time: '12:00',
       content: 'Cтикер',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -73,7 +73,7 @@ const chats: ChatItemType[] = [
         + 'Друзья, у меня для вас особенный выпуск новостей!'
         + 'Друзья, у меня для вас особенный выпуск новостей!',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 1234,
@@ -92,7 +92,7 @@ const chats: ChatItemType[] = [
       time: 'Пт',
       content: 'Круто!',
     },
-    isMy: true
+    isMy: true,
   },
   {
     id: 123,
@@ -114,7 +114,7 @@ const chats: ChatItemType[] = [
         + 'рекомендуют И Human Interface Guidelines и Material Design '
         + 'рекомендуют',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -136,7 +136,7 @@ const chats: ChatItemType[] = [
         + 'десятки часов свое Миллионы россиян ежедневно '
         + 'проводят десятки часов свое',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -157,7 +157,7 @@ const chats: ChatItemType[] = [
         + 'В 2008 году художник Jon Rafman  начал собирать '
         + 'В 2008 году художник Jon Rafman  начал собирать',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -178,7 +178,7 @@ const chats: ChatItemType[] = [
         + 'Так увлёкся работой по курсу, что совсем забыл его анонси '
         + 'Так увлёкся работой по курсу, что совсем забыл его анонсир ',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -197,7 +197,7 @@ const chats: ChatItemType[] = [
       time: '10:49',
       content: 'Изображение',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 1234,
@@ -216,7 +216,7 @@ const chats: ChatItemType[] = [
       time: '12:00',
       content: 'Cтикер',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -237,7 +237,7 @@ const chats: ChatItemType[] = [
         + 'Друзья, у меня для вас особенный выпуск новостей!'
         + 'Друзья, у меня для вас особенный выпуск новостей!',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 1234,
@@ -256,7 +256,7 @@ const chats: ChatItemType[] = [
       time: 'Пт',
       content: 'Круто!',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -278,7 +278,7 @@ const chats: ChatItemType[] = [
         + 'рекомендуют И Human Interface Guidelines и Material Design '
         + 'рекомендуют',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -300,7 +300,7 @@ const chats: ChatItemType[] = [
         + 'десятки часов свое Миллионы россиян ежедневно '
         + 'проводят десятки часов свое',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -321,7 +321,7 @@ const chats: ChatItemType[] = [
         + 'В 2008 году художник Jon Rafman  начал собирать '
         + 'В 2008 году художник Jon Rafman  начал собирать',
     },
-    isMy: false
+    isMy: false,
   },
   {
     id: 123,
@@ -342,7 +342,7 @@ const chats: ChatItemType[] = [
         + 'Так увлёкся работой по курсу, что совсем забыл его анонси '
         + 'Так увлёкся работой по курсу, что совсем забыл его анонсир ',
     },
-    isMy: false
+    isMy: false,
   },
 ];
 
