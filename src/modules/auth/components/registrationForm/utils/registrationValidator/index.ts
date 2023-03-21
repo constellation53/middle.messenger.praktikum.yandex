@@ -3,13 +3,11 @@ import { Validator } from '../../../../../core/utils/validator';
 
 // Other
 import { ValidatorRuleType } from '../../../../../core/utils/validationRule/types';
-import { EmailValidationRule } from '../../../../utils/emailValidationRule';
-import { LoginValidationRule } from '../../../../utils/loginValidationRule';
-import { PasswordValidationRule } from '../../../../utils/passwordValidationRule';
-import { PasswordCopyValidationRule } from '../../../../utils/passwordCopyValidationRule';
-import {
-  RequiredValidationRule,
-} from '../../../../../core/utils/validationRules/requeiredValidationRule';
+import { Email } from '../../../../../core/utils/validationRules/email';
+import { Password } from '../../../../../core/utils/validationRules/password';
+import { PasswordCopy } from '../../../../../core/utils/validationRules/passwordCopy';
+import { Login } from '../../../../../core/utils/validationRules/login';
+import { Required } from '../../../../../core/utils/validationRules/requeired';
 import { FieldsType } from '../../types';
 
 export class RegistrationValidator extends Validator<FieldsType> {
@@ -17,23 +15,23 @@ export class RegistrationValidator extends Validator<FieldsType> {
     const validators = new Map<FieldsType, ValidatorRuleType>([
       [
         'email',
-        new EmailValidationRule(),
+        new Email(),
       ],
       [
         'login',
-        new LoginValidationRule(),
+        new Login(),
       ],
       [
         'first_name',
-        new RequiredValidationRule(),
+        new Required(),
       ],
       [
         'password',
-        new PasswordValidationRule(),
+        new Password(),
       ],
       [
         'passwordCopy',
-        new PasswordCopyValidationRule(),
+        new PasswordCopy(),
       ],
     ]);
 

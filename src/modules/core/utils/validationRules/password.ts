@@ -1,10 +1,10 @@
 // Core
-import ValidationRule from '../../../core/utils/validationRule';
+import ValidationRule from '../validationRule';
 
 // Other
-import { ErrorType } from '../../../core/utils/validator/types';
+import { ErrorType } from '../validator/types';
 
-export class PasswordValidationRule extends ValidationRule {
+export class Password extends ValidationRule {
   constructor() {
     super();
   }

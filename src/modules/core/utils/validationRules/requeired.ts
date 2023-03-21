@@ -4,7 +4,7 @@ import ValidationRule from '../validationRule';
 // Other
 import { ErrorType } from '../validator/types';
 
-export class RequiredValidationRule extends ValidationRule {
+export class Required extends ValidationRule {
   constructor() {
     super();
   }
