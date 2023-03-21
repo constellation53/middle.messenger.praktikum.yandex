@@ -11,11 +11,14 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { InfoFormType } from './types';
+import { InfoFormType, FormFieldsType } from './types';
+import { InfoValidator } from './utils/infoValidator';
 
 type PropsType = InfoFormType;
 
 export class InfoFormComponent extends Block<PropsType> {
+  protected readonly validator = new InfoValidator();
+
   constructor(props: PropsType = {}) {
     super(props);
   }
@@ -28,6 +31,28 @@ export class InfoFormComponent extends Block<PropsType> {
       value: 'pochta@yandex.ru',
       horizontal: true,
       disabled: this.props.disabled,
+      events: {
+        focus: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('email', target);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('email', target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.loginInput = new Input({
@@ -37,6 +62,28 @@ export class InfoFormComponent extends Block<PropsType> {
       value: 'ivanivanov',
       horizontal: true,
       disabled: this.props.disabled,
+      events: {
+        focus: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('login', target);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('login', target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.firstNameInput = new Input({
@@ -46,6 +93,28 @@ export class InfoFormComponent extends Block<PropsType> {
       value: 'Иван',
       horizontal: true,
       disabled: this.props.disabled,
+      events: {
+        focus: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('first_name', target);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('first_name', target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.secondNameInput = new Input({
@@ -64,6 +133,28 @@ export class InfoFormComponent extends Block<PropsType> {
       value: 'Иван',
       horizontal: true,
       disabled: this.props.disabled,
+      events: {
+        focus: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('display_name', target);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          const target = <HTMLInputElement>event.target;
+
+          this.validator.execute('display_name', target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      }
     });
 
     this.children.phoneInput = new Input({
@@ -96,16 +187,25 @@ export class InfoFormComponent extends Block<PropsType> {
     event.preventDefault();
 
     const formData = new FormData(<HTMLFormElement>event.target);
-    const data = Object.fromEntries(formData);
+    const data = <FormFieldsType>Object.fromEntries(formData);
+
+    this.validator.execute('email', data.email);
+    this.validator.execute('login', data.login);
+    this.validator.execute('first_name', data.first_name);
+
+    const errors = this.validator.getErrors();
+
     // eslint-disable-next-line no-console
-    console.log(data);
+    console.log('errors => ', errors);
+    // eslint-disable-next-line no-console
+    console.log('data => ', data);
   }
 
   render(): HTMLElement {
     return this.compile(template, {
       ...this.props,
       styles,
-      events: { submit: this.onSubmit },
+      events: { submit: this.onSubmit.bind(this) },
     });
   }
 }
