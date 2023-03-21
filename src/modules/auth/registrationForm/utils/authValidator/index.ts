@@ -7,6 +7,7 @@ import { EmailValidationRule } from '../emailValidationRule';
 import { LoginValidationRule } from '../loginValidationRule';
 import { FieldsType } from '../../types';
 import { PasswordValidationRule } from '../passwordValidationRule';
+import { PasswordCopyValidationRule } from '../passwordCopyValidationRule';
 
 export class AuthValidator extends Validator<FieldsType> {
   constructor() {
@@ -22,6 +23,10 @@ export class AuthValidator extends Validator<FieldsType> {
       [
         'password',
         new PasswordValidationRule(),
+      ],
+      [
+        'passwordCopy',
+        new PasswordCopyValidationRule(),
       ],
     ]);
 
