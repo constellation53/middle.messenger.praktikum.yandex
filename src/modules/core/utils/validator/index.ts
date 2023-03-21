@@ -33,7 +33,8 @@ export abstract class Validator<K extends string> implements ValidatorType<K> {
   execute(field: K, ...args: unknown[]): void {
     const rule = this.getRule(field);
 
-    const result = rule.execute(...args);
+    const result: ErrorType = rule.execute(...args);
+
     if (result) {
       this.errors.set(field, result);
     }

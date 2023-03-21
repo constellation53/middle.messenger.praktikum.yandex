@@ -1,5 +1,5 @@
 export type ValidatorType<T> = {
-  execute: (type: T, ...args: any[]) => any;
+  execute: (type: T, ...args: unknown[]) => void;
 };
 
 export type ErrorType = {

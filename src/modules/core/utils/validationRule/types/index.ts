@@ -1,4 +1,7 @@
+// Other
+import { ErrorType } from '../../validator/types';
 
 export type ValidatorRuleType = {
-  execute: (...args: any[]) => any;
-}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  execute: (...args: any[]) => ErrorType;
+};
