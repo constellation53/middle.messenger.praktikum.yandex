@@ -12,7 +12,8 @@ import { Button } from '../../../core/elements/button';
 import * as styles from './styles/index.module.scss';
 import { routes } from '../../../core/config';
 import { RegistrationValidator } from './utils/registrationValidator';
-import { FormFieldsType } from './types';
+import { FieldsType, FormFieldsType } from './types';
+import { isBlockClass } from '../../../core/utils/guards/isBlockClass';
 
 export class RegistrationFormComponent extends Block {
   protected readonly validator = new RegistrationValidator();
@@ -28,26 +29,8 @@ export class RegistrationFormComponent extends Block {
       label: 'Почта',
       value: 'pochta@yandex.ru',
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('email', target);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('email', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this, 'email'),
+        blur: this.onFocus.bind(this, 'email'),
       },
     });
 
@@ -57,26 +40,8 @@ export class RegistrationFormComponent extends Block {
       label: 'Логин',
       value: 'ivanivanov',
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('login', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('login', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this, 'login'),
+        blur: this.onFocus.bind(this, 'login'),
       },
     });
 
@@ -86,26 +51,8 @@ export class RegistrationFormComponent extends Block {
       label: 'Имя',
       value: 'Иван',
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('first_name', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('first_name', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this, 'first_name'),
+        blur: this.onFocus.bind(this, 'first_name'),
       },
     });
 
@@ -131,26 +78,8 @@ export class RegistrationFormComponent extends Block {
       value: '123456789123',
       validation: { error: true },
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('password', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('password', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onPasswordFocus.bind(this),
+        blur: this.onPasswordFocus.bind(this),
       },
     });
 
@@ -162,26 +91,8 @@ export class RegistrationFormComponent extends Block {
       value: '123456789123',
       validation: { error: true, message: 'Пароли не совпадают' },
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('passwordCopy', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('passwordCopy', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onRepeatPasswordFocus.bind(this),
+        blur: this.onRepeatPasswordFocus.bind(this),
       },
     });
 
@@ -198,6 +109,49 @@ export class RegistrationFormComponent extends Block {
       href: routes.signIn.path,
       class: 'size-12',
     });
+  }
+
+  onFocus(field: FieldsType, event: FocusEvent): void {
+    const target = <HTMLInputElement>event.target;
+
+    this.validator.execute(field, target.value);
+
+    const errors = this.validator.getErrors();
+
+    // eslint-disable-next-line no-console
+    console.log('errors => ', errors);
+  }
+
+  onPasswordFocus(event: FocusEvent): void {
+    if (isBlockClass(this.children.passwordCopy)) {
+      const newPassword = this.children.passwordCopy
+        .getContent()!.querySelector('input')!;
+
+      const target = <HTMLInputElement>event.target;
+
+      this.validator.execute('password', target.value, newPassword.value);
+
+      const errors = this.validator.getErrors();
+
+      // eslint-disable-next-line no-console
+      console.log('errors => ', errors);
+    }
+  }
+
+  onRepeatPasswordFocus(event: FocusEvent): void {
+    if (isBlockClass(this.children.passwordInput)) {
+      const newPassword = this.children.passwordInput
+        .getContent()!.querySelector('input')!;
+
+      const target = <HTMLInputElement>event.target;
+
+      this.validator.execute('passwordCopy', target.value, newPassword.value);
+
+      const errors = this.validator.getErrors();
+
+      // eslint-disable-next-line no-console
+      console.log('errors => ', errors);
+    }
   }
 
   onSubmit(event: SubmitEvent): void {
