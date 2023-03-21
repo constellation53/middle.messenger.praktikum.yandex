@@ -141,7 +141,7 @@ export class PasswordFormComponent extends Block {
     return this.compile(template, {
       ...this.props,
       styles,
-      events: { submit: this.onSubmit },
+      events: { submit: this.onSubmit.bind(this) },
     });
   }
 }
