@@ -10,6 +10,8 @@ type ValidationType = {
 
 type EventsType = {
   change?: (event: HTMLInputEventType) => void;
+  focus?: (event: HTMLInputEventType) => void;
+  blur?: (event: HTMLInputEventType) => void;
 };
 
 type CoreType = {
