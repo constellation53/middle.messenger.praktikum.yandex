@@ -59,7 +59,7 @@ export class AuthFormComponent extends Block {
   onFocus(event: FocusEvent): void {
     const target = <HTMLInputElement>event.target;
 
-    this.validator.execute('login', target);
+    this.validator.execute('login', target.value);
 
     const errors = this.validator.getErrors();
 
