@@ -27,6 +27,7 @@
   }
 
   .listWrapper {
+    height: 100%;
     overflow-y: auto;
     background: $backgroundColor;
 
@@ -71,9 +72,7 @@
   .subtitle {
     grid-template-columns: 1fr min-content;
   }
-
-
-
+  
   .title {
     color: $titleColor;
   }

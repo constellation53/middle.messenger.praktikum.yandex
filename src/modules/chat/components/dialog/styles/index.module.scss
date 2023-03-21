@@ -51,6 +51,10 @@
     background: $textMessageBackgroundColor;
   }
 
+  .message:last-of-type {
+    margin-bottom: 0;
+  }
+
   .message.image {
     display: flex;
     align-items: center;

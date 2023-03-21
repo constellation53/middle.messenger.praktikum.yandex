@@ -7,15 +7,17 @@ type UserType = {
   phone: string;
 };
 
+type LastMessageType = {
+  user: UserType
+  time: string
+  content: string
+};
+
 export type ChatItemType = {
   id: number;
   title: string;
   avatar: string | null;
   unreadCount: number | null;
-  lastMessage: {
-    user: UserType
-    time: string
-    content: string
-  }
+  lastMessage: LastMessageType;
   isMy: boolean;
 };
