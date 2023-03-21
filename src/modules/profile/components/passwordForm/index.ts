@@ -13,6 +13,7 @@ import template from './index.hbs';
 import * as styles from './styles/index.module.scss';
 import { PasswordValidator } from './utils/passwordValidator';
 import { isBlockClass } from '../../../core/utils/guards/isBlockClass';
+import { FormFieldsType } from './types';
 
 export class PasswordFormComponent extends Block {
   protected readonly validator = new PasswordValidator();
@@ -122,9 +123,18 @@ export class PasswordFormComponent extends Block {
     event.preventDefault();
 
     const formData = new FormData(<HTMLFormElement>event.target);
-    const data = Object.fromEntries(formData);
+    const data = <FormFieldsType>Object.fromEntries(formData);
+
+    this.validator.execute('oldPassword', data.oldPassword);
+    this.validator.execute('newPassword', data.newPassword);
+    this.validator.execute('repeatNewPassword', data.repeatNewPassword, data.newPassword);
+
+    const errors = this.validator.getErrors();
+
     // eslint-disable-next-line no-console
-    console.log(data);
+    console.log('errors => ', errors);
+    // eslint-disable-next-line no-console
+    console.log('data => ', data);
   }
 
   render(): HTMLElement {

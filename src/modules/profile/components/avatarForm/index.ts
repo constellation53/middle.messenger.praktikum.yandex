@@ -11,8 +11,12 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { isHTMLElement } from '../../../core/utils/guards/isHTMLElement';
+import { AvatarValidator } from './utils/avatarValidator';
+import { FormFieldsType } from './types';
 
 export class AvatarFormComponent extends Block {
+  protected readonly validator = new AvatarValidator();
+
   constructor() {
     super();
   }
@@ -37,9 +41,16 @@ export class AvatarFormComponent extends Block {
     event.preventDefault();
 
     const formData = new FormData(<HTMLFormElement>event.target);
-    const data = Object.fromEntries(formData);
+    const data = <FormFieldsType>Object.fromEntries(formData);
+
+    this.validator.execute('avatar', data.avatar);
+
+    const errors = this.validator.getErrors();
+
     // eslint-disable-next-line no-console
-    console.log(data);
+    console.log('errors => ', errors);
+    // eslint-disable-next-line no-console
+    console.log('data => ', data);
   }
 
   init(): void {
