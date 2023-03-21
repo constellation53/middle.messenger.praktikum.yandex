@@ -154,7 +154,7 @@ export class InfoFormComponent extends Block<PropsType> {
           // eslint-disable-next-line no-console
           console.log('errors => ', errors);
         },
-      }
+      },
     });
 
     this.children.phoneInput = new Input({

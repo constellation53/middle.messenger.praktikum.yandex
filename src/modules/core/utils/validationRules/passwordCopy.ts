@@ -11,7 +11,6 @@ export class PasswordCopy extends ValidationRule {
 
   execute(password: string, oldPassword: string): ErrorType {
     const areEqual = password === oldPassword;
-    console.log(password, oldPassword);
 
     if (areEqual) {
       return { error: false };
