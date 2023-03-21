@@ -16,6 +16,10 @@ export class Input extends Block<PropsType> {
   }
 
   render(): HTMLElement {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {
+      ...this.props,
+      styles,
+      eventTarget: 'input',
+    });
   }
 }

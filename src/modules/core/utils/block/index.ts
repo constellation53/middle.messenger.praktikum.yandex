@@ -133,29 +133,33 @@ export abstract class Block<P extends BlockType = any> {
 
     fragment.innerHTML = template(contextAndStubs);
 
+    const element = <HTMLElement>fragment.content.firstElementChild;
+
     replaceStubs(fragment, this.children);
 
-    if (contextAndStubs.events) {
+    const target = context.eventTarget
+      ? <HTMLElement | null>element.querySelector(context.eventTarget)
+      : element;
+
+    if (contextAndStubs.events && target) {
       removeEvents(
-        <HTMLElement>fragment.content.firstElementChild,
+        target,
         contextAndStubs.events,
       );
     }
 
-    if (contextAndStubs.events) {
+    if (contextAndStubs.events && target) {
       addEvents(
-        <HTMLElement>fragment.content.firstElementChild,
+        target,
         contextAndStubs.events,
       );
     }
-
-    const element = <HTMLElement>fragment.content.firstElementChild;
 
     if (context.settings?.withInternalID) {
       element.setAttribute('data-id', this.id);
     }
 
-    return <HTMLElement>fragment.content.firstElementChild;
+    return element;
   }
 
   public getContent(): HTMLElement | null {
