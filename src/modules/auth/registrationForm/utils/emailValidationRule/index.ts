@@ -10,7 +10,8 @@ export class EmailValidationRule extends ValidationRule {
   }
 
   execute(value: string): ErrorType {
-    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
     if (value.match(regex)) {
       return { error: false };
     }
