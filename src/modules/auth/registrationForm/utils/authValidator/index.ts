@@ -5,11 +5,12 @@ import { Validator } from '../../../../core/utils/validator';
 import { ValidatorRuleType } from '../../../../core/utils/validationRule/types';
 import { EmailValidationRule } from '../emailValidationRule';
 import { LoginValidationRule } from '../loginValidationRule';
+import { FieldsType } from '../../types';
+import { PasswordValidationRule } from '../passwordValidationRule';
 
-type ValidationType = 'email' | 'login';
-export class AuthValidator extends Validator<ValidationType> {
+export class AuthValidator extends Validator<FieldsType> {
   constructor() {
-    const validators = new Map<ValidationType, ValidatorRuleType>([
+    const validators = new Map<FieldsType, ValidatorRuleType>([
       [
         'email',
         new EmailValidationRule(),
@@ -17,6 +18,10 @@ export class AuthValidator extends Validator<ValidationType> {
       [
         'login',
         new LoginValidationRule(),
+      ],
+      [
+        'password',
+        new PasswordValidationRule(),
       ],
     ]);
 

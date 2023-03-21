@@ -98,6 +98,7 @@ export class RegistrationFormComponent extends Block {
 
     validator.execute('email', data.email);
     validator.execute('login', data.login);
+    validator.execute('password', data.password);
 
     const errors = validator.getErrors();
     console.log(errors);
