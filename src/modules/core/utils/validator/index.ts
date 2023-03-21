@@ -1,5 +1,5 @@
 // Other
-import { ErrorType, ValidatorType } from './types';
+import { ErrorType, FieldsType, ValidatorType } from './types';
 import { ValidatorRuleType } from '../validationRule/types';
 
 export abstract class Validator<K extends string> implements ValidatorType<K> {
@@ -23,19 +23,18 @@ export abstract class Validator<K extends string> implements ValidatorType<K> {
   }
 
   private getRule(type: K): ValidatorRuleType {
-    const rule = this.validators.get(type);
-    if (!rule) {
-      throw new Error(`Rule not found for type:${type.toString()}`);
-    }
-
-    return rule!;
+    return this.validators.get(type)!;
   }
 
-  execute(type: K, ...args: unknown[]): void {
-    const rule = this.getRule(type);
-    const result = rule.execute(...args);
+  execute(field: K, ...args: unknown[]): void {
+    const rule = this.getRule(field);
+    const result = rule ? rule.execute(...args) : null;
     if (result) {
-      this.errors.set(type, result);
+      this.errors.set(field, result);
     }
+  }
+
+  executeAll(fields: FieldsType<K>): void {
+    Object.entries(fields).forEach(([field, args]) => this.execute(<K>field, args));
   }
 }
