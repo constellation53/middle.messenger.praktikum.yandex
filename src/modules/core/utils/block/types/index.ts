@@ -29,11 +29,14 @@ export type EventHandlerType = (
 // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-explicit-any
 export type EventsType = Record<string, any>;
 
+type SettingsType = {
+  withInternalID?: boolean;
+};
+
 export type CoreBlockType<T> = T & {
+  eventTarget?: string;
   events?: EventsType;
-  settings?: {
-    withInternalID?: boolean;
-  };
+  settings?: SettingsType;
 };
 
 export type ChildrenType = Record<string, Block | Block[]>;
