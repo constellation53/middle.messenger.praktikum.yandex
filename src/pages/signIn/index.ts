@@ -5,7 +5,7 @@ import { Block } from '../../modules/core/utils/block';
 import template from './index.hbs';
 
 // Components
-import { AuthFormComponent } from '../../modules/auth/authForm';
+import { AuthFormComponent } from '../../modules/auth/components/authForm';
 
 // Other
 import { render } from '../../modules/core/utils/render';

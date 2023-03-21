@@ -1,13 +1,13 @@
 // Core
-import { Validator } from '../../../../core/utils/validator';
+import { Validator } from '../../../../../core/utils/validator';
 
 // Other
-import { ValidatorRuleType } from '../../../../core/utils/validationRule/types';
-import { EmailValidationRule } from '../emailValidationRule';
-import { LoginValidationRule } from '../loginValidationRule';
-import { PasswordValidationRule } from '../passwordValidationRule';
-import { PasswordCopyValidationRule } from '../passwordCopyValidationRule';
-import { RequiredValidationRule } from '../requeiredValidationRule';
+import { ValidatorRuleType } from '../../../../../core/utils/validationRule/types';
+import { EmailValidationRule } from '../../../../utils/emailValidationRule';
+import { LoginValidationRule } from '../../../../utils/loginValidationRule';
+import { PasswordValidationRule } from '../../../../utils/passwordValidationRule';
+import { PasswordCopyValidationRule } from '../../../../utils/passwordCopyValidationRule';
+import { RequiredValidationRule } from '../../../../utils/requeiredValidationRule';
 import { FieldsType } from '../../types';
 
 export class RegistrationValidator extends Validator<FieldsType> {

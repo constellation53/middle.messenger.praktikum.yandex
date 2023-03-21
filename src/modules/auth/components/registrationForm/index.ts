@@ -1,16 +1,16 @@
 // Core
-import { Block } from '../../core/utils/block';
+import { Block } from '../../../core/utils/block';
 
 // Templates
 import template from './index.hbs';
 
 // Elements
-import { Input } from '../../core/elements/input';
-import { Button } from '../../core/elements/button';
+import { Input } from '../../../core/elements/input';
+import { Button } from '../../../core/elements/button';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { routes } from '../../core/config';
+import { routes } from '../../../core/config';
 import { RegistrationValidator } from './utils/registrationValidator';
 import { FormFieldsType } from './types';
 

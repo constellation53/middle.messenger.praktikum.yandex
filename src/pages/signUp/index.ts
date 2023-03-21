@@ -5,7 +5,7 @@ import { Block } from '../../modules/core/utils/block';
 import template from './index.hbs';
 
 // Components
-import { RegistrationFormComponent } from '../../modules/auth/registrationForm';
+import { RegistrationFormComponent } from '../../modules/auth/components/registrationForm';
 
 // Other
 import { render } from '../../modules/core/utils/render';

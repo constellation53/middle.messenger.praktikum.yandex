@@ -1,21 +1,21 @@
 // Core
-import ValidationRule from '../../../../core/utils/validationRule';
+import ValidationRule from '../../../core/utils/validationRule';
 
 // Other
-import { ErrorType } from '../../../../core/utils/validator/types';
+import { ErrorType } from '../../../core/utils/validator/types';
 
-export class EmailValidationRule extends ValidationRule {
+export class RequiredValidationRule extends ValidationRule {
   constructor() {
     super();
   }
 
   execute(value: string): ErrorType {
-    const email = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const required = /^\S+$/;
 
     const rules: [RegExp, string][] = [
       [
-        email,
-        'Некорректный email',
+        required,
+        'Поле обязятельно',
       ],
     ];
 
