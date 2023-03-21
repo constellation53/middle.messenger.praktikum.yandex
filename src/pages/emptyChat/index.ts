@@ -20,7 +20,7 @@ export class ChatPage extends Block {
   init(): void {
     this.children.chatList = new ChatListComponent();
 
-    this.children.dialog = new DialogComponent({ isEmpty: true});
+    this.children.dialog = new DialogComponent({ isEmpty: true });
   }
 
   render(): HTMLElement {
