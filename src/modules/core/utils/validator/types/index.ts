@@ -8,5 +8,5 @@ export type ErrorType = {
 };
 
 export type FieldsType<K extends string> = {
-  [key in K]: unknown[]
+  [key in K]: string;
 };

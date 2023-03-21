@@ -11,6 +11,8 @@ import { Button } from '../../core/elements/button';
 // Other
 import * as styles from './styles/index.module.scss';
 import { routes } from '../../core/config';
+import { AuthValidator } from './utils/authValidator';
+import { FormFieldsType } from './types';
 
 export class RegistrationFormComponent extends Block {
   constructor() {
@@ -90,7 +92,15 @@ export class RegistrationFormComponent extends Block {
     event.preventDefault();
 
     const formData = new FormData(<HTMLFormElement>event.target);
-    const data = Object.fromEntries(formData);
+    const data = <FormFieldsType>Object.fromEntries(formData);
+
+    const validator = new AuthValidator();
+
+    validator.execute('email', data.email);
+    validator.execute('login', data.login);
+
+    const errors = validator.getErrors();
+    console.log(errors);
     // eslint-disable-next-line no-console
     console.log(data);
   }
