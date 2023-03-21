@@ -15,6 +15,8 @@ import { AuthValidator } from './utils/authValidator';
 import { FormFieldsType } from './types';
 
 export class RegistrationFormComponent extends Block {
+  protected readonly validator = new AuthValidator();
+
   constructor() {
     super();
   }
@@ -25,6 +27,24 @@ export class RegistrationFormComponent extends Block {
       name: 'email',
       label: 'Почта',
       value: 'pochta@yandex.ru',
+      events: {
+        focus: (event): void => {
+          this.validator.execute('email', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          this.validator.execute('email', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.loginInput = new Input({
@@ -32,6 +52,24 @@ export class RegistrationFormComponent extends Block {
       name: 'login',
       label: 'Логин',
       value: 'ivanivanov',
+      events: {
+        focus: (event): void => {
+          this.validator.execute('login', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          this.validator.execute('login', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.firstNameInput = new Input({
@@ -39,6 +77,24 @@ export class RegistrationFormComponent extends Block {
       name: 'first_name',
       label: 'Имя',
       value: 'Иван',
+      events: {
+        focus: (event): void => {
+          this.validator.execute('first_name', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          this.validator.execute('first_name', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.secondNameInput = new Input({
@@ -62,6 +118,24 @@ export class RegistrationFormComponent extends Block {
       label: 'Пароль',
       value: '123456789123',
       validation: { error: true },
+      events: {
+        focus: (event): void => {
+          this.validator.execute('password', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          this.validator.execute('password', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.passwordCopyInput = new Input({
@@ -71,6 +145,24 @@ export class RegistrationFormComponent extends Block {
       label: 'Пароль (ещё раз)',
       value: '123456789123',
       validation: { error: true, message: 'Пароли не совпадают' },
+      events: {
+        focus: (event): void => {
+          this.validator.execute('passwordCopy', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+        blur: (event): void => {
+          this.validator.execute('passwordCopy', event.target.value);
+
+          const errors = this.validator.getErrors();
+
+          // eslint-disable-next-line no-console
+          console.log('errors => ', errors);
+        },
+      },
     });
 
     this.children.registerButton = new Button({
@@ -94,23 +186,23 @@ export class RegistrationFormComponent extends Block {
     const formData = new FormData(<HTMLFormElement>event.target);
     const data = <FormFieldsType>Object.fromEntries(formData);
 
-    const validator = new AuthValidator();
+    this.validator.execute('email', data.email);
+    this.validator.execute('login', data.login);
+    this.validator.execute('password', data.password);
+    this.validator.execute('passwordCopy', data.password, data.passwordCopy);
 
-    validator.execute('email', data.email);
-    validator.execute('login', data.login);
-    validator.execute('password', data.password);
-    validator.execute('passwordCopy', data.password, data.passwordCopy);
+    const errors = this.validator.getErrors();
 
-    const errors = validator.getErrors();
-    console.log(errors);
     // eslint-disable-next-line no-console
-    console.log(data);
+    console.log('errors => ', errors);
+    // eslint-disable-next-line no-console
+    console.log('data => ', data);
   }
 
   render(): HTMLElement {
     return this.compile(template, {
       styles,
-      events: { submit: this.onSubmit },
+      events: { submit: this.onSubmit.bind(this) },
     });
   }
 }

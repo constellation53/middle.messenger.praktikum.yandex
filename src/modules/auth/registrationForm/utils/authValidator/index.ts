@@ -5,9 +5,10 @@ import { Validator } from '../../../../core/utils/validator';
 import { ValidatorRuleType } from '../../../../core/utils/validationRule/types';
 import { EmailValidationRule } from '../emailValidationRule';
 import { LoginValidationRule } from '../loginValidationRule';
-import { FieldsType } from '../../types';
 import { PasswordValidationRule } from '../passwordValidationRule';
 import { PasswordCopyValidationRule } from '../passwordCopyValidationRule';
+import { RequiredValidationRule } from '../requeiredValidationRule';
+import { FieldsType } from '../../types';
 
 export class AuthValidator extends Validator<FieldsType> {
   constructor() {
@@ -19,6 +20,10 @@ export class AuthValidator extends Validator<FieldsType> {
       [
         'login',
         new LoginValidationRule(),
+      ],
+      [
+        'first_name',
+        new RequiredValidationRule(),
       ],
       [
         'password',
