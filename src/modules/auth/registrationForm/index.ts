@@ -11,11 +11,11 @@ import { Button } from '../../core/elements/button';
 // Other
 import * as styles from './styles/index.module.scss';
 import { routes } from '../../core/config';
-import { AuthValidator } from './utils/authValidator';
+import { RegistrationValidator } from './utils/registrationValidator';
 import { FormFieldsType } from './types';
 
 export class RegistrationFormComponent extends Block {
-  protected readonly validator = new AuthValidator();
+  protected readonly validator = new RegistrationValidator();
 
   constructor() {
     super();

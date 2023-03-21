@@ -10,7 +10,7 @@ import { PasswordCopyValidationRule } from '../passwordCopyValidationRule';
 import { RequiredValidationRule } from '../requeiredValidationRule';
 import { FieldsType } from '../../types';
 
-export class AuthValidator extends Validator<FieldsType> {
+export class RegistrationValidator extends Validator<FieldsType> {
   constructor() {
     const validators = new Map<FieldsType, ValidatorRuleType>([
       [
