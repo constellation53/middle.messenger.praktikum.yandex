@@ -28,26 +28,8 @@ export class AuthFormComponent extends Block {
       label: 'Логин',
       value: 'ivanivanov',
       events: {
-        focus: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('login', target);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
-        blur: (event): void => {
-          const target = <HTMLInputElement>event.target;
-
-          this.validator.execute('login', target.value);
-
-          const errors = this.validator.getErrors();
-
-          // eslint-disable-next-line no-console
-          console.log('errors => ', errors);
-        },
+        focus: this.onFocus.bind(this),
+        blur: this.onFocus.bind(this),
       },
     });
 
@@ -72,6 +54,17 @@ export class AuthFormComponent extends Block {
       class: 'size-12',
       href: routes.signUp.path,
     });
+  }
+
+  onFocus(event: FocusEvent): void {
+    const target = <HTMLInputElement>event.target;
+
+    this.validator.execute('login', target);
+
+    const errors = this.validator.getErrors();
+
+    // eslint-disable-next-line no-console
+    console.log('errors => ', errors);
   }
 
   onSubmit(event: SubmitEvent): void {
