@@ -1,6 +1,9 @@
 // Core
 import { Block } from '../../../core/utils/block';
 
+// Elements
+import { Divider } from '../../../core/elements/divider';
+
 // Templates
 import template from './index.hbs';
 
@@ -12,8 +15,6 @@ import { ChatItemComponent } from './chatItem';
 // Other
 import * as styles from './styles/index.module.scss';
 import { ChatItemType } from './types';
-import { isBlockArrayClass } from '../../../core/utils/guards/isBlockArrayClass';
-import { Divider } from '../../../core/elements/divider';
 
 const chats: ChatItemType[] = [
   {
@@ -376,22 +377,6 @@ export class ChatListComponent extends Block {
     this.children.search = new SearchFormComponent();
     this.children.list = this.prepareList(chats);
     this.children.divider = new Divider();
-  }
-
-  componentDidMount(): void {
-    const root = this.getContent();
-
-    const lastChatItem = isBlockArrayClass(this.children.list)
-      ? this.children.list.at(-1)!.getContent()
-      : null;
-
-    const observer = new IntersectionObserver((([{ intersectionRatio }]) => {
-      root?.classList.toggle(styles.overflow, intersectionRatio < 1);
-    }), { root });
-
-    if (lastChatItem) {
-      observer.observe(lastChatItem);
-    }
   }
 
   render(): HTMLElement {

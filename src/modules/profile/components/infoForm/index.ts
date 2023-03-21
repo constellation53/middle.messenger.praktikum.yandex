@@ -33,7 +33,7 @@ export class InfoFormComponent extends Block<PropsType> {
       disabled: this.props.disabled,
       events: {
         focus: this.onFocus.bind(this, 'email'),
-        blur:  this.onFocus.bind(this, 'email'),
+        blur: this.onFocus.bind(this, 'email'),
       },
     });
 
@@ -59,7 +59,7 @@ export class InfoFormComponent extends Block<PropsType> {
       disabled: this.props.disabled,
       events: {
         focus: this.onFocus.bind(this, 'first_name'),
-        blur:this.onFocus.bind(this, 'first_name'),
+        blur: this.onFocus.bind(this, 'first_name'),
       },
     });
 
