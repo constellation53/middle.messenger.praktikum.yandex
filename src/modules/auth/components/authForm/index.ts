@@ -1,12 +1,12 @@
 // Core
 import { Block } from '../../../core/utils/block';
 
-// Templates
-import template from './index.hbs';
-
 // Elements
 import { Input } from '../../../core/elements/input';
 import { Button } from '../../../core/elements/button';
+
+// Templates
+import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
