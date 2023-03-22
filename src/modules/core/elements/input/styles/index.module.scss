@@ -22,7 +22,7 @@
   &.vertical .label {
     position: absolute;
     left: 0;
-    transition: transform 150ms ease-out, font-size 150ms ease-out, line-height 150ms ease-out;;
+    transition: transform 150ms ease-out, font-size 150ms ease-out, line-height 150ms ease-out;
     color: $verticalLabelColor;
   }
 
