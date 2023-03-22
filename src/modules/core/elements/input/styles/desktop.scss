@@ -4,7 +4,7 @@
   }
 
   &.vertical .field {
-    padding: px(15) px(5) px(5);
+    padding: px(15) 0 px(5);
     border-bottom: px(1) solid $borderColor;
   }
 
@@ -19,7 +19,12 @@
   }
 
   &.vertical .label {
-    top: px(3);
-    left: px(5);
+    top: px(18);
+  }
+
+  &.vertical .field[value='']:not(:focus) ~ .label {
+    transform: translateY(0);
+    font-size: px(13);
+    line-height: px(13);
   }
 }

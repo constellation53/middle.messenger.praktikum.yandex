@@ -21,6 +21,8 @@
 
   &.vertical .label {
     position: absolute;
+    left: 0;
+    transition: transform 150ms ease-out, font-size 150ms ease-out, line-height 150ms ease-out;;
     color: $verticalLabelColor;
   }
 
@@ -34,6 +36,7 @@
 
   &.horizontal .field {
     display: block;
+    order: 1;
     border: 0;
     color: $horizontalInputColor;
   }
@@ -48,6 +51,15 @@
       color: $disabledInputColor;
       cursor: not-allowed;
     }
+  }
+
+  &.vertical .field:focus {
+    outline: none;
+  }
+
+  &.vertical .field:focus ~ .label,
+  &.vertical .field:not([value='']):not(:focus) ~ .label {
+    transform: translateY(-175%);
   }
 
   &.hidden {

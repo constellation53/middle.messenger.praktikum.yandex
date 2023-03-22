@@ -15,11 +15,18 @@ export class Input extends Block<PropsType> {
     super(props);
   }
 
+  onInput(event: InputEvent): void {
+    const target = <HTMLInputElement>event.target;
+
+    target.setAttribute('value', target.value);
+  }
+
   render(): HTMLElement {
     return this.compile(template, {
       ...this.props,
       styles,
       eventTarget: 'input',
+      events: { input: this.onInput.bind(this) },
     });
   }
 }

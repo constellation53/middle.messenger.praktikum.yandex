@@ -9,9 +9,28 @@
       {{ styles.hidden }}
     {{/if }}
   " >
+  <input
+      class="
+        {{ styles.field }}
+        {{#if validation.error }}
+          {{ styles.error }}
+        {{/if }}
+        text
+        size-7
+        font-weight-500
+      "
+      type="{{ htmlType }}"
+      name="{{ name }}"
+      id="{{ id }}"
+      value="{{ value }}"
+    {{#if disabled }}
+      disabled
+    {{/if }}
+      tabindex="0"
+  />
   <label
-    htmlFor="{{ id }}"
-    class="
+      htmlFor="{{ id }}"
+      class="
       {{ styles.label }}
       text
       {{#if horizontal }}
@@ -24,24 +43,6 @@
   >
     {{ label }}
   </label>
-  <input
-      class="
-        {{ styles.field }}
-        {{#if validation.error }}
-          {{ styles.error }}
-        {{/if }}
-        text
-        size-7
-      "
-      type="{{ htmlType }}"
-      name="{{ name }}"
-      id="{{ id }}"
-      value="{{ value }}"
-    {{#if disabled }}
-      disabled
-    {{/if }}
-      tabindex="0"
-  />
   {{#if validation.message }}
     <p class="
       {{ styles.errorMessage }}
