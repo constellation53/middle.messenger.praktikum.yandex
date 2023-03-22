@@ -25,8 +25,11 @@ export class Input extends Block<PropsType> {
     return this.compile(template, {
       ...this.props,
       styles,
+      events: {
+        ...(this.props.events && this.props.events),
+        input: this.onInput.bind(this),
+      },
       eventTarget: 'input',
-      events: { input: this.onInput.bind(this) },
     });
   }
 }
