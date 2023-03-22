@@ -15,7 +15,7 @@ export class Input extends Block<PropsType> {
     super(props);
   }
 
-  onInput(event: InputEvent): void {
+  onInput(event: Event): void {
     const target = <HTMLInputElement>event.target;
 
     target.setAttribute('value', target.value);

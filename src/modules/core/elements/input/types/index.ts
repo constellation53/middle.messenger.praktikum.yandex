@@ -12,6 +12,7 @@ type EventsType = {
   change?: EventHandlerType<'change'>;
   focus?: EventHandlerType<'focus'>;
   blur?: EventHandlerType<'blur'>;
+  input?: EventHandlerType<'input'>;
 };
 
 type CoreType = {
