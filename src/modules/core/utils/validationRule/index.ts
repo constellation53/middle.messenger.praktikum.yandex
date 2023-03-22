@@ -1,7 +1,7 @@
 // Other
 import { ValidatorRuleType } from './types';
 
-export default class ValidationRule<
+export default abstract class ValidationRule<
   A = unknown[],
   C = Record<string, string | number>,
 > implements ValidatorRuleType {

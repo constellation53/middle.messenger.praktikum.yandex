@@ -118,10 +118,9 @@ export abstract class Block<P extends BlockType = any> {
     this._element = block;
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function
-  protected render(): HTMLElement {}
+  // eslint-disable-next-line max-len
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
+  protected render(): any {}
 
   compile(
     template: TemplateDelegate,
