@@ -3,6 +3,7 @@ import ValidationRule from '../validationRule';
 
 // Other
 import { ErrorType } from '../validator/types';
+import { getError } from '../validationRule/helpers/getError';
 
 export class Login extends ValidationRule {
   constructor() {
@@ -24,15 +25,6 @@ export class Login extends ValidationRule {
       ],
     ];
 
-    const result: ErrorType = { error: false };
-
-    rules.forEach(([regex, message]) => {
-      if (!regex.test(value)) {
-        result.error = true;
-        result.message = message;
-      }
-    });
-
-    return result;
+    return getError(value, rules);
   }
 }
