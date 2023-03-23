@@ -1,8 +1,10 @@
-export type ListenersStateType<T> = Partial<{
+type ListenersType<T> = {
   [Key in keyof T]: T[Key][];
-}>;
+};
 
-export type EventBusType = Record<string, (...args: unknown[]) => void>;
+export type ListenersStateType<T> = Partial<ListenersType<T>>;
+
+export type EventBusType = Record<string, (...args: any[]) => void>;
 
 export type EventBusHandlerType<T, K extends keyof T> =
 // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-explicit-any
