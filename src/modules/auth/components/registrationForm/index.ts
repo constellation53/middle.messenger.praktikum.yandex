@@ -12,10 +12,9 @@ import template from './index.hbs';
 import * as styles from './styles/index.module.scss';
 import { routes } from '../../../core/config';
 import { RegistrationValidator } from './utils/registrationValidator';
-import { FieldsType, FormFieldsType } from './types';
-import { isBlockClass } from '../../../core/utils/guards/isBlockClass';
+import { ChildrenType, FieldsType, FormFieldsType } from './types';
 
-export class RegistrationFormComponent extends Block {
+export class RegistrationFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new RegistrationValidator();
 
   constructor() {
@@ -131,35 +130,31 @@ export class RegistrationFormComponent extends Block {
   }
 
   onPasswordFocus(event: FocusEvent): void {
-    if (isBlockClass(this.children.passwordCopy)) {
-      const newPassword = this.children.passwordCopy
-        .getContent()!.querySelector('input')!;
+    const newPassword = this.children.passwordCopyInput
+      .getContent()!.querySelector('input')!;
 
-      const target = <HTMLInputElement>event.target;
+    const target = <HTMLInputElement>event.target;
 
-      this.validator.execute('password', target.value);
+    this.validator.execute('password', target.value);
 
-      const errors = this.validator.getErrors();
+    const errors = this.validator.getErrors();
 
-      // eslint-disable-next-line no-console
-      console.log('errors => ', errors);
-    }
+    // eslint-disable-next-line no-console
+    console.log('errors => ', errors);
   }
 
   onRepeatPasswordFocus(event: FocusEvent): void {
-    if (isBlockClass(this.children.passwordInput)) {
-      const newPassword = this.children.passwordInput
-        .getContent()!.querySelector('input')!;
+    const newPassword = this.children.passwordInput
+      .getContent()!.querySelector('input')!;
 
-      const target = <HTMLInputElement>event.target;
+    const target = <HTMLInputElement>event.target;
 
-      this.validator.execute('passwordCopy', target.value, newPassword.value);
+    this.validator.execute('passwordCopy', target.value, newPassword.value);
 
-      const errors = this.validator.getErrors();
+    const errors = this.validator.getErrors();
 
-      // eslint-disable-next-line no-console
-      console.log('errors => ', errors);
-    }
+    // eslint-disable-next-line no-console
+    console.log('errors => ', errors);
   }
 
   onSubmit(event: SubmitEvent): void {

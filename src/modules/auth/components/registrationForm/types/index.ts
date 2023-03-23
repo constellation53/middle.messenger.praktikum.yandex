@@ -1,3 +1,7 @@
+// Elements
+import { Input } from '../../../../core/elements/input';
+import { Button } from '../../../../core/elements/button';
+
 export type FieldsType = 'email'
   | 'login'
   | 'first_name'
@@ -16,4 +20,16 @@ export type ValidatorType = {
   phone: [string];
   password: [string];
   passwordCopy: [string, string];
+};
+
+export type ChildrenType = {
+  emailInput: Input;
+  loginInput: Input;
+  firstNameInput: Input;
+  secondNameInput: Input;
+  phoneInput: Input;
+  passwordInput: Input;
+  passwordCopyInput: Input;
+  registerButton: Button;
+  loginButton: Button;
 };
