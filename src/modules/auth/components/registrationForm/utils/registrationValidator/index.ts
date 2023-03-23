@@ -7,8 +7,8 @@ import { Email } from '../../../../../core/utils/validationRules/email';
 import { Password } from '../../../../../core/utils/validationRules/password';
 import { PasswordCopy } from '../../../../../core/utils/validationRules/passwordCopy';
 import { Login } from '../../../../../core/utils/validationRules/login';
-import { Required } from '../../../../../core/utils/validationRules/requeired';
 import { FieldsType } from '../../types';
+import { Name } from '../../../../../core/utils/validationRules/name';
 
 export class RegistrationValidator extends Validator<FieldsType> {
   constructor() {
@@ -23,7 +23,11 @@ export class RegistrationValidator extends Validator<FieldsType> {
       ],
       [
         'first_name',
-        new Required(),
+        new Name(),
+      ],
+      [
+        'second_name',
+        new Name(),
       ],
       [
         'password',
