@@ -1,5 +1,7 @@
-export type ValidatorType<T> = {
-  execute: (type: T, ...args: unknown[]) => void;
+export type ExtendedType = Record<string, unknown[]>;
+
+export type ValidatorType<T extends ExtendedType> = {
+  execute: <K extends keyof T>(field: K, ...args: T[K]) => void;
 };
 
 export type ErrorType = {

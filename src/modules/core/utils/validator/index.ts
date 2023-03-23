@@ -1,13 +1,13 @@
 // Other
-import { ErrorType, ValidatorType } from './types';
+import { ErrorType, ExtendedType, ValidatorType } from './types';
 import { ValidatorRuleType } from '../validationRule/types';
 
-export abstract class Validator<K extends string> implements ValidatorType<K> {
-  private validators: Map<K, ValidatorRuleType>;
+export abstract class Validator<T extends ExtendedType> implements ValidatorType<T> {
+  private validators: Map<keyof T, ValidatorRuleType>;
 
-  public errors: Map<K, ErrorType> = new Map<K, ErrorType>();
+  public errors: Map<keyof T, ErrorType> = new Map<keyof T, ErrorType>();
 
-  protected constructor(validators: Map<K, ValidatorRuleType>) {
+  protected constructor(validators: Map<keyof T, ValidatorRuleType>) {
     this.validators = validators;
     validators.forEach((_, key) => {
       this.errors.set(key, { error: false });
@@ -18,11 +18,11 @@ export abstract class Validator<K extends string> implements ValidatorType<K> {
     this.errors.clear();
   }
 
-  getErrors(): Record<K, ErrorType> {
-    return <Record<K, ErrorType>>Object.fromEntries(this.errors);
+  getErrors(): Record<keyof T, ErrorType> {
+    return <Record<keyof T, ErrorType>>Object.fromEntries(this.errors);
   }
 
-  private getRule(type: K): ValidatorRuleType {
+  private getRule(type: keyof T): ValidatorRuleType {
     const rule = this.validators.get(type);
     if (!rule) {
       throw new Error(`Rule not found for type:${type.toString()}`);
@@ -30,7 +30,7 @@ export abstract class Validator<K extends string> implements ValidatorType<K> {
     return rule!;
   }
 
-  execute(field: K, ...args: unknown[]): void {
+  execute<K extends keyof T>(field: K, ...args: T[K]): void {
     const rule = this.getRule(field);
 
     const result: ErrorType = rule.execute(...args);
