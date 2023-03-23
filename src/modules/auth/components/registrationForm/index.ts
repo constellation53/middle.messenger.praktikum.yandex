@@ -133,7 +133,7 @@ export class RegistrationFormComponent extends Block {
 
       const target = <HTMLInputElement>event.target;
 
-      this.validator.execute('password', target.value, newPassword.value);
+      this.validator.execute('password', target.value);
 
       const errors = this.validator.getErrors();
 
