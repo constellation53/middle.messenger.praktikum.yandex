@@ -2,7 +2,7 @@
 import { Block } from '../index';
 
 // Other
-import { ChildrenType } from '../types';
+import { ChildrenBaseType } from '../types';
 
 export const executeComponent = (
   fragment: HTMLTemplateElement,
@@ -21,7 +21,7 @@ export const executeComponent = (
 
 export const replaceStubs = (
   fragment: HTMLTemplateElement,
-  children: ChildrenType,
+  children: ChildrenBaseType,
 ): void => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Object.entries(children).forEach(([_, component]) => {

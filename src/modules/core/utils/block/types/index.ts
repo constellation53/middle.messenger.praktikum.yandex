@@ -40,7 +40,11 @@ export type PropsType<T extends ExtendedType> = T & {
   settings?: SettingsType;
 };
 
-export type ChildrenType = Record<string, Block | Block[]>;
+export type ChildrenBaseType<K extends string = string> = Record<K, Block | Block[]>;
+
+export type ChildrenType<C extends ChildrenBaseType> = {
+  [K in keyof C]: C[K];
+};
 
 export type BlockType = PropsType<Record<string, unknown>>;
 

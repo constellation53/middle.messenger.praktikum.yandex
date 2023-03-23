@@ -6,9 +6,14 @@ import { EventBus } from '../eventBus';
 // Other
 import {
   BlockType,
-  ChildrenType, EventBusFuncType, EventBusType,
-  EventEnum, ExtendedType,
-  ListenersType, PropsType,
+  ChildrenBaseType,
+  ChildrenType,
+  EventBusFuncType,
+  EventBusType,
+  EventEnum,
+  ExtendedType,
+  ListenersType,
+  PropsType,
 } from './types';
 import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
@@ -18,7 +23,7 @@ import { divideProperties } from './helpers/divideProperties';
 import { makePropsProxy } from './helpers/makePropsProxy';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export abstract class Block<P extends ExtendedType = any> {
+export abstract class Block<P extends ExtendedType = any, C extends ChildrenBaseType = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
@@ -27,14 +32,14 @@ export abstract class Block<P extends ExtendedType = any> {
 
   protected props: P;
 
-  public children: ChildrenType;
+  public children: ChildrenType<C>;
 
   protected eventBus: EventBusFuncType<P>;
 
   protected constructor(properties?: P) {
     const eventBus = new EventBus<ListenersType<PropsType<P>>>();
 
-    const { children, props } = divideProperties<P>(properties || ({} as P));
+    const { children, props } = divideProperties<P, C>(properties || ({} as P));
 
     this.eventBus = (): EventBusType<P> => eventBus;
 
@@ -160,6 +165,7 @@ export abstract class Block<P extends ExtendedType = any> {
     return element;
   }
 
+  // TODO: remove null
   public getContent(): HTMLElement | null {
     return this.element;
   }
