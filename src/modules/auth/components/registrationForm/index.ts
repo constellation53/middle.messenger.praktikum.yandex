@@ -72,6 +72,10 @@ export class RegistrationFormComponent extends Block {
       name: 'phone',
       label: 'Телефон',
       value: '+7 (909) 967 30 30',
+      events: {
+        focus: this.onFocus.bind(this, 'phone'),
+        blur: this.onFocus.bind(this, 'phone'),
+      },
     });
 
     this.children.passwordInput = new Input({
@@ -168,6 +172,7 @@ export class RegistrationFormComponent extends Block {
     this.validator.execute('login', data.login);
     this.validator.execute('first_name', data.first_name);
     this.validator.execute('second_name', data.second_name);
+    this.validator.execute('phone', data.phone);
     this.validator.execute('password', data.password);
     this.validator.execute('passwordCopy', data.password, data.passwordCopy);
 

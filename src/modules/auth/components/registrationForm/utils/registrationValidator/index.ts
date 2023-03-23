@@ -9,6 +9,7 @@ import { Password } from '../../../../../core/utils/validationRules/password';
 import { PasswordCopy } from '../../../../../core/utils/validationRules/passwordCopy';
 import { Login } from '../../../../../core/utils/validationRules/login';
 import { Name } from '../../../../../core/utils/validationRules/name';
+import { Phone } from '../../../../../core/utils/validationRules/phone';
 
 export class RegistrationValidator extends Validator<ValidatorType> {
   constructor() {
@@ -28,6 +29,10 @@ export class RegistrationValidator extends Validator<ValidatorType> {
       [
         'second_name',
         new Name(),
+      ],
+      [
+        'phone',
+        new Phone(),
       ],
       [
         'password',
