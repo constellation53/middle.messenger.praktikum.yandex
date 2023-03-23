@@ -11,7 +11,7 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { InfoFormType, FormFieldsType, FieldsType } from './types';
+import { InfoFormType, FormFieldsType, ValidatorType } from './types';
 import { InfoValidator } from './utils/infoValidator';
 
 type PropsType = InfoFormType;
@@ -115,7 +115,7 @@ export class InfoFormComponent extends Block<PropsType> {
     });
   }
 
-  onFocus(field: FieldsType, event: FocusEvent): void {
+  onFocus(field: keyof ValidatorType, event: FocusEvent): void {
     const target = <HTMLInputElement>event.target;
 
     this.validator.execute(field, target.value);

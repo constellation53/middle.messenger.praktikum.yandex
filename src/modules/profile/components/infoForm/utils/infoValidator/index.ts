@@ -6,12 +6,12 @@ import { ValidatorRuleType } from '../../../../../core/utils/validationRule/type
 import { Email } from '../../../../../core/utils/validationRules/email';
 import { Login } from '../../../../../core/utils/validationRules/login';
 import { Required } from '../../../../../core/utils/validationRules/requeired';
-import { FieldsType } from '../../types';
+import { ValidatorType } from '../../types';
 import { Name } from '../../../../../core/utils/validationRules/name';
 
-export class InfoValidator extends Validator<FieldsType> {
+export class InfoValidator extends Validator<ValidatorType> {
   constructor() {
-    const validators = new Map<FieldsType, ValidatorRuleType>([
+    const validators = new Map<keyof ValidatorType, ValidatorRuleType>([
       [
         'email',
         new Email(),
