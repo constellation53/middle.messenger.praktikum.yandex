@@ -5,18 +5,19 @@ import ValidationRule from '../validationRule';
 import { ErrorType } from '../validator/types';
 import { getError } from '../validationRule/helpers/getError';
 
-export class Email extends ValidationRule {
+export class Email extends ValidationRule<[string]> {
   constructor() {
     super();
   }
 
   execute(value: string): ErrorType {
-    const email = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const rules: [RegExp, string][] = [
       [
         email,
-        'Некорректный email',
+        'Разрешена латиница, цифры и спецсимволы: .,_,%+-, обязательна '
+        + '@ и точка после неё, перед точкой обязательно должны быть буквы',
       ],
     ];
 
