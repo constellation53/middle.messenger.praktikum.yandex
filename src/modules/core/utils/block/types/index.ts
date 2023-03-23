@@ -9,7 +9,7 @@ export enum EventEnum {
   FLOW_CDU = 'flow:component-did-update',
 }
 
-export type ListenersType<P = any> = {
+export type ListenersType<P> = {
   [EventEnum.INIT]: [];
   [EventEnum.FLOW_CDM]: [];
   [EventEnum.FLOW_CDU]: [P, P];

@@ -8,4 +8,4 @@ export type ValidatorType = {
   oldPassword: [string];
   newPassword: [string];
   repeatNewPassword: [string, string];
-}
+};

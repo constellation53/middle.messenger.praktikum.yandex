@@ -130,8 +130,8 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
   }
 
   onPasswordFocus(event: FocusEvent): void {
-    const newPassword = this.children.passwordCopyInput
-      .getContent()!.querySelector('input')!;
+    // const newPassword = this.children.passwordCopyInput
+    //   .getContent()!.querySelector('input')!;
 
     const target = <HTMLInputElement>event.target;
 

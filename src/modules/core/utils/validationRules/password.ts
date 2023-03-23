@@ -11,7 +11,6 @@ export class Password extends ValidationRule<[string]> {
   }
 
   execute(password: string): ErrorType {
-
     const minChar = /^.{8,}$/;
     const maxChar = /^.{8,40}$/;
     const atLeastOneCapitalLetter = /(?=.*[A-Z])/;

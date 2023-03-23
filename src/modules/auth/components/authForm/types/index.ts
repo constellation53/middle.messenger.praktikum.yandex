@@ -6,4 +6,4 @@ export type FormFieldsType = Record<FieldsType, string>;
 export type ValidatorType = {
   login: [string];
   password: [string];
-}
+};
