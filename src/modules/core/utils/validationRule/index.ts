@@ -4,7 +4,7 @@ import { ValidatorRuleType } from './types';
 export default abstract class ValidationRule<
   A = unknown[],
   C = Record<string, string | number>,
-> implements ValidatorRuleType {
+> implements ValidatorRuleType<Array<A>> {
   protected config;
 
   constructor(config?: C) {
