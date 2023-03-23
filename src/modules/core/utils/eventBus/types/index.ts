@@ -4,6 +4,7 @@ type ListenersType<T> = {
 
 export type ListenersStateType<T> = Partial<ListenersType<T>>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type EventBusType = Record<string, (...args: any[]) => void>;
 
 export type EventBusHandlerType<T, K extends keyof T> =
