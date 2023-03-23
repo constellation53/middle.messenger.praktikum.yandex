@@ -11,17 +11,27 @@ export class Login extends ValidationRule {
   }
 
   execute(value: string): ErrorType {
-    const symbols = /^[\w\d]+$/;
-    const minChar = /^[\w\d]{4,}$/;
+    const minChar = /^.{3,}$/;
+    const maxChar = /^.{3,20}$/;
+    const latin = /[A-Za-z]+/;
+    const latinAndNumber = /^[A-Za-z0-9-_]+$/;
 
     const rules: [RegExp, string][] = [
       [
-        symbols,
-        'Логин должен состоять только из английских букв и цифр',
+        minChar,
+        'Минимальное количество символов - 3',
       ],
       [
-        minChar,
-        'Логин должен состоять как минимум из 4 символов',
+        maxChar,
+        'Максимальное количество символов - 20',
+      ],
+      [
+        latinAndNumber,
+        'Разрешерна только латиница и цифры, нет спецсиволов (допустим только - и _)',
+      ],
+      [
+        latin,
+        'Необходима хотя бы одна латинская буква',
       ],
     ];
 
