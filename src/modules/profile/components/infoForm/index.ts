@@ -70,6 +70,10 @@ export class InfoFormComponent extends Block<PropsType> {
       value: 'Иванов',
       horizontal: true,
       disabled: this.props.disabled,
+      events: {
+        focus: this.onFocus.bind(this, 'second_name'),
+        blur: this.onFocus.bind(this, 'second_name'),
+      },
     });
 
     this.children.displayNameInput = new Input({
@@ -131,6 +135,7 @@ export class InfoFormComponent extends Block<PropsType> {
     this.validator.execute('email', data.email);
     this.validator.execute('login', data.login);
     this.validator.execute('first_name', data.first_name);
+    this.validator.execute('second_name', data.second_name);
 
     const errors = this.validator.getErrors();
 
