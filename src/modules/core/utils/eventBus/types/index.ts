@@ -1,12 +1,6 @@
-type ListenersType<T> = {
-  [Key in keyof T]: T[Key][];
+export type ExtendedType = Record<string, unknown[]>;
+export type HandlerType<T extends ExtendedType, K extends keyof T> = (...args: T[K]) => void;
+
+export type ListenersType<T extends ExtendedType> = {
+  [K in keyof T]?: Array<HandlerType<T, K>>;
 };
-
-export type ListenersStateType<T> = Partial<ListenersType<T>>;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type EventBusType = Record<string, (...args: any[]) => void>;
-
-export type EventBusHandlerType<T, K extends keyof T> =
-// eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-explicit-any
-  T[K] extends (...args: infer A) => any ? A : never[];

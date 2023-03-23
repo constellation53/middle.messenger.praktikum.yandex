@@ -5,11 +5,10 @@ import { EventBus } from '../eventBus';
 
 // Other
 import {
-  BlockEventBusType,
   BlockType,
-  ChildrenType,
-  EventEnum,
-  ListenersType,
+  ChildrenType, EventBusFuncType, EventBusType,
+  EventEnum, ExtendedType,
+  ListenersType, PropsType,
 } from './types';
 import { addEvents } from './helpers/addEvents';
 import { removeEvents } from './helpers/removeEvents';
@@ -19,7 +18,7 @@ import { divideProperties } from './helpers/divideProperties';
 import { makePropsProxy } from './helpers/makePropsProxy';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export abstract class Block<P extends BlockType = any> {
+export abstract class Block<P extends ExtendedType = any> {
   static EVENTS = EventEnum;
 
   private _element: HTMLElement;
@@ -30,14 +29,14 @@ export abstract class Block<P extends BlockType = any> {
 
   public children: ChildrenType;
 
-  protected eventBus: BlockEventBusType<P>;
+  protected eventBus: EventBusFuncType<P>;
 
   protected constructor(properties?: P) {
-    const eventBus = new EventBus();
+    const eventBus = new EventBus<ListenersType<PropsType<P>>>();
 
     const { children, props } = divideProperties<P>(properties || ({} as P));
 
-    this.eventBus = (): EventBus<ListenersType<P>> => eventBus;
+    this.eventBus = (): EventBusType<P> => eventBus;
 
     this.props = makePropsProxy({ ...props, id: this.id }, this.eventBus);
 
@@ -48,7 +47,7 @@ export abstract class Block<P extends BlockType = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _registerEvents(eventBus: EventBus<ListenersType<P>>): void {
+  private _registerEvents(eventBus: EventBus<ListenersType<PropsType<P>>>): void {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -83,7 +82,7 @@ export abstract class Block<P extends BlockType = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: P, newProps: P): void {
+  private _componentDidUpdate(oldProps: PropsType<P>, newProps: PropsType<P>): void {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }

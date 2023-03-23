@@ -9,11 +9,11 @@ export enum EventEnum {
   FLOW_CDU = 'flow:component-did-update',
 }
 
-export type ListenersType<P> = {
-  [EventEnum.INIT]: () => void;
-  [EventEnum.FLOW_CDM]: () => void;
-  [EventEnum.FLOW_CDU]: (oldProp: P, newProp: P) => void;
-  [EventEnum.FLOW_RENDER]: () => void;
+export type ListenersType<P = any> = {
+  [EventEnum.INIT]: [];
+  [EventEnum.FLOW_CDM]: [];
+  [EventEnum.FLOW_CDU]: [P, P];
+  [EventEnum.FLOW_RENDER]: [];
 };
 
 export type MetaType<T> = {
@@ -32,7 +32,9 @@ type SettingsType = {
   withInternalID?: boolean;
 };
 
-export type CoreBlockType<T> = T & {
+export type ExtendedType = Record<string, unknown>;
+
+export type PropsType<T extends ExtendedType> = T & {
   eventTarget?: string;
   events?: EventsType;
   settings?: SettingsType;
@@ -40,7 +42,7 @@ export type CoreBlockType<T> = T & {
 
 export type ChildrenType = Record<string, Block | Block[]>;
 
-export type BlockEventBusType<P> = () => EventBus<ListenersType<P>>;
+export type BlockType = PropsType<Record<string, unknown>>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type BlockType = CoreBlockType<Record<string, any>>;
+export type EventBusType<P extends BlockType> = EventBus<ListenersType<PropsType<P>>>;
+export type EventBusFuncType<P extends BlockType> = () => EventBusType<P>;

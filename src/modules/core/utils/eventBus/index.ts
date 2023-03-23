@@ -1,15 +1,15 @@
 // Other
 import { isString } from '../guards/isString';
-import { EventBusHandlerType, EventBusType, ListenersStateType } from './types';
+import { HandlerType, ExtendedType, ListenersType } from './types';
 
-export class EventBus<T = EventBusType> {
-  listeners: ListenersStateType<T>;
+export class EventBus<T extends ExtendedType> {
+  listeners: ListenersType<T> = {};
 
   constructor() {
     this.listeners = {};
   }
 
-  on = <Event extends keyof T>(event: Event, callback: T[Event]): void => {
+  on = <E extends keyof T>(event: E, callback: HandlerType<T, E>): void => {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -19,7 +19,7 @@ export class EventBus<T = EventBusType> {
     }
   };
 
-  off = <Event extends keyof T>(event: Event, callback: T[Event]): void => {
+  off = <E extends keyof T>(event: E, callback: HandlerType<T, E>): void => {
     if (isString(event) && !this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -29,18 +29,16 @@ export class EventBus<T = EventBusType> {
     );
   };
 
-  emit = <Event extends keyof T>(
-    event: Event,
-    ...args: EventBusHandlerType<T, Event>
+  emit = <E extends keyof T>(
+    event: E,
+    ...args: T[E]
   ): void => {
     if (isString(event) && !this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event]!.forEach((callback) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      callback(...(args as const));
+      callback(...args);
     });
   };
 }

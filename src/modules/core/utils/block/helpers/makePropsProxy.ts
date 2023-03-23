@@ -1,14 +1,17 @@
 // Other
-import { BlockEventBusType, BlockType, EventEnum } from '../types';
+import { BlockType, EventBusFuncType, EventEnum, PropsType } from '../types';
 
 export const makePropsProxy = <P extends BlockType>(
-  props: P,
-  eventBus: BlockEventBusType<P>,
+  props: PropsType<P>,
+  eventBus: EventBusFuncType<P>,
 ): P => new Proxy(props, {
     get: (target, property: string): P[string] => {
       const isFunction = typeof target[property] === 'function';
 
-      return isFunction ? target[property].bind(this) : target[property];
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      const handler = <Function>target[property];
+
+      return isFunction ? handler.bind(this) : target[property];
     },
     set: (target, property: string, value): boolean => {
       const old = { ...target };
