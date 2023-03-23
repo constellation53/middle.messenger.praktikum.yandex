@@ -7,11 +7,11 @@
     "build": "npm run lint && parcel build src/**/*.html --no-cache",
     "start": "npm run build && node server -p 3000",
     "lint": "tsc && run-p lint:js lint:css",
-    "lint:js": "eslint \"./**/*.{js,ts}\"",
-    "lint:css": "stylelint './**/*.scss'",
+    "lint:js": "eslint './src/**/*.{js,ts}'",
+    "lint:css": "stylelint './src/**/*.scss'",
     "lint:fix": "run-p lint:fix:js lint:fix:css",
-    "lint:fix:js": "eslint --fix './**/*.{js,ts}'",
-    "lint:fix:css": "stylelint --fix './**/*.scss'"
+    "lint:fix:js": "eslint --fix './src/**/*.{js,ts}'",
+    "lint:fix:css": "stylelint --fix './src/**/*.scss'"
   },
   "dependencies": {
     "express": "4.18.2",
