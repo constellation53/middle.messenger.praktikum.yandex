@@ -4,10 +4,10 @@ import { Input } from '../../../elements/input';
 // Other
 import { ErrorType } from '../types';
 
-export const validateField = (
-  field: string,
-  fields: Record<string, Input>,
-  errors: Record<string, ErrorType>,
+export const validateField = <K extends string>(
+  field: K,
+  fields: Record<K, Input>,
+  errors: Record<K, ErrorType>,
 ): void => {
   const error = errors[field];
 
