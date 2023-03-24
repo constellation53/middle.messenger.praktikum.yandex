@@ -96,7 +96,7 @@ export abstract class Block<P extends ExtendedType = any, C extends ChildrenBase
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private componentDidUpdate(oldProps: P, newProps: P): boolean {
+  protected componentDidUpdate(oldProps: P, newProps: P): boolean {
     return true;
   }
 
