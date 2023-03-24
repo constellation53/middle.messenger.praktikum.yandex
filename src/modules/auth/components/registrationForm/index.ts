@@ -13,9 +13,21 @@ import * as styles from './styles/index.module.scss';
 import { routes } from '../../../core/config';
 import { RegistrationValidator } from './utils/registrationValidator';
 import { ChildrenType, FieldsType, FormFieldsType } from './types';
+import { validateField } from '../../../core/utils/validator/helpers/validateField';
+import { validateFields } from '../../../core/utils/validator/helpers/validateFields';
 
 export class RegistrationFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new RegistrationValidator();
+
+  protected readonly fields: Record<string, Input> = {
+    email: this.children.emailInput,
+    login: this.children.loginInput,
+    first_name: this.children.firstNameInput,
+    second_name: this.children.secondNameInput,
+    phone: this.children.phoneInput,
+    password: this.children.passwordInput,
+    passwordCopy: this.children.passwordCopyInput,
+  };
 
   constructor() {
     super();
@@ -70,7 +82,7 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
       id: 'phone',
       name: 'phone',
       label: 'Телефон',
-      value: '+7 (909) 967 30 30',
+      value: '+79099673030',
       events: {
         focus: this.onFocus.bind(this, 'phone'),
         blur: this.onFocus.bind(this, 'phone'),
@@ -82,8 +94,7 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
       name: 'password',
       htmlType: 'password',
       label: 'Пароль',
-      value: '123456789123',
-      validation: { error: true },
+      value: '1234567891231A',
       events: {
         focus: this.onPasswordFocus.bind(this),
         blur: this.onPasswordFocus.bind(this),
@@ -95,8 +106,7 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
       name: 'passwordCopy',
       htmlType: 'password',
       label: 'Пароль (ещё раз)',
-      value: '123456789123',
-      validation: { error: true, message: 'Пароли не совпадают' },
+      value: '1234567891231A',
       events: {
         focus: this.onRepeatPasswordFocus.bind(this),
         blur: this.onRepeatPasswordFocus.bind(this),
@@ -124,6 +134,8 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
     this.validator.execute(field, target.value);
 
     const errors = this.validator.getErrors();
+
+    validateField(field, this.fields, errors);
 
     // eslint-disable-next-line no-console
     console.log('errors => ', errors);
@@ -172,6 +184,8 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
     this.validator.execute('passwordCopy', data.password, data.passwordCopy);
 
     const errors = this.validator.getErrors();
+
+    validateFields(this.fields, errors);
 
     // eslint-disable-next-line no-console
     console.log('errors => ', errors);
