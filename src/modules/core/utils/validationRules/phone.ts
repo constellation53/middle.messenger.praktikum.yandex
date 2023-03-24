@@ -11,12 +11,22 @@ export class Phone extends ValidationRule<[string]> {
   }
 
   execute(value: string): ErrorType {
-    const phone = /^\+?\d{10,15}$/;
+    const phone = /^\+?\d+$/;
+    const minChar = /^.{10,}$/;
+    const maxChar = /^.{10,15}$/;
 
     const rules: [RegExp, string][] = [
       [
         phone,
-        'Поле должно быть 10 до 15 символов, состоит из цифр, может начинается с плюса.',
+        'Поле должно состоять из цифр, может начинается с плюса.',
+      ],
+      [
+        minChar,
+        'Минимальное количество символов - 10',
+      ],
+      [
+        maxChar,
+        'Максимальное количество символов - 15',
       ],
     ];
 
