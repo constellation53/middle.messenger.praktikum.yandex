@@ -4,6 +4,7 @@ import { Block } from '../../../core/utils/block';
 // Elements
 import { Input } from '../../../core/elements/input';
 import { Button } from '../../../core/elements/button';
+import { Error } from './error';
 
 // Templates
 import template from './index.hbs';
@@ -11,11 +12,13 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { AvatarValidator } from './utils/avatarValidator';
-import { FormFieldsType } from './types';
+import { ChildrenType, FieldsType, FormFieldsType } from './types';
 import { isBlockClass } from '../../../core/utils/guards/isBlockClass';
 
-export class AvatarFormComponent extends Block {
+export class AvatarFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new AvatarValidator();
+
+  protected readonly fields: Record<FieldsType, Input> = { avatar: this.children.avatarInput };
 
   constructor() {
     super();
@@ -47,8 +50,10 @@ export class AvatarFormComponent extends Block {
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
+    if (errors.avatar.error) {
+      this.children.error.setProps({ message: errors.avatar.message });
+    }
+
     // eslint-disable-next-line no-console
     console.log('data => ', data);
   }
@@ -78,11 +83,12 @@ export class AvatarFormComponent extends Block {
       fluid: true,
       htmlType: 'submit',
     });
+
+    this.children.error = new Error();
   }
 
   render(): HTMLElement {
     return this.compile(template, {
-      ...this.props,
       styles,
       events: { submit: this.onSubmit.bind(this) },
     });

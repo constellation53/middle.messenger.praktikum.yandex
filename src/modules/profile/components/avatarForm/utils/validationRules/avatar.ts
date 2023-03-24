@@ -10,7 +10,7 @@ export class Avatar extends ValidationRule {
   }
 
   execute(value: File): ErrorType {
-    if (value) {
+    if (value.size > 0) {
       return { error: false };
     }
 

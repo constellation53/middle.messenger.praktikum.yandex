@@ -1,6 +1,7 @@
 .avatarForm {
   @import '../../../../../assets/styles/extensions';
   @import './palette';
+  position: relative;
 
   background: $formBackground;
 
@@ -14,6 +15,12 @@
     color: $textColor;
     text-decoration: underline;
     cursor: pointer;
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    color: $errorColor;
   }
 
   @function px($px) {
