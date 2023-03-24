@@ -9,48 +9,7 @@
       {{ styles.hidden }}
     {{/if }}
   " >
-  <input
-      class="
-        {{ styles.field }}
-        {{#if validation.error }}
-          {{ styles.error }}
-        {{/if }}
-        text
-        size-7
-        font-weight-500
-      "
-      type="{{ htmlType }}"
-      name="{{ name }}"
-      id="{{ id }}"
-      value="{{ value }}"
-    {{#if disabled }}
-      disabled
-    {{/if }}
-      tabindex="0"
-  />
-  <label
-      htmlFor="{{ id }}"
-      class="
-      {{ styles.label }}
-      text
-      {{#if horizontal }}
-        size-7
-      {{ else }}
-        size-14
-      {{/if}}
-      font-weight-500
-    "
-  >
-    {{ label }}
-  </label>
-  {{#if validation.message }}
-    <p class="
-      {{ styles.errorMessage }}
-      text
-      size-15
-     "
-    >
-      {{  validation.message }}
-    </p>
-  {{/if }}
+  {{{ field }}}
+  {{{ label }}}
+  {{{ error }}}
 </div>

@@ -1,6 +1,11 @@
 // Core
 import { EventHandlerType } from '../../../utils/block/types';
 
+// Elements
+import { Error } from '../error';
+import { Field } from '../field';
+import { Label } from '../label';
+
 type HtmlTypeType = 'text' | 'password' | 'file';
 
 type ValidationType = {
@@ -38,3 +43,27 @@ type VerticalInputType = {
 } & CoreType;
 
 export type InputType = HorizontalInputType | VerticalInputType;
+
+export type ErrorType = {
+  message?: string;
+};
+
+export type FieldType = {
+  id: string | number;
+  name: string;
+  htmlType?: HtmlTypeType;
+  value?: string;
+  disabled?: boolean;
+  events?: EventsType;
+  validation?: ValidationType;
+};
+
+export type LabelType = {
+  label: string;
+};
+
+export type ChildrenType = {
+  error: Error;
+  field: Field;
+  label: Label;
+};
