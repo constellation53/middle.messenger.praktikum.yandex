@@ -19,7 +19,7 @@ import { validateFields } from '../../../core/utils/validator/helpers/validateFi
 export class RegistrationFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new RegistrationValidator();
 
-  protected readonly fields: Record<string, Input> = {
+  protected readonly fields: Record<FieldsType, Input> = {
     email: this.children.emailInput,
     login: this.children.loginInput,
     first_name: this.children.firstNameInput,
@@ -135,7 +135,7 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
 
     const errors = this.validator.getErrors();
 
-    validateField(field, this.fields, errors);
+    validateField<FieldsType>(field, this.fields, errors);
   }
 
   onRepeatPasswordFocus(event: FocusEvent): void {
@@ -148,7 +148,7 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
 
     const errors = this.validator.getErrors();
 
-    validateField('password', this.fields, errors);
+    validateField<FieldsType>('password', this.fields, errors);
   }
 
   onSubmit(event: SubmitEvent): void {
