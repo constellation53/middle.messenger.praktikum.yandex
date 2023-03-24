@@ -33,14 +33,12 @@ export class Input extends Block<PropsType, ChildrenType> {
 
     this.children.label = new Label({ label: this.props.label });
 
-    if (this.props.validation?.message) {
-      this.children.error = new Error({ message: this.props.validation.message });
-    }
+    this.children.error = new Error();
   }
 
   componentDidUpdate(prevProps: PropsType, newProps: PropsType): boolean {
     if (prevProps.validation?.message !== newProps.validation?.message) {
-      this.children.error = new Error({ message: this.props.validation?.message });
+      this.children.error.setProps({ message: newProps?.validation?.message });
 
       return true;
     }

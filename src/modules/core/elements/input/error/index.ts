@@ -11,7 +11,7 @@ import { ErrorType } from '../types';
 type PropsType = ErrorType;
 
 export class Error extends Block<PropsType> {
-  constructor(props: PropsType) {
+  constructor(props: PropsType = {}) {
     super(props);
   }
 
