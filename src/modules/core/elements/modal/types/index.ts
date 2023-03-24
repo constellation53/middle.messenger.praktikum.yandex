@@ -2,6 +2,6 @@
 import { Block } from '../../../utils/block';
 
 export type ModalType = {
-  content: Block;
+  content: Block | Block<never>;
   opened?: boolean;
 };
