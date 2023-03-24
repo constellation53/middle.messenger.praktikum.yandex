@@ -96,8 +96,8 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
       label: 'Пароль',
       value: '1234567891231A',
       events: {
-        focus: this.onPasswordFocus.bind(this),
-        blur: this.onPasswordFocus.bind(this),
+        focus: this.onFocus.bind(this, 'password'),
+        blur: this.onFocus.bind(this, 'password'),
       },
     });
 
@@ -136,37 +136,19 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
     const errors = this.validator.getErrors();
 
     validateField(field, this.fields, errors);
-
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
-  }
-
-  onPasswordFocus(event: FocusEvent): void {
-    // const newPassword = this.children.passwordCopyInput
-    //   .getContent().querySelector('input')!;
-
-    const target = <HTMLInputElement>event.target;
-
-    this.validator.execute('password', target.value);
-
-    const errors = this.validator.getErrors();
-
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
   }
 
   onRepeatPasswordFocus(event: FocusEvent): void {
-    const newPassword = this.children.passwordInput
+    const password = this.children.passwordInput
       .getContent().querySelector('input')!;
 
     const target = <HTMLInputElement>event.target;
 
-    this.validator.execute('passwordCopy', target.value, newPassword.value);
+    this.validator.execute('passwordCopy', target.value, password.value);
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
+    validateField('password', this.fields, errors);
   }
 
   onSubmit(event: SubmitEvent): void {
@@ -187,8 +169,6 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
 
     validateFields(this.fields, errors);
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
     // eslint-disable-next-line no-console
     console.log('data => ', data);
   }
