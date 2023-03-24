@@ -10,6 +10,7 @@
 
 
   &.horizontal .field  {
+    width: px(180);
     height: px(33);
     padding: px(10);
   }
@@ -26,5 +27,11 @@
     transform: translateY(0);
     font-size: px(13);
     line-height: px(13);
+  }
+
+  &.horizontal .errorWrapper {
+    right: px(0);
+    bottom: px(1);
+    left: px(340);
   }
 }
