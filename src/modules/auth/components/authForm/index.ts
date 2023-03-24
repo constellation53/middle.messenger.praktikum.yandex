@@ -19,7 +19,7 @@ import { validateFields } from '../../../core/utils/validator/helpers/validateFi
 export class AuthFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new AuthValidator();
 
-  protected readonly fields: Record<string, Input> = {
+  protected readonly fields: Record<FieldsType, Input> = {
     login: this.children.loginInput,
     password: this.children.passwordInput,
   };
@@ -74,7 +74,7 @@ export class AuthFormComponent extends Block<never, ChildrenType> {
 
     const errors = this.validator.getErrors();
 
-    validateField(field, this.fields, errors);
+    validateField<FieldsType>(field, this.fields, errors);
   }
 
   onSubmit(event: SubmitEvent): void {
