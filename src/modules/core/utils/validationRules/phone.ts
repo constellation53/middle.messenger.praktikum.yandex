@@ -18,7 +18,7 @@ export class Phone extends ValidationRule<[string]> {
     const rules: [RegExp, string][] = [
       [
         phone,
-        'Поле должно состоять из цифр, может начинается с плюса.',
+        'Только цифры, плюс в начале разрешен',
       ],
       [
         minChar,

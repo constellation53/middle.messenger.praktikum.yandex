@@ -11,13 +11,24 @@ import template from './index.hbs';
 
 // Other
 import * as styles from './styles/index.module.scss';
-import { InfoFormType, FormFieldsType, ValidatorType } from './types';
+import { InfoFormType, FormFieldsType, ChildrenType, FieldsType } from './types';
 import { InfoValidator } from './utils/infoValidator';
+import { validateField } from '../../../core/utils/validator/helpers/validateField';
+import { validateFields } from '../../../core/utils/validator/helpers/validateFields';
 
 type PropsType = InfoFormType;
 
-export class InfoFormComponent extends Block<PropsType> {
+export class InfoFormComponent extends Block<PropsType, ChildrenType> {
   protected readonly validator = new InfoValidator();
+
+  protected readonly fields: Record<FieldsType, Input> = {
+    email: this.children.emailInput,
+    login: this.children.loginInput,
+    first_name: this.children.firstNameInput,
+    second_name: this.children.secondNameInput,
+    display_name: this.children.displayNameInput,
+    phone: this.children.phoneInput,
+  };
 
   constructor(props: PropsType = {}) {
     super(props);
@@ -93,9 +104,13 @@ export class InfoFormComponent extends Block<PropsType> {
       id: 'phone',
       name: 'phone',
       label: 'Телефон',
-      value: '+7 (909) 967 30 30',
+      value: '+79099673030',
       horizontal: true,
       disabled: this.props.disabled,
+      events: {
+        focus: this.onFocus.bind(this, 'phone'),
+        blur: this.onFocus.bind(this, 'phone'),
+      },
     });
 
     this.children.emailDivider = new Divider();
@@ -115,15 +130,14 @@ export class InfoFormComponent extends Block<PropsType> {
     });
   }
 
-  onFocus(field: keyof ValidatorType, event: FocusEvent): void {
+  onFocus(field: FieldsType, event: FocusEvent): void {
     const target = <HTMLInputElement>event.target;
 
     this.validator.execute(field, target.value);
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
+    validateField<FieldsType>(field, this.fields, errors);
   }
 
   onSubmit(event: SubmitEvent): void {
@@ -136,11 +150,12 @@ export class InfoFormComponent extends Block<PropsType> {
     this.validator.execute('login', data.login);
     this.validator.execute('first_name', data.first_name);
     this.validator.execute('second_name', data.second_name);
+    this.validator.execute('display_name', data.display_name);
+    this.validator.execute('phone', data.phone);
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
+    validateFields(this.fields, errors);
     // eslint-disable-next-line no-console
     console.log('data => ', data);
   }

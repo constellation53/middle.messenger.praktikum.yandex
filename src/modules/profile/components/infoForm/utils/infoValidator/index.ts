@@ -8,6 +8,7 @@ import { Login } from '../../../../../core/utils/validationRules/login';
 import { Required } from '../../../../../core/utils/validationRules/requeired';
 import { ValidatorType } from '../../types';
 import { Name } from '../../../../../core/utils/validationRules/name';
+import { Phone } from '../../../../../core/utils/validationRules/phone';
 
 export class InfoValidator extends Validator<ValidatorType> {
   constructor() {
@@ -31,6 +32,10 @@ export class InfoValidator extends Validator<ValidatorType> {
       [
         'display_name',
         new Required(),
+      ],
+      [
+        'phone',
+        new Phone(),
       ],
     ]);
 
