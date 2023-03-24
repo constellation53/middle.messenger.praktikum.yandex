@@ -12,11 +12,18 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { PasswordValidator } from './utils/passwordValidator';
-import { isBlockClass } from '../../../core/utils/guards/isBlockClass';
-import { FormFieldsType } from './types';
+import { ChildrenType, FormFieldsType, FieldsType } from './types';
+import { validateField } from '../../../core/utils/validator/helpers/validateField';
+import { validateFields } from '../../../core/utils/validator/helpers/validateFields';
 
-export class PasswordFormComponent extends Block {
+export class PasswordFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new PasswordValidator();
+
+  protected readonly fields: Record<FieldsType, Input> = {
+    oldPassword: this.children.oldPasswordInput,
+    newPassword: this.children.newPasswordInput,
+    repeatNewPassword: this.children.repeatNewPasswordInput,
+  };
 
   constructor() {
     super();
@@ -31,8 +38,8 @@ export class PasswordFormComponent extends Block {
       htmlType: 'password',
       horizontal: true,
       events: {
-        focus: this.onFocusEvent.bind(this),
-        blur: this.onFocusEvent.bind(this),
+        focus: this.onFocus.bind(this, 'oldPassword'),
+        blur: this.onFocus.bind(this, 'oldPassword'),
       },
     });
 
@@ -44,8 +51,8 @@ export class PasswordFormComponent extends Block {
       htmlType: 'password',
       horizontal: true,
       events: {
-        focus: this.onNewPasswordFocus.bind(this),
-        blur: this.onNewPasswordFocus.bind(this),
+        focus: this.onFocus.bind(this, 'newPassword'),
+        blur: this.onFocus.bind(this, 'newPassword'),
       },
     });
 
@@ -75,48 +82,27 @@ export class PasswordFormComponent extends Block {
     });
   }
 
-  onFocusEvent(event: FocusEvent): void {
+  onFocus(field: FieldsType, event: FocusEvent): void {
     const target = <HTMLInputElement>event.target;
 
-    this.validator.execute('oldPassword', target.value);
+    this.validator.execute(field, target.value);
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
-  }
-
-  onNewPasswordFocus(event: FocusEvent): void {
-    if (isBlockClass(this.children.repeatNewPasswordInput)) {
-      const repeatNewPasswordInput = this.children.repeatNewPasswordInput
-        .getContent().querySelector('input')!;
-
-      const target = <HTMLInputElement>event.target;
-
-      this.validator.execute('newPassword', target.value);
-      this.validator.execute('repeatNewPassword', target.value, repeatNewPasswordInput.value);
-
-      const errors = this.validator.getErrors();
-
-      // eslint-disable-next-line no-console
-      console.log('errors => ', errors);
-    }
+    validateField(field, this.fields, errors);
   }
 
   onRepeatPasswordFocus(event: FocusEvent): void {
-    if (isBlockClass(this.children.newPasswordInput)) {
-      const newPassword = this.children.newPasswordInput
-        .getContent().querySelector('input')!;
+    const newPassword = this.children.newPasswordInput
+      .getContent().querySelector('input')!;
 
-      const target = <HTMLInputElement>event.target;
+    const target = <HTMLInputElement>event.target;
 
-      this.validator.execute('repeatNewPassword', target.value, newPassword.value);
+    this.validator.execute('repeatNewPassword', target.value, newPassword.value);
 
-      const errors = this.validator.getErrors();
+    const errors = this.validator.getErrors();
 
-      // eslint-disable-next-line no-console
-      console.log('errors => ', errors);
-    }
+    validateField<FieldsType>('repeatNewPassword', this.fields, errors);
   }
 
   onSubmit(event: SubmitEvent): void {
@@ -131,15 +117,13 @@ export class PasswordFormComponent extends Block {
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
+    validateFields(this.fields, errors);
     // eslint-disable-next-line no-console
     console.log('data => ', data);
   }
 
   render(): HTMLElement {
     return this.compile(template, {
-      ...this.props,
       styles,
       events: { submit: this.onSubmit.bind(this) },
     });
