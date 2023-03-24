@@ -5,6 +5,7 @@ import { Validator } from '../../../../../core/utils/validator';
 import { ValidatorRuleType } from '../../../../../core/utils/validationRule/types';
 import { FieldsType, ValidatorType } from '../../types';
 import { Login } from '../../../../../core/utils/validationRules/login';
+import { Password } from '../../../../../core/utils/validationRules/password';
 
 export class AuthValidator extends Validator<ValidatorType> {
   constructor() {
@@ -12,6 +13,10 @@ export class AuthValidator extends Validator<ValidatorType> {
       [
         'login',
         new Login(),
+      ],
+      [
+        'password',
+        new Password(),
       ],
     ]);
 

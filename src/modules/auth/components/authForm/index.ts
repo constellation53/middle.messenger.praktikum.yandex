@@ -11,11 +11,18 @@ import template from './index.hbs';
 // Other
 import * as styles from './styles/index.module.scss';
 import { routes } from '../../../core/config';
-import { FormFieldsType } from '../registrationForm/types';
+import { FieldsType, FormFieldsType, ChildrenType } from './types';
 import { AuthValidator } from './utils/authValidator';
+import { validateField } from '../../../core/utils/validator/helpers/validateField';
+import { validateFields } from '../../../core/utils/validator/helpers/validateFields';
 
-export class AuthFormComponent extends Block {
+export class AuthFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new AuthValidator();
+
+  protected readonly fields: Record<string, Input> = {
+    login: this.children.loginInput,
+    password: this.children.passwordInput,
+  };
 
   constructor() {
     super();
@@ -28,8 +35,8 @@ export class AuthFormComponent extends Block {
       label: 'Логин',
       value: 'ivanivanov',
       events: {
-        focus: this.onFocus.bind(this),
-        blur: this.onFocus.bind(this),
+        focus: this.onFocus.bind(this, 'login'),
+        blur: this.onFocus.bind(this, 'login'),
       },
     });
 
@@ -37,8 +44,12 @@ export class AuthFormComponent extends Block {
       name: 'password',
       id: 'password',
       label: 'Пароль',
-      value: '123456789123',
+      value: '123456789123A',
       htmlType: 'password',
+      events: {
+        focus: this.onFocus.bind(this, 'password'),
+        blur: this.onFocus.bind(this, 'password'),
+      },
     });
 
     this.children.loginButton = new Button({
@@ -56,15 +67,14 @@ export class AuthFormComponent extends Block {
     });
   }
 
-  onFocus(event: FocusEvent): void {
+  onFocus(field: FieldsType, event: FocusEvent): void {
     const target = <HTMLInputElement>event.target;
 
-    this.validator.execute('login', target.value);
+    this.validator.execute(field, target.value);
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
+    validateField(field, this.fields, errors);
   }
 
   onSubmit(event: SubmitEvent): void {
@@ -77,8 +87,7 @@ export class AuthFormComponent extends Block {
 
     const errors = this.validator.getErrors();
 
-    // eslint-disable-next-line no-console
-    console.log('errors => ', errors);
+    validateFields(this.fields, errors);
     // eslint-disable-next-line no-console
     console.log('data => ', data);
   }
