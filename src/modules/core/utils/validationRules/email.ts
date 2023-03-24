@@ -16,8 +16,7 @@ export class Email extends ValidationRule<[string]> {
     const rules: [RegExp, string][] = [
       [
         email,
-        'Разрешена латиница, цифры и спецсимволы: .,_,%+-, обязательна '
-        + '@ и точка после неё, перед точкой обязательно должны быть буквы',
+        'Некорректный email!',
       ],
     ];
 
