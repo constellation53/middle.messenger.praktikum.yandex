@@ -27,7 +27,7 @@ export class Login extends ValidationRule {
       ],
       [
         latinAndNumber,
-        'Разрешерна только латиница и цифры, нет спецсиволов (допустим только - и _)',
+        'Разрешерна только латиница и цифры, -, _',
       ],
       [
         latin,
