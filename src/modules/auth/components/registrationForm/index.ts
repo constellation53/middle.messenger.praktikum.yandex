@@ -143,7 +143,7 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
 
   onPasswordFocus(event: FocusEvent): void {
     // const newPassword = this.children.passwordCopyInput
-    //   .getContent()!.querySelector('input')!;
+    //   .getContent().querySelector('input')!;
 
     const target = <HTMLInputElement>event.target;
 
@@ -157,7 +157,7 @@ export class RegistrationFormComponent extends Block<never, ChildrenType> {
 
   onRepeatPasswordFocus(event: FocusEvent): void {
     const newPassword = this.children.passwordInput
-      .getContent()!.querySelector('input')!;
+      .getContent().querySelector('input')!;
 
     const target = <HTMLInputElement>event.target;
 

@@ -166,15 +166,15 @@ export abstract class Block<P extends ExtendedType = any, C extends ChildrenBase
   }
 
   // TODO: remove null
-  public getContent(): HTMLElement | null {
-    return this.element;
+  public getContent(): HTMLElement {
+    return this.element!;
   }
 
   public show(): void {
-    this.getContent()!.style.display = 'block';
+    this.getContent().style.display = 'block';
   }
 
   public hide(): void {
-    this.getContent()!.style.display = 'none';
+    this.getContent().style.display = 'none';
   }
 }

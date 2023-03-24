@@ -89,7 +89,7 @@ export class PasswordFormComponent extends Block {
   onNewPasswordFocus(event: FocusEvent): void {
     if (isBlockClass(this.children.repeatNewPasswordInput)) {
       const repeatNewPasswordInput = this.children.repeatNewPasswordInput
-        .getContent()!.querySelector('input')!;
+        .getContent().querySelector('input')!;
 
       const target = <HTMLInputElement>event.target;
 
@@ -106,7 +106,7 @@ export class PasswordFormComponent extends Block {
   onRepeatPasswordFocus(event: FocusEvent): void {
     if (isBlockClass(this.children.newPasswordInput)) {
       const newPassword = this.children.newPasswordInput
-        .getContent()!.querySelector('input')!;
+        .getContent().querySelector('input')!;
 
       const target = <HTMLInputElement>event.target;
 

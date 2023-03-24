@@ -16,7 +16,7 @@ export const executeComponent = (
 
   component.getContent()?.append(...Array.from(stub.childNodes));
 
-  stub.replaceWith(component.getContent()!);
+  stub.replaceWith(component.getContent());
 };
 
 export const replaceStubs = (

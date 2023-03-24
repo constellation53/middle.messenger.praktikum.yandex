@@ -23,7 +23,7 @@ export class AvatarFormComponent extends Block {
 
   onChooseFileButtonClick(): void {
     if (isBlockClass(this.children.avatarInput)) {
-      const ref = this.children.avatarInput.getContent()!;
+      const ref = this.children.avatarInput.getContent();
 
       ref.click();
     }
