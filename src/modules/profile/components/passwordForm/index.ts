@@ -89,7 +89,7 @@ export class PasswordFormComponent extends Block<never, ChildrenType> {
 
     const errors = this.validator.getErrors();
 
-    validateField(field, this.fields, errors);
+    validateField<FieldsType>(field, this.fields, errors);
   }
 
   onRepeatPasswordFocus(event: FocusEvent): void {
