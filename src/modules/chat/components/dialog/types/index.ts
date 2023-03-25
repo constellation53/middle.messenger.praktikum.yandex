@@ -2,10 +2,10 @@
 import { Button } from '../button';
 import { Divider } from '../../../../core/elements/divider';
 import { AttachFile } from '../attachFile';
+import { Input } from '../input';
 
 // Other
 import { EventHandlerType } from '../../../../core/utils/block/types';
-import { Input } from '../input';
 
 export type ButtonType = {
   disabled?: boolean;

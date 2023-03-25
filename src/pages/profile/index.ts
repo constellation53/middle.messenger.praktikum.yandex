@@ -17,7 +17,6 @@ import { InfoFormComponent } from '../../modules/profile/components/infoForm';
 // Other
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
-import { isBlockClass } from '../../modules/core/utils/guards/isBlockClass';
 import { routes } from '../../modules/core/config';
 
 export class ProfilePage extends Block {
@@ -26,9 +25,7 @@ export class ProfilePage extends Block {
   }
 
   onAvatarClick(): void {
-    if (isBlockClass(this.children.changeAvatarModal)) {
-      this.children.changeAvatarModal.show();
-    }
+    this.children.changeAvatarModal.show();
   }
 
   init(): void {

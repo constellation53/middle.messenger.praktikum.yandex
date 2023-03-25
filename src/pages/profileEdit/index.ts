@@ -15,7 +15,6 @@ import { AvatarFormComponent } from '../../modules/profile/components/avatarForm
 // Other
 import { render } from '../../modules/core/utils/render';
 import * as styles from './styles/index.module.scss';
-import { isBlockClass } from '../../modules/core/utils/guards/isBlockClass';
 
 export class ProfileEditPage extends Block {
   constructor() {
@@ -23,9 +22,7 @@ export class ProfileEditPage extends Block {
   }
 
   onAvatarClick(): void {
-    if (isBlockClass(this.children.changeAvatarModal)) {
-      this.children.changeAvatarModal.show();
-    }
+    this.children.changeAvatarModal.show();
   }
 
   init(): void {

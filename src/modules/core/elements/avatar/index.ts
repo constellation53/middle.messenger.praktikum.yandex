@@ -7,12 +7,11 @@ import template from './index.hbs';
 // Other
 import { AvatarType } from './types';
 import * as styles from './styles/index.module.scss';
-import { PropsType as BlockPropsType } from '../../utils/block/types';
 
 type PropsType = AvatarType;
 
 export class Avatar extends Block<PropsType> {
-  constructor(props: BlockPropsType<PropsType>) {
+  constructor(props: PropsType) {
     super(props);
   }
 

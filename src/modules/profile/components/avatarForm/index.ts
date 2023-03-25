@@ -13,7 +13,6 @@ import template from './index.hbs';
 import * as styles from './styles/index.module.scss';
 import { AvatarValidator } from './utils/avatarValidator';
 import { ChildrenType, FieldsType, FormFieldsType } from './types';
-import { isBlockClass } from '../../../core/utils/guards/isBlockClass';
 
 export class AvatarFormComponent extends Block<never, ChildrenType> {
   protected readonly validator = new AvatarValidator();
@@ -25,11 +24,9 @@ export class AvatarFormComponent extends Block<never, ChildrenType> {
   }
 
   onChooseFileButtonClick(): void {
-    if (isBlockClass(this.children.avatarInput)) {
-      const ref = this.children.avatarInput.getContent();
+    const ref = this.children.avatarInput.getContent();
 
-      ref.click();
-    }
+    ref.click();
   }
 
   onFileChose(event: Event): void {
