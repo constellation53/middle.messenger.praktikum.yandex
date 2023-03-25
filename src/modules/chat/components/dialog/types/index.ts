@@ -1,3 +1,39 @@
+// Elements
+import { Button } from '../button';
+import { Divider } from '../../../../core/elements/divider';
+import { AttachFile } from '../attachFile';
+
+// Other
+import { EventHandlerType } from '../../../../core/utils/block/types';
+import { Input } from '../input';
+
+export type ButtonType = {
+  disabled?: boolean;
+};
+
+type EventsType = {
+  focus?: EventHandlerType<'focus'>;
+  blur?: EventHandlerType<'blur'>;
+  input?: EventHandlerType<'input'>;
+};
+
+export type InputType = {
+  events?: EventsType;
+};
+
+export type FieldsType = 'message';
+
+export type MessageFormChildrenType = {
+  divider: Divider;
+  button: Button;
+  attachFile: AttachFile;
+  input: Input;
+};
+
+export type ValidatorType = {
+  message: [string];
+};
+
 export type MessageType = {
   content: string;
   time: string;

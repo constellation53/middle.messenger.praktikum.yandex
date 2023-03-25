@@ -1,19 +1,8 @@
 <form class="{{ styles.messageForm }}">
   {{{ divider }}}
   <div class="{{ styles.messageFormWrapper }}">
-    <button class="{{ styles.attachMedia }}" aria-label="attach media"></button>
-    <input
-      class="{{ styles.sendMessageInput }} text size-10 font-weight-500"
-      id="message"
-      name="message"
-      type="text"
-      placeholder="Сообщение"
-    />
-    <button
-      type="submit"
-      class="{{ styles.sendMessageButton }}"
-      aria-label="send message"
-    >
-    </button>
+    {{{ attachFile }}}
+    {{{ input }}}
+    {{{ button }}}
   </div>
 </form>

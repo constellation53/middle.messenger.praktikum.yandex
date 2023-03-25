@@ -135,6 +135,11 @@
     background-image: url('../../../../../assets/images/arrowRight.svg');
   }
 
+  .sendMessageButton:disabled {
+    background-image: url('../../../../../assets/images/arrowRightDisabled.svg');
+    cursor: not-allowed;
+  }
+
   @function px($px) {
     @return pxMedia($px, phonePortrait);
   }
