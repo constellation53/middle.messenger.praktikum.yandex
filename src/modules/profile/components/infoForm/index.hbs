@@ -1,0 +1,21 @@
+<form class="{{ styles.infoForm }}">
+  <div class="{{ styles.inputsWrapper }}">
+    {{{ emailInput }}}
+    {{{ emailDivider }}}
+    {{{ loginInput }}}
+    {{{ loginDivider }}}
+    {{{ firstNameInput }}}
+    {{{ firstNameDivider }}}
+    {{{ secondNameInput }}}
+    {{{ secondNameDivider }}}
+    {{{ displayNameInput }}}
+    {{{ displayNameDivider }}}
+    {{{ phoneInput }}}
+  </div>
+
+  {{#unless disabled}}
+    <div class="{{ styles.buttonWrapper }} center">
+      {{{ saveButton }}}
+    </div>
+  {{/unless}}
+</form>

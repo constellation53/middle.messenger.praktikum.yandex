@@ -1,0 +1,18 @@
+& {
+  width: px(280);
+  padding: px(50) px(30) px(16);
+  border-radius: px(12);
+  box-shadow: 0 0 px(6) $formBoxShadow;
+
+  .legend {
+    margin-bottom: px(40);
+  }
+
+  .fieldsWrapper {
+    margin-bottom: px(47);
+  }
+
+  .buttonWrapper {
+    margin-bottom: px(4)
+  }
+}

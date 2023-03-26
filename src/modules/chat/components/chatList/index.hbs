@@ -1,0 +1,18 @@
+<aside class="{{ styles.chatList }}">
+  <div class="{{ styles.linkWrapper }}">
+    {{{ link }}}
+  </div>
+  <div class="{{ styles.searchWrapper }}">
+    {{{ search }}}
+  </div>
+  <div class="{{ styles.dividerWrapper }}">
+    {{{ divider }}}
+  </div>
+  <ul class="{{ styles.listWrapper }}">
+    {{#each list}}
+      <li>
+        {{{this}}}
+      </li>
+    {{/each}}
+  </ul>
+</aside>

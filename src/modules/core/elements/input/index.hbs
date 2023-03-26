@@ -1,0 +1,15 @@
+<div class="
+    {{ styles.input }}
+    {{~#if horizontal }}
+      {{ styles.horizontal }}
+    {{else}}
+      {{ styles.vertical }}
+    {{/if }}
+    {{#if hidden }}
+      {{ styles.hidden }}
+    {{/if }}
+  " >
+  {{{ field }}}
+  {{{ label }}}
+  {{{ error }}}
+</div>

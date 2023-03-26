@@ -1,0 +1,148 @@
+.input {
+  @import '../../../../../assets/styles/extensions';
+  @import './palette';
+
+  position: relative;
+
+  &,
+  .field {
+    width: 100%;
+  }
+
+  .field {
+    border: 0;
+    background: $backgroundColor;
+    color: $verticalInputColor;
+
+    &.error {
+      color: $errorColor;
+    }
+  }
+
+  &.vertical .label {
+    position: absolute;
+    left: 0;
+    transition: transform 150ms ease-out, font-size 150ms ease-out, line-height 150ms ease-out;
+    color: $verticalLabelColor;
+  }
+
+  &.horizontal {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &.horizontal .field {
+    display: block;
+    order: 1;
+    border: 0;
+    color: $horizontalInputColor;
+  }
+
+  &.horizontal .label {
+    color: $horizontalLabelColor;
+  }
+
+  &.horizontal .field,
+  &.vertical .field {
+    &:disabled {
+      color: $disabledInputColor;
+      cursor: not-allowed;
+    }
+  }
+
+  .field:focus {
+    outline: none;
+  }
+
+  &.vertical .field:focus ~ .label,
+  &.vertical .field:not([value='']):not(:focus) ~ .label {
+    transform: translateY(-175%);
+  }
+
+  &.hidden {
+    @include visuallyHidden()
+  }
+
+  .errorMessage {
+    color: $errorColor;
+  }
+
+  &.horizontal .errorWrapper {
+    position:absolute;
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phonePortrait);
+  }
+
+  @media #{getMediaFeature(phonePortrait)} {
+    @import './mq/phonePortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscape);
+  }
+
+  @media #{getMediaFeature(phoneLandscape)} {
+    @import './mq/phoneLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscapePlus);
+  }
+
+  @media #{getMediaFeature(phoneLandscapePlus)} {
+    @import './mq/phoneLandscapePlus';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletPortrait);
+  }
+
+  @media #{getMediaFeature(tabletPortrait)} {
+    @import './mq/tabletPortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletLandscape);
+  }
+
+  @media #{getMediaFeature(tabletLandscape)} {
+    @import './mq/tabletLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktop);
+  }
+
+  @media #{getMediaFeature(desktop)} {
+    @import './mq/desktop';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopWide);
+  }
+
+  @media #{getMediaFeature(desktopWide)} {
+    @import './mq/desktopWide';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopHD);
+  }
+
+  @media #{getMediaFeature(desktopHD)} {
+    @import './mq/desktopHD';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopMega);
+  }
+
+  @media #{getMediaFeature(desktopMega)} {
+    @import './mq/desktopMega';
+  }
+}

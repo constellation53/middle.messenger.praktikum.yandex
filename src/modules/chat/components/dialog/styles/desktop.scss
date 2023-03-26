@@ -1,0 +1,84 @@
+& {
+  .header {
+    padding: px(10) px(20) 0;
+  }
+
+  .headerWrapper {
+    margin-bottom: px(10);
+  }
+
+  .user {
+    gap: px(10);
+  }
+
+  .hamburger {
+    width: px(25);
+    height: px(25);
+    cursor: pointer;
+
+    &:focus {
+      @include focusOutline($outlineColor, #{px(1)});
+    }
+  }
+
+  .messages {
+    padding: px(48) px(20) px(30);
+  }
+
+  .message {
+    max-width: px(402);
+    margin-bottom: px(10);
+    padding: px(11);
+    border-radius: px(10);
+  }
+
+  .message.image {
+    border: px(1) solid var(--paletteColor10);
+  }
+
+  .time {
+    margin-top: px(5);
+  }
+
+  .image .time {
+    right: px(11);
+    bottom:  px(11);
+    padding: px(2) px(7);
+    border-radius: px(30)
+  }
+
+  .isMy .time::after {
+    top: px(3);
+    right: px(30);
+    width: px(10);
+    height: px(4);
+  }
+
+  .oneLine .content {
+    padding-right: px(28);
+  }
+
+  .messageForm {
+    padding: 0 px(20) px(11);
+  }
+
+  .messageFormWrapper {
+    margin-top: px(11);
+    gap: px(10)
+  }
+
+  .attachMedia {
+    width: px(32);
+    height: px(32);
+  }
+
+  .sendMessageInput {
+    padding: px(10) px(20);
+    border-radius: px(30);
+  }
+
+  .sendMessageButton {
+    width: px(28);
+    height: px(28)
+  }
+}

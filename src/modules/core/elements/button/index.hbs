@@ -1,0 +1,72 @@
+{{#if href}}
+  <a
+    class="
+      {{ styles.button }}
+      {{#if primary }}
+        {{ styles.primary }}
+      {{ else if secondary }}
+       {{ styles.secondary }}
+      {{ else if tertiary }}
+        {{ styles.tertiary }}
+      {{else}}
+        {{ styles.primary }}
+      {{/if }}
+
+      {{#if fluid }}
+        {{ styles.fluid }}
+      {{/if }}
+
+      {{#if alignLeft }}
+        {{ styles.alignLeft }}
+      {{/if }}
+
+      {{#if underline }}
+        {{ styles.underline }}
+      {{/if }}
+    "
+    href={{ href }}
+  >
+    <span class="text size-7 {{ class }}">
+      {{ text }}
+    </span>
+  </a>
+{{ else }}
+  <button
+    class="
+      {{ styles.button }}
+      {{#if primary }}
+        {{ styles.primary }}
+      {{ else if secondary }}
+        {{ styles.secondary }}
+      {{ else if tertiary }}
+        {{ styles.tertiary }}
+      {{ else if quaternary }}
+        {{ styles.quaternary }}
+      {{else}}
+        {{ styles.primary }}
+      {{/if }}
+
+      {{#if fluid }}
+        {{ styles.fluid }}
+      {{/if }}
+
+      {{#if alignLeft }}
+        {{ styles.alignLeft }}
+      {{/if }}
+
+      {{#if underline }}
+        {{ styles.underline }}
+      {{/if }}
+    "
+    {{#if htmlType }}
+      type={{ htmlType }}
+    {{else}}
+      type="button"
+    {{/if }}
+  >
+    <span class="text size-7 {{ class }}">
+      {{ text }}
+    </span>
+  </button>
+{{/if}}
+

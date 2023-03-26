@@ -1,0 +1,214 @@
+.dialog {
+  @import '../../../../../assets/styles/extensions';
+  @import './palette';
+
+  background: $backgroundColor;
+
+  .headerWrapper {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    justify-content: space-between;
+  }
+
+  .user {
+    display: grid;
+    grid-template-columns: min-content min-content;
+    align-items: center;
+  }
+
+  .hamburger {
+    align-self: center;
+    background-image: url('../../../../../assets/images/hamburger.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .stub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .chooseChat {
+    color: $stubColor;
+  }
+
+  .contentWrapper {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    height: 100%;
+  }
+
+  .messages {
+    overflow-y: auto;
+  }
+
+  .message {
+    position: relative;
+    box-sizing: border-box;
+    width: fit-content;
+    background: $textMessageBackgroundColor;
+  }
+
+  .message:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .message.image {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+    background: white;
+  }
+
+  .imageContent {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .message .content {
+    display: flex;
+    align-items: center;
+    white-space: pre-line;
+  }
+
+  .time {
+    color: $textMessageTextColor;
+  }
+
+  .text .time {
+    display: block;
+    width: min-content;
+    margin-left: auto;
+  }
+
+  .image .time {
+    position: absolute;
+    background: $imageMessageTimeBackgroundColor;
+    color: $imageMessageTimeColor;
+  }
+
+  .isMy {
+    align-self: center;
+    margin-left: auto;
+    background-color: $myMessageBackgroundColor;
+  }
+
+  .isMy .time {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    width: min-content;
+    margin-left: auto;
+  }
+
+  .isMy .time::after {
+    content: '';
+    position: absolute;
+    background-image: url('../../../../../assets/images/ticks.svg');
+    background-repeat: no-repeat;
+  }
+
+  .oneLine  {
+    display: flex;
+  }
+
+  .messageFormWrapper {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    align-items: center;
+  }
+
+  .attachMedia {
+    background-image: url('../../../../../assets/images/clip.svg');
+  }
+
+  .sendMessageInput {
+    border: 0;
+    background: $inputBackgroundColor;
+  }
+
+  .sendMessageButton {
+    background-image: url('../../../../../assets/images/arrowRight.svg');
+  }
+
+  .sendMessageButton:disabled {
+    background-image: url('../../../../../assets/images/arrowRightDisabled.svg');
+    cursor: not-allowed;
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phonePortrait);
+  }
+
+  @media #{getMediaFeature(phonePortrait)} {
+    @import './mq/phonePortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscape);
+  }
+
+  @media #{getMediaFeature(phoneLandscape)} {
+    @import './mq/phoneLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscapePlus);
+  }
+
+  @media #{getMediaFeature(phoneLandscapePlus)} {
+    @import './mq/phoneLandscapePlus';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletPortrait);
+  }
+
+  @media #{getMediaFeature(tabletPortrait)} {
+    @import './mq/tabletPortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletLandscape);
+  }
+
+  @media #{getMediaFeature(tabletLandscape)} {
+    @import './mq/tabletLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktop);
+  }
+
+  @media #{getMediaFeature(desktop)} {
+    @import './mq/desktop';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopWide);
+  }
+
+  @media #{getMediaFeature(desktopWide)} {
+    @import './mq/desktopWide';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopHD);
+  }
+
+  @media #{getMediaFeature(desktopHD)} {
+    @import './mq/desktopHD';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopMega);
+  }
+
+  @media #{getMediaFeature(desktopMega)} {
+    @import './mq/desktopMega';
+  }
+}

@@ -1,0 +1,81 @@
+.notFound {
+  @import '../../../assets/styles/extensions';
+  @import './palette';
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  @function px($px) {
+    @return pxMedia($px, phonePortrait);
+  }
+
+  @media #{getMediaFeature(phonePortrait)} {
+    @import './mq/phonePortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscape);
+  }
+
+  @media #{getMediaFeature(phoneLandscape)} {
+    @import './mq/phoneLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscapePlus);
+  }
+
+  @media #{getMediaFeature(phoneLandscapePlus)} {
+    @import './mq/phoneLandscapePlus';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletPortrait);
+  }
+
+  @media #{getMediaFeature(tabletPortrait)} {
+    @import './mq/tabletPortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletLandscape);
+  }
+
+  @media #{getMediaFeature(tabletLandscape)} {
+    @import './mq/tabletLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktop);
+  }
+
+  @media #{getMediaFeature(desktop)} {
+    @import './mq/desktop';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopWide);
+  }
+
+  @media #{getMediaFeature(desktopWide)} {
+    @import './mq/desktopWide';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopHD);
+  }
+
+  @media #{getMediaFeature(desktopHD)} {
+    @import './mq/desktopHD';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopMega);
+  }
+
+  @media #{getMediaFeature(desktopMega)} {
+    @import './mq/desktopMega';
+  }
+}

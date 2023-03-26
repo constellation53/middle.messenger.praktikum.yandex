@@ -1,0 +1,176 @@
+.chatList {
+  @import '../../../../../assets/styles/extensions';
+  @import './palette';
+
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+  background: $backgroundColor;
+
+  .linkWrapper {
+    width: min-content;
+    margin-left: auto;
+  }
+
+  .link {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    color: $linkColor;
+    text-decoration: none;
+
+    &:after {
+      content: '';
+      position: absolute;
+      background-image: url('../../../../../assets/images/rightShoulderLoop.svg');
+    }
+  }
+
+  .listWrapper {
+    height: 100%;
+    overflow-y: auto;
+    background: $backgroundColor;
+
+    &:hover::-webkit-scrollbar-thumb {
+      background: $scrollThumbColor;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $scrollTrackColor;
+    }
+  }
+
+  .chatItem {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: fit-content(100%) 1fr;
+
+    &:hover {
+      background: $chatItemHoverBackgroundColor;
+    }
+  }
+
+  .info,
+  .infoWrapper,
+  .subtitle {
+    display: grid;
+  }
+
+  .info {
+    grid-template-rows: auto 1fr;
+  }
+
+  .infoWrapper {
+    grid-template-columns: 1fr fit-content(100%);
+    justify-content: space-between;
+  }
+
+  .subtitle {
+    grid-template-columns: 1fr min-content;
+  }
+  
+  .title {
+    color: $titleColor;
+  }
+
+  .lastMessage {
+    align-self: flex-start;
+    color: $lastMessageColor;
+
+    @include hideTextWithEllipsis(2)
+  }
+
+  .time {
+    color: $timeColor;
+  }
+
+  .counter {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: center;
+    background: $counterBackgroundColor;
+    color: $counterColor;
+  }
+
+  .postfix {
+    color: $postfixColor
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phonePortrait);
+  }
+
+  @media #{getMediaFeature(phonePortrait)} {
+    @import './mq/phonePortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscape);
+  }
+
+  @media #{getMediaFeature(phoneLandscape)} {
+    @import './mq/phoneLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, phoneLandscapePlus);
+  }
+
+  @media #{getMediaFeature(phoneLandscapePlus)} {
+    @import './mq/phoneLandscapePlus';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletPortrait);
+  }
+
+  @media #{getMediaFeature(tabletPortrait)} {
+    @import './mq/tabletPortrait';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, tabletLandscape);
+  }
+
+  @media #{getMediaFeature(tabletLandscape)} {
+    @import './mq/tabletLandscape';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktop);
+  }
+
+  @media #{getMediaFeature(desktop)} {
+    @import './mq/desktop';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopWide);
+  }
+
+  @media #{getMediaFeature(desktopWide)} {
+    @import './mq/desktopWide';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopHD);
+  }
+
+  @media #{getMediaFeature(desktopHD)} {
+    @import './mq/desktopHD';
+  }
+
+  @function px($px) {
+    @return pxMedia($px, desktopMega);
+  }
+
+  @media #{getMediaFeature(desktopMega)} {
+    @import './mq/desktopMega';
+  }
+}

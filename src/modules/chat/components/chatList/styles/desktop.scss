@@ -1,0 +1,70 @@
+& {
+  padding: px(20) 0 0;
+  border-right: px(1) solid $borderColor;
+
+
+  .linkWrapper {
+    margin-bottom: px(25);
+    padding: 0 px(10);
+  }
+
+  .link {
+    margin-right: px(14);
+
+    &:after {
+      top: px(2);
+      right: px(-15);
+      width: px(6);
+      height: px(10);
+    }
+  }
+
+  .searchWrapper {
+    margin-bottom: px(14);
+    padding: 0 px(10);
+  }
+
+  .listWrapper {
+    &::-webkit-scrollbar {
+      width: px(10);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: px(2) solid $scrollThumbBorderColor;
+      border-radius: px(17);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: px(17);
+    }
+  }
+
+  .dividerWrapper {
+    padding: 0 px(10);
+  }
+
+  .chatItem:focus {
+    @include focusOutline($outlineColor, #{px(1)});
+  }
+
+  .content {
+    margin: px(2) 0;
+    padding: px(10);
+    gap: px(10);
+  }
+
+  .subtitle {
+    gap: px(20)
+  }
+
+  .info {
+    gap: px(4);
+  }
+
+  .counter {
+    min-width: px(20);
+    min-height: px(20);
+    padding: px(5);
+    border-radius: px(12);
+  }
+}

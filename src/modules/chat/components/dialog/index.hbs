@@ -1,0 +1,19 @@
+<section class="{{ styles.dialog }}">
+  {{#if isEmpty }}
+    <div class="{{ styles.stub }} center">
+      <p class="{{ styles.chooseChat }} text size-10">
+        Выберите чат чтобы отправить сообщение
+      </p>
+    </div>
+  {{ else }}
+    <div class="{{ styles.contentWrapper }}">
+      {{{ header }}}
+      <div class="{{ styles.messages }}">
+        {{#each list}}
+          {{{this}}}
+        {{/each}}
+      </div>
+      {{{ footer }}}
+    </div>
+  {{/if}}
+</section>
